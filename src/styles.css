@@ -1,0 +1,77 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~bootstrap/dist/css/bootstrap.min.css';
+@import "~font-awesome/css/font-awesome.css";
+
+.navbar {
+    z-index: 1030;
+    left: 0px;
+    right: 0px;
+    position: fixed;
+    min-height: 40px;
+    margin-bottom: 20px;
+    background-color: #ededf5;
+    border-color: rgba(54, 65, 76, 0.1);
+}
+
+
+.navbar-inner {
+    margin-bottom: 0px;
+    margin-left: auto;
+    margin-right: auto;
+    min-height: 40px;
+    padding-right: 15px;
+    padding-left: 15px;
+    width: 1170px;
+    background: none !important;
+    border-radius: 0px !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+
+.header-nav {
+    padding: 0px;
+    color: #fff !important;
+    background: #000 !important;
+}
+
+.navbar .nav.pull-right {
+    float: right;
+    margin-right: 0;
+}
+
+
+
+.dropdown-menu .divider {
+    background-color: #d8dfe5;
+    height: 1px;
+    margin: 0;
+    overflow: hidden;
+}
+
+.login-box {
+    max-width: 400px;
+    margin: 100px auto ;
+    text-align: center;
+    color: #000;
+    overflow: hidden;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+}
+
+.input-prepend {
+    background: #fff;
+    width: 100%;
+    text-align: center;
+    padding: 15px 0px;
+    border-left: 3px solid #fff;
+}
+
+.add-on {
+    border: 1px solid #d1d8dd !important;
+}
+
+.button-login {
+    margin: 0 20px;
+}
