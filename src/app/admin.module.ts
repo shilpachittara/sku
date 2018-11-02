@@ -10,6 +10,7 @@ import { SkuService } from './service/sku.service';
 import { HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
+import { AppGlobalDataService } from './service/app-global-data.service';
 
 const routes: Routes = [
     {path: '', component: AdminComponent},
@@ -30,6 +31,6 @@ const routes: Routes = [
       CreateComponent,
       HeaderComponent
   ],
-  providers: [SkuService]
+  providers: [SkuService, AppGlobalDataService]
 })
 export class AdminModule {}
