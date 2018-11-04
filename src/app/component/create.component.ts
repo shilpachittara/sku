@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { Router } from '@angular/router';
 import { SkuService } from '../service/sku.service';
-import { AppGlobalDataService } from '../service/app-global-data.service';
+import { Sku } from '../model/sku';
+import { Input } from '@angular/core';
 
 @Component({
     styleUrls   : ['./create.component.css'],
@@ -10,9 +11,14 @@ import { AppGlobalDataService } from '../service/app-global-data.service';
   templateUrl: './create.component.html'
 })
 export class CreateComponent implements OnInit {
+
+  @Input() datasku : Sku;
+  master: string;
   constructor (
-    private router  : Router, private service: SkuService, private globalData: AppGlobalDataService
-  ) {}
+    private router  : Router, private service: SkuService
+  ) {
+    this.datasku = new Sku();
+  }
 
   ngOnInit() {
   }
@@ -22,13 +28,17 @@ export class CreateComponent implements OnInit {
   }
 
   save(){
-    this.service.postProducts(this.globalData.sku).subscribe(
+    this.service.postProducts(this.datasku).subscribe(
       (skuId: string) =>
       {
         console.log('posting data');
         this.router.navigateByUrl("/sku/dashboard");
       }
     )
+  }
+
+  setData(data: Sku): void{
+    this.datasku = data;
   }
 
 }

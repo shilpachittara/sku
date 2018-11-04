@@ -10,6 +10,7 @@ import { SkuService } from './service/sku.service';
 import { HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { AppGlobalDataService } from './service/app-global-data.service';
 
 const routes: Routes = [
@@ -18,12 +19,13 @@ const routes: Routes = [
     {path: 'dashboard/create', component: CreateComponent}
 ];
 
-@NgModule({
+@NgModule({ 
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
     SharedModule,
-    HttpModule
+    HttpModule,
+    FormsModule
   ],
   declarations: [
       AdminComponent,

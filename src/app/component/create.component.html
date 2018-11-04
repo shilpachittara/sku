@@ -17,20 +17,17 @@
 
 <div class="box-content " style="border:none; ">
 				
-        <form action="" method="post" id="filterform" class="form-horizontal" name="add_pattern" style="margin: 0px auto;">
+        <form #skuForm="ngForm" action="" method="post" id="filterform" class="form-horizontal" name="add_pattern" style="margin: 0px auto;">
                     <input type="hidden" id="uid" name="uid" value="">
                     <input type="hidden" id="part_group_id" name="part_group_id" value="">
-                    
+                
                     <div class="" id="master_group">
                     <div class="control-group ">
-                        <label class="control-label" for="title"> Master Category <span class="red">*</span></label>
+                        <label class="control-label" for="title"> Category <span class="red">*</span></label>
                         <div class="controls">
-                                <select id="master_category" class="chzn-drop" name="master_category" required="" onchange="onchangegroup(this)">
-                                      <option selected="" disabled="" value="">Choose Master Category</option>
-                                                                        <option id="colour_04" value="04">Kitchen Equipments</option>
+                                <select id="category" class="chzn-drop" name="category" [(ngModel)]="datasku.category"   required=""  onchange="onchangegroup(this)">
+                                      <option selected="" disabled="" value=""> Master Category</option>
                                                                           <option id="colour_03" value="03">Packaging</option>
-                                                                          <option id="colour_02" value="02">Clothing And Accessories</option>
-                                                                          <option id="colour_01" value="01">Bags And Luggage</option>
                                                                           
                                       </select>	  
                                 
@@ -40,11 +37,7 @@
                     <div class="control-group ">
                         <label class="control-label" for="title"> Sub Category <span class="red">*</span></label>
                         <div class="controls">
-                                <select id="sub_category_master" class="chzn-drop" name="sub_category_master" required="" onchange="onchangegroup(this)">
-                                      <option selected="" disabled="" value="">Choose Sub Category</option>
-                                    
-                                        
-                                      </select>	  
+                            <select id="sub_category_master" class="chzn-drop" name="sub_category_master" [(ngModel)]="datasku.subCategory" required="" onchange="onchangegroup(this)"><option selected="" disabled="" value="">Choose Sub Category</option><option value="MTR">Meal Trays</option><option value="PTP">Pizza Tripods</option><option value="PCU">Paper Cups</option><option value="PDB">Paper Delivery Bags</option><option value="COB">Cold Box</option><option value="CTG">Tessol Cartridges</option></select>	  
                                 
                         </div>
     
@@ -53,7 +46,7 @@
             <div class="control-group ">
                         <label class="control-label" for="title"> Brand <span class="red">*</span></label>
                         <div class="controls">
-                                <select id="brand" class="chzn-drop" name="brand" required="" onchange="onchangegroup(this)">
+                                <select id="brand" class="chzn-drop" name="brand" [(ngModel)]="datasku.brand" required="" onchange="onchangegroup(this)">
                                       <option selected="" disabled="" value="">Choose Brand</option>
                                                                         <option id="colour_TL" value="TL">Tessol</option>
                                                                           <option id="colour_JK" value="JK">Jockey</option>
@@ -77,7 +70,7 @@
                     <div class="control-group ">
                         <label class="control-label" for="title"> Gender <span class="red">*</span></label>
                         <div class="controls">
-                                <select id="gender" class="chzn-drop" name="gender" required="" onchange="onchangegroup(this)">
+                                <select id="gender" class="chzn-drop" name="gender" required="" [(ngModel)]="datasku.gender" onchange="onchangegroup(this)">
                                       <option selected="" disabled="" value="">Choose Gender</option>
                                                                         <option id="colour_N" value="N">Nosex</option>
                                                                           <option id="colour_U" value="U">Unisex</option>
@@ -89,10 +82,20 @@
                         </div>
     
                     </div>
+
+                    <div class="control-group ">
+                        <label class="control-label" for="title"> Collection Name <span class="red">*</span></label>
+                        <div class="controls">
+                            <select id="collection_name" class="chzn-drop" name="collection_name" required="" [(ngModel)]="datasku.collection" onchange="onchangegroup(this)"><option selected="" disabled="" value="">Choose Collection</option><option value="245">Cult Duffel Bag</option><option value="263">Gym Bag</option></select>	 
+                                
+                        </div>
+    
+                    </div>
+
                     <div class="control-group ">
                         <label class="control-label" for="title"> Colour <span class="red">*</span></label>
                         <div class="controls">
-                                <select id="colour" class="chzn-drop" name="colour" required="">
+                                <select id="colour" class="chzn-drop" name="colour" [(ngModel)]="datasku.color" required="">
                                       <option selected="" disabled="" value="">Choose Colour</option>
                                                                         <option id="colour_F" value="F">Beige</option>
                                                                           <option id="colour_A" value="A">Black</option>
@@ -121,19 +124,20 @@
                     <div class="control-group ">
                         <label class="control-label" for="title"> Colour Variation <span class="red">*</span></label>
                         <div class="controls">
-                                <select id="colour_variation" class="chzn-drop" name="colour_variation" required="">
+                                <select id="colour_variation" class="chzn-drop" name="colour_variation" [(ngModel)]="datasku.colorVariation" required="">
                                       <option selected="" disabled="" value="">Choose Colour Variation</option>
-                                    
+                                      
+                                      <option id="colour_S" value="S">Yellow</option>
                                       </select>	  
                                 
                         </div>
     
                     </div>
-                    
+
                     <div class="control-group ">
                         <label class="control-label" for="title"> Size <span class="red">*</span></label>
                         <div class="controls">
-                                <select id="size" class="chzn-drop" name="size" required="">
+                                <select id="size" class="chzn-drop" name="size" [(ngModel)]="datasku.size" required="">
                                       <option selected="" disabled="" value="">Choose Size</option>
                                                                         <option id="colour_4XL" value="4XL">4XL</option>
                                                                           <option id="colour_3XL" value="3XL">3XL</option>
@@ -159,44 +163,19 @@
                         </div>
     
                     </div>
-                    
+                                        
                     <div class="control-group ">
-                        <label class="control-label" for="title"> Group ID <span class="red">*</span></label>
+                        <label class="control-label" for="title"> Manufacturing Year <span class="red">*</span></label>
                         <div class="controls">
-                                <input type="text" id="group_id" name="group_id" placeholder="Group ID" autocomplete="off" tabindex="-1" required="" class="readonly"><span class="red" id="group_id_exist"></span>
+                                <input type="text" id="manufacturing_year" name="manufacturing_year" [(ngModel)]="datasku.manufacturingYear" placeholder="DD/MM/YYYY"><span class="red"></span>
                         </div>
     
                     </div>
-                    <div class="control-group ">
-                        <label class="control-label" for="title"> Style Code <span class="red">*</span></label>
-                        <div class="controls">
-                                <input type="text" id="style_code" name="style_code" autocomplete="off" tabindex="-1" placeholder="Style Code" required="" readonly="">
-                        </div>
-    
-                    </div>
-                    <div class="control-group ">
-                        <label class="control-label" for="title"> SKU Code <span class="red">*</span></label>
-                        <div class="controls">
-                                <input type="text" id="sku_code" name="sku_code" autocomplete="off" tabindex="-1" required="" placeholder="SKU Code" readonly="">
-                        </div>
-    
-                    </div>
-                    <div class="control-group ">
-                            <label class="control-label" for="title"> Collection Name <span class="red">*</span></label>
-                            <div class="controls">
-                                    <select id="collection_name" class="chzn-drop" name="collection_name" required="" onchange="onchangegroup(this)">
-                                          <option selected="" disabled="" value="">Choose Collection</option>
-                                                                            
-                                          </select>	 
-                                    
-                            </div>
-        
-                        </div>
-                        </div>
+
                     <div class="control-group ">
                         <label class="control-label" for="title"> Sub Brand </label>
                         <div class="controls">
-                        <select id="sub_brand" class="chzn-drop" name="sub_brand">
+                        <select id="sub_brand" class="chzn-drop" name="sub_brand" [(ngModel)]="datasku.subBrand">
                                       <option selected="" disabled="" value="">Choose Sub Brand</option>
                                                                         <option id="colour_164" value="Orgpick">Orgpick</option>
                                                                           <option id="colour_163" value="Sabzi Junction">Sabzi Junction</option>
@@ -368,28 +347,215 @@
                         </div>
     
                     </div>
+
+                    <div class="control-group ">
+                        <label class="control-label" for="title"> Group ID <span class="red">*</span></label>
+                        <div class="controls">
+                                <input type="text" id="group_id" name="group_id" [(ngModel)]="datasku.groupId" placeholder="Group ID" autocomplete="off" tabindex="-1" required="" class="readonly"><span class="red" id="group_id_exist"></span>
+                        </div>
+    
+                    </div>
+                    <div class="control-group ">
+                        <label class="control-label" for="title"> Style Code <span class="red">*</span></label>
+                        <div class="controls">
+                                <input type="text" id="style_code" name="style_code" [(ngModel)]="datasku.styleCode" autocomplete="off" tabindex="-1" placeholder="Style Code" required="" >
+                        </div>
+    
+                    </div>
+
+                    <div class="control-group ">
+                        <label class="control-label" for="title"> Size Code <span class="red">*</span></label>
+                        <div class="controls">
+                            <input type="text" id="style_code" name="style_code" [(ngModel)]="datasku.sizeCode" autocomplete="off" tabindex="-1" placeholder="Style Code" required="" >
+                    </div>
+    
+                    </div>
+
+                    <div class="control-group ">
+                        <label class="control-label" for="title"> SKU Code <span class="red">*</span></label>
+                        <div class="controls">
+                                <input type="text" id="sku_code" name="sku_code" [(ngModel)]="datasku.skuCode" autocomplete="off" tabindex="-1" required="" placeholder="SKU Code" >
+                        </div>
+    
+                    </div>
+                    
+                        </div>
+                    
+                        <div class="control-group ">
+                            <label class="control-label" for="title"> Product Name <span class="red">*</span></label>
+                            <div class="controls">
+                            <textarea type="text" id="sku_name" name="sku_name" [(ngModel)]="datasku.productName" placeholder="Product Name" autocomplete="off" tabindex="-1"></textarea>
+                                    
+                            </div>
+        
+                        </div>
+                        <div class="control-group ">
+                            <label class="control-label" for="title"> Product Description </label>
+                            <div class="controls">
+                            <textarea type="text" id="sku_description" name="sku_description" [(ngModel)]="datasku.productDescription" placeholder="Product Description"></textarea>
+                                    
+                            </div>
+
                     <div class="control-group ">
                         <label class="control-label" for="title"> Actual Colour <span class="red">*</span></label>
                         <div class="controls">
-                                <input type="text" id="actual_colour" name="actual_colour" placeholder="Actual Colour" required="">
+                                <input type="text" id="actual_colour" name="actual_colour" [(ngModel)]="datasku.actualColor" placeholder="Actual Colour" required="">
                         </div>
     
                     </div>
+
                     <div class="control-group ">
-                        <label class="control-label" for="title"> SKU Name <span class="red">*</span></label>
+                        <label class="control-label" for="title"> Item Weight(g) <span class="red">*</span></label>
                         <div class="controls">
-                        <textarea type="text" id="sku_name" name="sku_name" placeholder="Product Name" autocomplete="off" tabindex="-1" readonly=""></textarea>
-                                
+                                <input type="number" step="0.01" min="0.00" id="item_weight" name="item_weight" [(ngModel)]="datasku.itemWeight" placeholder="Item Weight" required="">
                         </div>
     
                     </div>
+
                     <div class="control-group ">
-                        <label class="control-label" for="title"> SKU Version </label>
+                        <label class="control-label" for="title"> Item Length (cm) <span class="red">*</span></label>
                         <div class="controls">
-                        <textarea type="text" id="sku_description" name="sku_description" placeholder="Product Description"></textarea>
-                                
+                                <input type="number" step="0.01" min="0.00" id="item_length" name="item_length" [(ngModel)]="datasku.itemLength" placeholder="Item Length" required="">
                         </div>
     
+                    </div>
+
+                    <div class="control-group ">
+                        <label class="control-label" for="title"> Item Height (cm) <span class="red">*</span></label>
+                        <div class="controls">
+                                <input type="number" step="0.01" min="0.00" id="item_height" name="item_height" [(ngModel)]="datasku.itemHeight"  placeholder="Item Height" required="">
+                        </div>
+    
+                    </div>
+
+                    <div class="control-group ">
+                        <label class="control-label" for="title"> Item Width (cm) <span class="red">*</span></label>
+                        <div class="controls">
+                                <input type="number" step="0.01" min="0.00" id="item_width" name="item_width" [(ngModel)]="datasku.itemWidth"  placeholder="Item Width" required="">
+                        </div>
+    
+                    </div>
+
+                    <div class="control-group ">
+                        <label class="control-label" for="title"> Item Volume (ltr) <span class="red">*</span></label>
+                        <div class="controls">
+                                <input type="text" id="item_volume" min="0.00" name="item_volume" [(ngModel)]="datasku.itemVolume" autocomplete="off" tabindex="-1" placeholder="Item Volume" class="readonly">
+                        </div>
+    
+                    </div>
+
+                    <div class="control-group ">
+                        <label class="control-label" for="title"> Package Weight (g) <span class="red">*</span></label>
+                        <div class="controls">
+                                <input type="number" step="0.01" min="0.00" id="package_weight" name="package_weight" [(ngModel)]="datasku.packageWeight" placeholder="Package Weight" required="">
+                        </div>
+    
+                    </div>
+                    
+                    <div class="control-group ">
+                        <label class="control-label" for="title"> Package Length (cm) <span class="red">*</span></label>
+                        <div class="controls">
+                                <input type="number" step="0.01" min="0.00" id="package_length" name="package_length" [(ngModel)]="datasku.packageLength" placeholder="Package Length" required="">
+                        </div>
+    
+                    </div>
+
+                    <div class="control-group ">
+                        <label class="control-label" for="title"> Package Height (cm) <span class="red">*</span></label>
+                        <div class="controls">
+                                <input type="number" step="0.01" min="0.00" id="package_height" name="package_height" [(ngModel)]="datasku.packageHeight" placeholder="Package Height" required="">
+                        </div>
+    
+                    </div>
+
+                    <div class="control-group ">
+                        <label class="control-label" for="title"> Package Width (cm) <span class="red">*</span></label>
+                        <div class="controls">
+                                <input type="number" step="0.01" min="0.00" id="package_width" name="package_width" [(ngModel)]="datasku.packageWidth" placeholder="Package Width" required="">
+                        </div>
+    
+                    </div>
+
+                    <div class="control-group ">
+                        <label class="control-label" for="title"> Volumetric Weight(kg) <span class="red">*</span></label>
+                        <div class="controls">
+                                <input type="text" id="volumetric_weight" name="volumetric_weight" [(ngModel)]="datasku.volumetricWeight" autocomplete="off" tabindex="-1" placeholder="Volumetric Weight" required="" class="readonly">
+                        </div>
+    
+                    </div>        
+    
+                    <div class="control-group ">
+                        <label class="control-label" for="title"> Basic Cost <span class="red">*</span></label>
+                        <div class="controls">
+                                <input type="number" step="1" min="0.00" id="input_price" name="input_price" [(ngModel)]="datasku.basicCost" placeholder="Basic Cost" required="">
+                        </div>
+                    </div>
+
+                    <div class="control-group ">
+                        <label class="control-label" for="title"> Branding Cost </label>
+                        <div>
+                        <label class="control-label" for="title"> Cost Per Unit </label>
+                        <div class="controls">
+                                <input type="number" step="1" min="0.00" id="input_cost" name="input_cost" [(ngModel)]="datasku.digitalPrint.cost" placeholder="Branding Cost">
+                        </div>
+                        <label class="control-label" for="title">Total Quantity </label>
+                        <div class="controls">
+                            <input type="number" step="1" min="0.00" id="input_unit" name="input_unit" [(ngModel)]="datasku.digitalPrint.quantity" placeholder="Branding unit">
+                    </div>
+                    </div>
+                    </div>
+
+                    <div class="control-group ">
+                        <label class="control-label" for="title"> Fulfillment Cost <span class="red">*</span></label>
+                        <div class="controls">
+                                <input type="number" step="1" min="0.00" id="fulfillment_price" name="fulfillment_price" [(ngModel)]="datasku.fulfillmentCost" placeholder="Fulfillment Cost" required="">
+                        </div>
+                    </div>
+
+                    <div class="control-group ">
+                        <label class="control-label" for="title"> Margin <span class="red">*</span></label>
+                        <div class="controls">
+                                <input type="number" step="1" min="0.00" id="margin" name="margin" [(ngModel)]="datasku.margin" placeholder="Margin" required="">
+                        </div>
+                    </div>
+
+                    <div class="control-group ">
+                        <label class="control-label" for="title"> Tax <span class="red">*</span></label>
+                        <div class="controls">
+                                <input type="number" step="1" min="0.00" id="tax" name="tax" [(ngModel)]="datasku.tax" placeholder="Tax" required="">
+                        </div>
+                    </div>
+
+                    <div class="control-group ">
+                        <label class="control-label" for="title"> B2B selling price <span class="red">*</span></label>
+                        <div class="controls">
+                                <input type="number" step="1" min="0.00" id="b2b" name="b2b" [(ngModel)]="datasku.b2bSellingPrice" placeholder="B2B selling price" required="">
+                        </div>
+                    </div>
+
+                    <div class="control-group ">
+                        <label class="control-label" for="title"> MRP <span class="red">*</span></label>
+                        <div class="controls">
+                                <input type="number" step="1" min="0.00" id="mrp" name="mrp" [(ngModel)]="datasku.mrp" placeholder="MRP" required="">
+                        </div>
+    
+                    </div>
+
+                    <div class="control-group ">
+                        <label class="control-label" for="title"> Selling Price(SP) <span class="red">*</span></label>
+                        <div class="controls">
+                                <input type="number" step="1" min="0.00" id="selling_price" name="selling_price" [(ngModel)]="datasku.sellingPrice" placeholder="Selling Price" required="">
+                        </div>
+    
+                    </div>
+
+                    <div class="control-group ">
+                        <label class="control-label" for="title"> Discount(%) <span class="red">*</span></label>
+                        <div class="controls">
+                                <input type="text" id="discount" name="discount" [(ngModel)]="datasku.discount" placeholder="Discount" autocomplete="off" tabindex="-1" required="" class="readonly">
+                        </div>
+    
+                    </div>
                     </div>
                              
                     <div class="form-actions" >
