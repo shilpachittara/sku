@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { SkuService } from '../service/sku.service';
 import { Sku } from '../model/sku';
 import { Input } from '@angular/core';
+import { Errors } from '../service/error';
 
 @Component({
     styleUrls   : ['./create.component.css'],
@@ -20,6 +21,8 @@ export class CreateComponent implements OnInit {
   costAfterOverHeadValue: any;
   b2bsp: any;
   b2csp: any;
+  errorvalue:any;
+  errors: any;
 
   constructor (
     private router  : Router, private service: SkuService
@@ -41,8 +44,8 @@ export class CreateComponent implements OnInit {
     this.router.navigateByUrl("/sku/dashboard");
   }
 
-  save(){
-    this.validate();    
+  save(){    
+    //if(this.validate){
     this.service.postProducts(this.datasku).subscribe(
       (skuId: string) =>
       {
@@ -50,23 +53,51 @@ export class CreateComponent implements OnInit {
         this.router.navigateByUrl("/sku/dashboard");
       }
     )
+  //}
   }
 
-  validate(){
+  validate(): Boolean{
     ///TO DO validate order and set status
+    this.errorvalue = true;
+    const count = 0;
+     
+    if(this.datasku.category == null){
+      this.errors.set("error", "Please select required value");
+      this.errorvalue = false;
+    }
+    return this.errorvalue;
+
   }
 
   statusCalculation(){
     // logic to calculate value
   }
 
-  groupId(){
+  generateId(){
+    if(this.datasku.brand != null && this.datasku.category!= null && this.datasku.gender!= null 
+      && this.datasku.subCategory){
     this.datasku.groupId = this.datasku.brand + this.datasku.category
      + this.datasku.gender + this.datasku.subCategory + "00000";
     this.groupIdValue = this.datasku.groupId;
+      }
+
+    if(this.datasku.groupId != null && this.datasku.color != null && this.datasku.colorVariation != null){
+        this.datasku.styleCode = this.datasku.groupId + this.datasku.color + this.datasku.colorVariation;
+        this.styleCodeValue = this.datasku.styleCode;
+      }
+    
+    if(this.datasku.styleCode != null && this.datasku.size){
+      this.datasku.sizeCode =  this.datasku.styleCode + this.datasku.size;
+      this.sizeCodeValue = this.datasku.sizeCode;
+    } 
+
+    if(this.datasku.sizeCode != null && this.datasku.subBrand != null){
+      this.datasku.skuCode = this.datasku.sizeCode + this.datasku.subBrand;
+      this.skuCodeValue = this.datasku.skuCode;
+    }
   }
 
-  styleCode(){
+  /*styleCode(){
     this.datasku.styleCode = this.datasku.groupId + this.datasku.color + this.datasku.colorVariation;
     this.styleCodeValue = this.datasku.styleCode;
   }
@@ -79,7 +110,7 @@ export class CreateComponent implements OnInit {
   skuCode(){
     this.datasku.skuCode = this.datasku.sizeCode + this.datasku.subBrand;
     this.skuCodeValue = this.datasku.skuCode;
-  }
+  }*/
 
   costCalculation(){
     if(this.datasku.costAfterOverhead == null){

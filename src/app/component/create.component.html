@@ -25,7 +25,7 @@
                     <div class="control-group ">
                         <label class="control-label" for="title"> Category <span class="red">*</span></label>
                         <div class="controls">
-                                <select id="category" class="chzn-drop form-control" name="category" [(ngModel)]="datasku.category"   required=""  onchange="onchangegroup(this)">
+                                <select id="category" class="chzn-drop form-control" name="category" [(ngModel)]="datasku.category"   required=""  (change)="generateId()">
                                       <option selected="" disabled="" value=""> Master Category</option>
                                                                           <option id="colour_03" value="03">Packaging</option>
                                                                           
@@ -45,7 +45,7 @@
                     <div class="control-group ">
                         <label class="control-label" for="title"> Sub Category <span class="red">*</span></label>
                         <div class="controls">
-                            <select id="sub_category_master" class="chzn-drop form-control" name="sub_category_master" [(ngModel)]="datasku.subCategory" required="" onchange="onchangegroup(this)">
+                            <select id="sub_category_master" class="chzn-drop form-control" name="sub_category_master" [(ngModel)]="datasku.subCategory" required="" (change)="generateId()">
                                 <option selected="" disabled="" value="">Choose Sub Category</option>
                                 <option value="MTR">Meal Trays</option>
                                 <option value="PTP">Pizza Tripods</option>
@@ -62,7 +62,7 @@
             <div class="control-group ">
                         <label class="control-label" for="title"> Brand <span class="red">*</span></label>
                         <div class="controls">
-                                <select id="brand" class="chzn-drop form-control" name="brand" [(ngModel)]="datasku.brand" required="" onchange="onchangegroup(this)">
+                                <select id="brand" class="chzn-drop form-control" name="brand" [(ngModel)]="datasku.brand" required="" (change)="generateId()">
                                       <option selected="" disabled="" value="">Choose Brand</option>
                                                                         <option id="colour_TL" value="TL">Tessol</option>
                                                                           <option id="colour_JK" value="JK">Jockey</option>
@@ -86,7 +86,7 @@
                     <div class="control-group ">
                         <label class="control-label" for="title"> Gender <span class="red">*</span></label>
                         <div class="controls">
-                                <select id="gender" class="chzn-drop form-control" name="gender" required="" [(ngModel)]="datasku.gender" onchange="onchangegroup(this)">
+                                <select id="gender" class="chzn-drop form-control" name="gender" required="" [(ngModel)]="datasku.gender" (change)="generateId()">
                                       <option selected="" disabled="" value="">Choose Gender</option>
                                                                         <option id="colour_N" value="N">Nosex</option>
                                                                           <option id="colour_U" value="U">Unisex</option>
@@ -102,7 +102,10 @@
                     <div class="control-group ">
                         <label class="control-label" for="title"> Collection Name <span class="red">*</span></label>
                         <div class="controls">
-                            <select id="collection_name" class="chzn-drop form-control" name="collection_name" required="" [(ngModel)]="datasku.collection" (click)="groupId()" ><option selected="" disabled="" value="">Choose Collection</option><option value="245">Cult Duffel Bag</option><option value="263">Gym Bag</option></select>	 
+                            <select id="collection_name" class="chzn-drop form-control" name="collection_name" required="" [(ngModel)]="datasku.collection" >
+                                <option selected="" disabled="" value="">Choose Collection</option>
+                                <option value="245">Cult Duffel Bag</option>
+                                <option value="263">Gym Bag</option></select>	 
                                 
                         </div>
     
@@ -111,7 +114,7 @@
                     <div class="control-group ">
                         <label class="control-label" for="title"> Colour <span class="red">*</span></label>
                         <div class="controls">
-                                <select id="colour" class="chzn-drop form-control" name="colour" [(ngModel)]="datasku.color" required="">
+                                <select id="colour" class="chzn-drop form-control" name="colour" [(ngModel)]="datasku.color" required="" (change)="generateId()">
                                       <option selected="" disabled="" value="">Choose Colour</option>
                                                                         <option id="colour_F" value="F">Beige</option>
                                                                           <option id="colour_A" value="A">Black</option>
@@ -140,7 +143,7 @@
                     <div class="control-group ">
                         <label class="control-label" for="title"> Colour Variation <span class="red">*</span></label>
                         <div class="controls">
-                                <select id="colour_variation" class="chzn-drop form-control" name="colour_variation" [(ngModel)]="datasku.colorVariation" required="" (click)="styleCode()">
+                                <select id="colour_variation" class="chzn-drop form-control" name="colour_variation" [(ngModel)]="datasku.colorVariation" required="" (change)="generateId()">
                                       <option selected="" disabled="" value="">Choose Colour Variation</option>
                                       
                                       <option id="colour_S" value="S">Yellow</option>
@@ -149,11 +152,11 @@
                         </div>
     
                     </div>
-
+                    
                     <div class="control-group ">
                         <label class="control-label" for="title"> Size <span class="red">*</span></label>
                         <div class="controls">
-                                <select id="size" class="chzn-drop form-control" name="size" [(ngModel)]="datasku.size" required="" (click)="sizeCode()">
+                                <select id="size" class="chzn-drop form-control" name="size" [(ngModel)]="datasku.size" required="" (change)="generateId()">
                                       <option selected="" disabled="" value="">Choose Size</option>
                                                                         <option id="colour_4XL" value="4XL">4XL</option>
                                                                           <option id="colour_3XL" value="3XL">3XL</option>
@@ -191,7 +194,7 @@
                     <div class="control-group ">
                         <label class="control-label" for="title"> Sub Brand </label>
                         <div class="controls">
-                        <select id="sub_brand" class="chzn-drop form-control" name="sub_brand" [(ngModel)]="datasku.subBrand" (click) = "skuCode()">
+                        <select id="sub_brand" class="chzn-drop form-control" name="sub_brand" [(ngModel)]="datasku.subBrand" (change) = "generateId()">
                                       <option selected="" disabled="" value="">Choose Sub Brand</option>
                                                                         <option id="colour_164" value="Orgpick">Orgpick</option>
                                                                           <option id="colour_163" value="Sabzi Junction">Sabzi Junction</option>
