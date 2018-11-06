@@ -46,23 +46,13 @@
                         <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Action: activate to sort column ascending" style="width: 170px;">Action</th>
                     </tr>
                 </thead>
-                <tfoot>
-                    <tr>
-                        <th rowspan="1" colspan="1"><input type="text" placeholder="Search Group ID"></th>
-                        <th rowspan="1" colspan="1"><input type="text" placeholder="Search Style Code"></th>
-                        <th rowspan="1" colspan="1"><input type="text" placeholder="Search SKU Code"></th>
-                        <th rowspan="1" colspan="1"><input type="text" placeholder="Search SKU Name"></th>
-                        <th rowspan="1" colspan="1"><input type="text" placeholder="Search "></th>
-                        <th rowspan="1" colspan="1"><input type="text" placeholder="Search "></th>
-                    </tr>
-                </tfoot>
                 <tbody>
                     <tr *ngFor ="let data of skudata">
                         <th rowspan="1" colspan="1">{{data.groupId}}</th>
                         <th rowspan="1" colspan="1">{{data.styleCode}}</th>
                         <th rowspan="1" colspan="1">{{data.skuCode}}</th>
                         <th rowspan="1" colspan="1">{{data.productName}}</th>
-                        <th rowspan="1" colspan="1"></th>
+                        <th rowspan="1" colspan="1">{{data.status}}</th>
                         <th rowspan="1" colspan="1"></th>
                     </tr>
                 </tbody>

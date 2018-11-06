@@ -1,5 +1,3 @@
-import { BrandingCost } from "./brandingCost";
-
 export class Sku {
     
     category: string;
@@ -43,5 +41,6 @@ export class Sku {
     b2bSellingPrice: number;
     mrp: string;
     sellingPrice: number;
+    status: number;
 
 }

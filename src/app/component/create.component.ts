@@ -42,7 +42,7 @@ export class CreateComponent implements OnInit {
   }
 
   save(){
-    
+    this.validate();    
     this.service.postProducts(this.datasku).subscribe(
       (skuId: string) =>
       {
@@ -50,6 +50,14 @@ export class CreateComponent implements OnInit {
         this.router.navigateByUrl("/sku/dashboard");
       }
     )
+  }
+
+  validate(){
+    ///TO DO validate order and set status
+  }
+
+  statusCalculation(){
+    // logic to calculate value
   }
 
   groupId(){
