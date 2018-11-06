@@ -31,13 +31,17 @@ export class Sku {
     packageWidth: string;
     volumetricWeight: string;
     basicCost: string;
-    brandingCost: BrandingCost;
+    branding: string;
+    brandingCost: number;
+    brandingTotalCost: number;
+    brandingQuantity: number;
     fulfillmentCost: string;
-    margin: string;
+    costAfterOverhead: string;
+    b2bmargin: number;
+    b2cmargin: number;
     tax: string;
-    b2bSellingPrice: string;
+    b2bSellingPrice: number;
     mrp: string;
-    sellingPrice: string;
-    discount: string;
+    sellingPrice: number;
 
 }

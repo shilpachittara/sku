@@ -70,7 +70,14 @@
 
 .control-group {
      width: 600px; 
-     margin: 20px auto;
+     margin: 30px 350px 50px auto;
+}
+
+.control-label {
+    float: left;
+    width: 160px;
+    padding-top: 5px;
+    text-align: right;
 }
 
 .form-actions {
@@ -80,6 +87,19 @@
     border-top: 1px solid #e5e5e5;
     *zoom: 1;
     text-align: center;
+}
+
+.form-control {
+margin-left: 200px;
+height: auto;
+width: auto; 
+}
+
+.red{
+    color: red;
+}
+.controls{
+    margin-top: -30px;
 }
 
 .btn-primary {

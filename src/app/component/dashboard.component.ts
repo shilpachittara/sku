@@ -17,8 +17,10 @@ export class DashboardComponent implements OnInit {
     private router: Router, private service: SkuService
   ) {}
 
-  ngOnInit() {
-    this.service.getProducts().subscribe((skudata: Sku[]) => this.skudata = skudata);
+  ngOnInit() { 
+    this.service.getProducts().subscribe(
+      (res) => this.skudata = res.json()
+    );
   }
 
 }
