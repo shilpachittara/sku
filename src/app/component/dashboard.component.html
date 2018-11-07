@@ -47,12 +47,16 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor ="let data of skudata">
+                    <tr >
                         <th rowspan="1" colspan="1">{{data.groupId}}</th>
                         <th rowspan="1" colspan="1">{{data.styleCode}}</th>
                         <th rowspan="1" colspan="1">{{data.skuCode}}</th>
                         <th rowspan="1" colspan="1">{{data.productName}}</th>
-                        <th rowspan="1" colspan="1">{{data.status}}</th>
+                        <th rowspan="1" colspan="1">
+                                <div class="progress">
+                                        <div class="progress-bar" id="status_bar" role="progressbar"  aria-valuemin="0" aria-valuemax="100" (load)="getstatus(data.status)">
+                                            {{data.status}}</div>
+                                </div>
                         <th rowspan="1" colspan="1"></th>
                     </tr>
                 </tbody>

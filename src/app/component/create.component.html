@@ -192,7 +192,7 @@
                     </div>
 
                     <div class="control-group ">
-                        <label class="control-label" for="title"> Sub Brand </label>
+                        <label class="control-label" for="title"> Sub Brand <span class="red">*</span></label>
                         <div class="controls">
                         <select id="sub_brand" class="chzn-drop form-control" name="sub_brand" [(ngModel)]="datasku.subBrand" (change) = "generateId()">
                                       <option selected="" disabled="" value="">Choose Sub Brand</option>
@@ -566,12 +566,19 @@
                             </div>
                         </div>
 
-                    <div class="control-group ">
-                        <label class="control-label" for="title"> Tax <span class="red">*</span></label>
-                        <div class="controls">
-                                <input class="form-control" type="number" step="1" min="0.00" id="tax" name="tax" [(ngModel)]="datasku.tax" placeholder="Tax" required="">
-                        </div>
-                    </div>
+                        <div class="control-group ">
+                                <label class="control-label" for="title"> Tax <span class="red">*</span></label>
+                                <div class="controls">
+                                        <select id="category" class="chzn-drop form-control" name="category" [(ngModel)]="datasku.tax"   required="" >
+                                              <option selected="" disabled="" value=""> Tax</option>
+                                                                                  <option id="5" value="5">5%</option>
+                                                                                  <option id="12" value="12">12%</option>
+                                                                                  <option id="18" value="18">18%</option>
+                                                                                  
+                                              </select>	  
+                                        
+                                </div>
+                            </div>
 
                     <div class="control-group ">
                         <label class="control-label" for="title"> B2B selling price <span class="red">*</span></label>
@@ -595,6 +602,8 @@
                         </div>
     
                     </div>
+
+                    <div class="error"> {{errors}} </div>
                              
                     <div class="form-actions" >
                             <button type="back" class="btn btn-primary treset" (click)="back()">Back</button>

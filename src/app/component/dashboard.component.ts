@@ -13,6 +13,7 @@ import { Sku } from '../model/sku';
 export class DashboardComponent implements OnInit {
 
   skudata: Sku[];
+  code: string;
   constructor (
     private router: Router, private service: SkuService
   ) {}
@@ -21,6 +22,10 @@ export class DashboardComponent implements OnInit {
     this.service.getProducts().subscribe(
       (res) => this.skudata = res.json()
     );
+  }
+
+  getstatus(status: string){
+    document.getElementById("status_bar").style.width =  status;
   }
 
 }

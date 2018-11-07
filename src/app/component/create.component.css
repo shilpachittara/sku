@@ -108,3 +108,9 @@ width: auto;
     color: #fff;
     margin: 5px ;
 }
+
+.error{
+    margin: 0px 550px;
+    color: red;
+    font-weight: bold;
+}

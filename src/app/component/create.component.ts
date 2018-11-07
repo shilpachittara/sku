@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { SkuService } from '../service/sku.service';
 import { Sku } from '../model/sku';
 import { Input } from '@angular/core';
-import { Errors } from '../service/error';
 
 @Component({
     styleUrls   : ['./create.component.css'],
@@ -34,7 +33,7 @@ export class CreateComponent implements OnInit {
     this.groupIdValue = "Group ID";
     this.styleCodeValue = "Style Code";
     this.sizeCodeValue = "Size Code";
-    this.skuCodeValue = "SKu Code";
+    this.skuCodeValue = "Sku Code";
     this.costAfterOverHeadValue = "Cost";
     this.b2bsp = "B2B Selling Price";
     this.b2csp = "Selling Price";
@@ -45,7 +44,7 @@ export class CreateComponent implements OnInit {
   }
 
   save(){    
-    //if(this.validate){
+   if(this.validate()){
     this.service.postProducts(this.datasku).subscribe(
       (skuId: string) =>
       {
@@ -53,7 +52,7 @@ export class CreateComponent implements OnInit {
         this.router.navigateByUrl("/sku/dashboard");
       }
     )
-  //}
+  }
   }
 
   validate(): Boolean{
@@ -61,16 +60,40 @@ export class CreateComponent implements OnInit {
     this.errorvalue = true;
     const count = 0;
      
-    if(this.datasku.category == null){
-      this.errors.set("error", "Please select required value");
+    if(this.datasku.category == null || this.datasku.subCategory == null || this.datasku.brand == null ||
+    this.datasku.gender == null || this.datasku.collection == null || this.datasku.color == null || 
+    this.datasku.colorVariation == null || this.datasku.size == null || this.datasku.manufacturingYear == null
+    || this.datasku.productName== null || this.datasku.productDescription == null || this.datasku.actualColor == null
+    || this.datasku.itemHeight == null || this.datasku.itemLength == null || this.datasku.itemVolume == null
+    || this.datasku.itemWeight == null || this.datasku.itemWidth == null){
+      this.errors = "Please fill all the required fields";
       this.errorvalue = false;
     }
+    this.statusCalculation();
     return this.errorvalue;
 
   }
 
   statusCalculation(){
     // logic to calculate value
+    if(this.datasku.packageWeight == null){
+      this.datasku.status = "57%";
+    }
+    else if(this.datasku.basicCost == null){
+      this.datasku.status = "70%";
+    }
+    else if(this.datasku.fulfillmentCost == null){
+      this.datasku.status = "80%";
+    }
+    else if(this.datasku.b2bmargin == null){
+      this.datasku.status ="85%";
+    }
+    else if(this.datasku.b2bSellingPrice == null){
+      this.datasku.status = "92%";
+    }
+    else if(this.datasku.sellingPrice != null){
+      this.datasku.status = "100%";
+    }
   }
 
   generateId(){
