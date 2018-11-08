@@ -26,4 +26,7 @@
 
 .pattern-icon {
     background-image: url(/src/assets/pattern.png);
+    background-color: #EF4DB6;
+    width: 80px;
+    height: 70px;
 }

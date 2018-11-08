@@ -136,7 +136,6 @@ export class CreateComponent implements OnInit {
   }*/
 
   costCalculation(){
-    if(this.datasku.costAfterOverhead == null){
     if(this.datasku.brandingCost != null && this.datasku.brandingQuantity != null){
       this.datasku.brandingTotalCost = this.datasku.brandingCost*this.datasku.brandingQuantity;
    }
@@ -146,8 +145,7 @@ export class CreateComponent implements OnInit {
                                          + this.datasku.fulfillmentCost;
       this.costAfterOverHeadValue = this.datasku.costAfterOverhead;                                   
     }
-  }
-  else{
+    if(this.datasku.costAfterOverhead != null){
     if(this.datasku.b2bmargin != null){
       this.datasku.b2bSellingPrice = this.costAfterOverHeadValue / (1-(this.datasku.b2bmargin/100));
       this.b2bsp = this.datasku.b2bSellingPrice;
@@ -157,6 +155,7 @@ export class CreateComponent implements OnInit {
       this.b2csp = this.datasku.sellingPrice;
     }
   }
+
   }
 
   setData(data: Sku): void{
