@@ -24,8 +24,10 @@ export class DashboardComponent implements OnInit {
     );
   }
 
-  getstatus(status: string){
-    document.getElementById("status_bar").style.width =  status;
+  getstatus(sku: Sku){
+    var value = sku.status;
+    var value= 60 + "%";
+    document.getElementById("status_bar").style.width = value;
   }
 
 }

@@ -69,12 +69,11 @@ export class CreateComponent implements OnInit {
       this.errors = "Please fill all the required fields";
       this.errorvalue = false;
     }
-    this.statusCalculation();
     return this.errorvalue;
 
   }
 
-  statusCalculation(){
+  /*statusCalculation(){
     // logic to calculate value
     if(this.datasku.packageWeight == null){
       this.datasku.status = "57%";
@@ -94,7 +93,7 @@ export class CreateComponent implements OnInit {
     else if(this.datasku.sellingPrice != null){
       this.datasku.status = "100%";
     }
-  }
+  }*/
 
   generateId(){
     if(this.datasku.brand != null && this.datasku.category!= null && this.datasku.gender!= null 
