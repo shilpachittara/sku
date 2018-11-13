@@ -38,6 +38,37 @@
     height: 70px;
 }
 
+.production-icon{
+    background-image: url(/src/assets/production.png);
+    width: 80px;
+    height: 70px;
+}
+
+.style-icon{
+    background-image: url(/src/assets/style.png);
+    background-size: 50px auto;
+    width: 80px;
+    height: 70px;
+}
+
+.order-icon{
+    background-image: url(/src/assets/order.png);
+    width: 80px;
+    height: 70px;
+}
+
+.cutting-icon {
+    background-image: url(/src/assets/cutting.png);
+    width: 80px;
+    height: 70px;
+}
+
+.sample-icon {
+    background-image: url(/src/assets/sample.png);
+    width: 80px;
+    height: 70px;
+}
+
 .case-wrapper {
     position: relative;
     margin: 0px;

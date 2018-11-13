@@ -12,11 +12,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AppGlobalDataService } from './service/app-global-data.service';
+import { ManagementComponent } from './component/management.component';
 
 const routes: Routes = [
     {path: '', component: AdminComponent},
     {path: 'dashboard', component: DashboardComponent},
-    {path: 'dashboard/create', component: CreateComponent}
+    {path: 'dashboard/create', component: CreateComponent},
+    {path: 'management', component: ManagementComponent}
 ];
 
 @NgModule({ 
@@ -31,7 +33,8 @@ const routes: Routes = [
       AdminComponent,
       DashboardComponent,
       CreateComponent,
-      HeaderComponent
+      HeaderComponent,
+      ManagementComponent
   ],
   providers: [SkuService, AppGlobalDataService]
 })
