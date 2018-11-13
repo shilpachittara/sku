@@ -47,15 +47,15 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr > {{getstatus(data)}}
+                    <tr >
                         <th rowspan="1" colspan="1">{{data.groupId}}</th>
                         <th rowspan="1" colspan="1">{{data.styleCode}}</th>
                         <th rowspan="1" colspan="1">{{data.skuCode}}</th>
                         <th rowspan="1" colspan="1">{{data.productName}}</th>
                         <th rowspan="1" colspan="1">{{data.sku}}
-                                <div class="progress">
-                                        <div class="progress-bar" id="status_bar" role="progressbar"  aria-valuemin="0" aria-valuemax="100" >
-                                         </div>
+                                <div class="progress"> {{getstatus(data)}}
+                                        <div class="progress-bar" id="status_bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" >
+                                        {{data.status}}%</div>
                                 </div>
                         <th rowspan="1" colspan="1"></th>
                     </tr>

@@ -14,6 +14,7 @@ export class DashboardComponent implements OnInit {
 
   skudata: Sku[];
   code: string;
+  statusValue: any;
   constructor (
     private router: Router, private service: SkuService
   ) {}
@@ -26,7 +27,7 @@ export class DashboardComponent implements OnInit {
 
   getstatus(sku: Sku){
     var value = sku.status;
-    //var value= 60 + "%";
+    value = value + "%";
     document.getElementById("status_bar").style.width = value;
   }
 
