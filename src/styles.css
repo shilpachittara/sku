@@ -116,3 +116,16 @@
     text-shadow: 0px 1px 0px #fff;
     font-size: 16px;
 }
+
+.span5{
+    float: right;
+     margin-top: 40px;
+     margin-right: 15px; 
+     text-align: right
+}
+
+.btn-primary {
+    background-color: #5e64ff;
+    border-color: #444bff;
+    color: #fff;
+}

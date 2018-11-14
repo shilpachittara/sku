@@ -4,11 +4,11 @@ import { Router } from '@angular/router';
 import { Input } from '@angular/core';
 
 @Component({
-    styleUrls   : ['./create-subcategory.component.css'],
-  selector: 'app-create-subcategory',
-  templateUrl: './create-subcategory.component.html'
+    styleUrls   : ['./create-gender.component.css'],
+  selector: 'app-create-gender',
+  templateUrl: './create-gender.component.html'
 })
-export class CreateSubCategoryComponent implements OnInit {
+export class CreateGenderComponent implements OnInit {
 
 
   constructor (

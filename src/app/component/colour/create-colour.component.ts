@@ -4,11 +4,11 @@ import { Router } from '@angular/router';
 import { Input } from '@angular/core';
 
 @Component({
-    styleUrls   : ['./create-subcategory.component.css'],
-  selector: 'app-create-subcategory',
-  templateUrl: './create-subcategory.component.html'
+    styleUrls   : ['./create-colour.component.css'],
+  selector: 'app-create-colour',
+  templateUrl: './create-colour.component.html'
 })
-export class CreateSubCategoryComponent implements OnInit {
+export class CreateColourComponent implements OnInit {
 
 
   constructor (

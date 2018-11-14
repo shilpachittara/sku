@@ -10,7 +10,66 @@
     
             </div>
             <div class="box-content" style="padding:0px;border:1px solid #fff;"> </div>
+            <div class="span5" >
+                <a routerLink="create" class="btn btn-primary"> Create Sub Brand </a>
+            </div>
                 
     </div>   
+</div>
+<div class="datatable">
+    <div class="dataTables_length" id="example1_length">
+        <label>Show 
+            <select name="example1_length" aria-controls="example1" class="">
+                <option value="10">10</option>
+                <option value="25">25</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+            </select> entries
+        </label>
+    </div>
+    <div id="example1_filter" class="dataTables_filter">
+        <label>Search <input type="search" class="" placeholder="Sku Id" aria-controls="example1">
+        </label>
+    </div>
+    <table class="table table-bordered display dataTable" id="example1" width="100%" style="margin-top: 40px; width: 100%;" role="grid" aria-describedby="example1_info">
+            <thead>
+                <tr role="row">
+                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Group ID: activate to sort column ascending" style="width: 170px;">Group ID</th>
+                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Style Code: activate to sort column ascending" style="width: 170px;">Style Code</th>
+                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="SKU Code: activate to sort column ascending" style="width: 199px;">SKU Code</th>
+                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="SKU Name: activate to sort column ascending" style="width: 450px;">SKU Name</th>
+                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending" style="width: 170px;">Status</th>
+                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Action: activate to sort column ascending" style="width: 170px;">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr >
+                    <th rowspan="1" colspan="1">{{data.groupId}}</th>
+                    <th rowspan="1" colspan="1">{{data.styleCode}}</th>
+                    <th rowspan="1" colspan="1">{{data.skuCode}}</th>
+                    <th rowspan="1" colspan="1">{{data.productName}}</th>
+                    <th rowspan="1" colspan="1">{{data.sku}}
+                            <div class="progress"> {{getstatus(data)}}
+                                    <div class="progress-bar" id="status_bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" >
+                                    {{data.status}}%</div>
+                            </div>
+                    <th rowspan="1" colspan="1"></th>
+                </tr>
+            </tbody>
+        </table>
+     <!--   <div class="dataTables_info" id="example1_info" role="status" aria-live="polite">Showing FIRST to LAST of TOTAL entries</div>
+        <div class="dataTables_paginate paging_simple_numbers" id="example1_paginate">
+            <a class="paginate_button previous disabled" aria-controls="example1" data-dt-idx="0" tabindex="0" id="example1_previous">Previous</a>
+            <span><a class="paginate_button current" aria-controls="example1" data-dt-idx="1" tabindex="0">1</a>
+                <a class="paginate_button " aria-controls="example1" data-dt-idx="2" tabindex="0">2</a>
+                <a class="paginate_button " aria-controls="example1" data-dt-idx="3" tabindex="0">3</a>
+                <a class="paginate_button " aria-controls="example1" data-dt-idx="4" tabindex="0">4</a>
+                <a class="paginate_button " aria-controls="example1" data-dt-idx="5" tabindex="0">5</a>
+                <span class="ellipsis">…</span>
+                <a class="paginate_button " aria-controls="example1" data-dt-idx="6" tabindex="0">8</a>
+            </span>
+            <a class="paginate_button next" aria-controls="example1" data-dt-idx="7" tabindex="0" id="example1_next">Next</a></div>
+</div>  -->
+
 </div>
 </div>

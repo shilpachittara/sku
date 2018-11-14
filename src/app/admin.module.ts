@@ -23,6 +23,16 @@ import { ColourVariationComponent } from './component/colour/colour-variation.co
 import { GenderComponent } from './component/gender/gender.component';
 import { SizeComponent } from './component/size/size.component';
 import { TaxComponent } from './component/tax/tax.component';
+import { CreateCategoryComponent } from './component/category/create-category.component';
+import { CreateSubCategoryComponent } from './component/category/create-subcategory.component';
+import { CreateBrandComponent } from './component/brand/create-brand.component';
+import { CreateSubBrandComponent } from './component/brand/create-subbrand.component';
+import { CreateCollectionComponent } from './component/collection/create-collection.component';
+import { CreateColourComponent } from './component/colour/create-colour.component';
+import { CreateGenderComponent } from './component/gender/create-gender.component';
+import { CreateSizeComponent } from './component/size/create-size.component';
+import { CreateTaxComponent } from './component/tax/create-tax.component';
+import { CreateColourVariationComponent } from './component/colour/create-colourvariation.component';
 
 const routes: Routes = [
     {path: '', component: AdminComponent},
@@ -38,7 +48,17 @@ const routes: Routes = [
     {path: 'management/colourvariation', component: ColourVariationComponent},
     {path: 'management/gender', component: GenderComponent},
     {path: 'management/size', component: SizeComponent},
-    {path: 'management/tax', component: TaxComponent}
+    {path: 'management/tax', component: TaxComponent},
+    {path: 'management/category/create', component: CreateCategoryComponent},
+    {path: 'management/subcategory/create', component: CreateSubCategoryComponent},
+    {path: 'management/brand/create', component: CreateBrandComponent},
+    {path: 'management/subbrand/create', component: CreateSubBrandComponent},
+    {path: 'management/collection/create', component: CreateCollectionComponent},
+    {path: 'management/colour/create', component: CreateColourComponent},
+    {path: 'management/colourvariation/create', component: CreateColourVariationComponent},
+    {path: 'management/gender/create', component: CreateGenderComponent},
+    {path: 'management/size/create', component: CreateSizeComponent},
+    {path: 'management/tax/create', component: CreateTaxComponent}
 ];
 
 @NgModule({ 
@@ -64,7 +84,17 @@ const routes: Routes = [
       ColourVariationComponent,
       GenderComponent,
       SizeComponent,
-      TaxComponent
+      TaxComponent,
+      CreateCategoryComponent,
+      CreateSubCategoryComponent,
+      CreateBrandComponent,
+      CreateSubBrandComponent,
+      CreateCollectionComponent,
+      CreateColourComponent,
+      CreateColourVariationComponent,
+      CreateGenderComponent,
+      CreateSizeComponent,
+      CreateTaxComponent
   ],
   providers: [SkuService, AppGlobalDataService]
 })
