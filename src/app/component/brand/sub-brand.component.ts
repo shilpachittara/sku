@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/internal/Observable';
 import { Sku } from '../../model/sku';
-import { SkuService } from '../../service/sku.service';
+import { ManagementService } from '../../service/management.service';
 
 @Component({
     styleUrls   : ['./sub-brand.component.css'],
@@ -12,16 +12,16 @@ import { SkuService } from '../../service/sku.service';
 })
 export class SubBrandComponent implements OnInit {
 
-  skudata: Sku[];
+  subbrand: Sku[];
   code: string;
   statusValue: any;
   constructor (
-    private router: Router, private service: SkuService
+    private router: Router, private service: ManagementService
   ) {}
 
   ngOnInit() { 
-    this.service.getProducts().subscribe(
-      (res) => this.skudata = res.json()
+    this.service.getSubBrand().subscribe(
+      (res) => this.subbrand = res.json()
     );
   }
 

@@ -31,32 +31,29 @@
         <label>Search <input type="search" class="" placeholder="Sku Id" aria-controls="example1">
         </label>
     </div>
-    <table class="table table-bordered display dataTable" id="example1" width="100%" style="margin-top: 40px; width: 100%;" role="grid" aria-describedby="example1_info">
-            <thead>
-                <tr role="row">
-                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Group ID: activate to sort column ascending" style="width: 170px;">Group ID</th>
-                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Style Code: activate to sort column ascending" style="width: 170px;">Style Code</th>
-                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="SKU Code: activate to sort column ascending" style="width: 199px;">SKU Code</th>
-                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="SKU Name: activate to sort column ascending" style="width: 450px;">SKU Name</th>
-                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending" style="width: 170px;">Status</th>
-                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Action: activate to sort column ascending" style="width: 170px;">Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr >
-                    <th rowspan="1" colspan="1">{{data.groupId}}</th>
-                    <th rowspan="1" colspan="1">{{data.styleCode}}</th>
-                    <th rowspan="1" colspan="1">{{data.skuCode}}</th>
-                    <th rowspan="1" colspan="1">{{data.productName}}</th>
-                    <th rowspan="1" colspan="1">{{data.sku}}
-                            <div class="progress"> {{getstatus(data)}}
-                                    <div class="progress-bar" id="status_bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" >
-                                    {{data.status}}%</div>
-                            </div>
-                    <th rowspan="1" colspan="1"></th>
-                </tr>
-            </tbody>
-        </table>
+    <table class="table table-bordered display dataTable" id="example1" role="grid" aria-describedby="example1_info">
+        <thead>
+            <tr role="row">
+                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Sub Brand Name: activate to sort column ascending" style="width: 500px;">Sub Brand Name</th>
+                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Sub Brand Code: activate to sort column ascending" style="width: 500px;">Sub Brand Code</th>
+                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Sub Brand Name: activate to sort column ascending" style="width: 500px;">Brand Name</th>
+                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Action: activate to sort column ascending" style="width: 169px;">Action</th>
+            </tr>
+        </thead>
+    <tbody>
+         <tr *ngFor ="let data of subbrand">                
+                <td>{{data}}</td>
+                <td>{{data}}</td>
+                <td>{{data}}</td>
+                <td>
+                    <div align="left" style="padding-bottom: 10px; display: inline-block;">
+                        <a href="javascript:dodelete('http://52.221.204.90/skus/sku/admin/status/3','inactive','master_category')" class="glyphicons-icon remove_2" title="Click inactive"></a>
+                    </div>
+                </td>
+
+            </tr>
+        </tbody>
+    </table>
      <!--   <div class="dataTables_info" id="example1_info" role="status" aria-live="polite">Showing FIRST to LAST of TOTAL entries</div>
         <div class="dataTables_paginate paging_simple_numbers" id="example1_paginate">
             <a class="paginate_button previous disabled" aria-controls="example1" data-dt-idx="0" tabindex="0" id="example1_previous">Previous</a>

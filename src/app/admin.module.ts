@@ -33,6 +33,7 @@ import { CreateGenderComponent } from './component/gender/create-gender.componen
 import { CreateSizeComponent } from './component/size/create-size.component';
 import { CreateTaxComponent } from './component/tax/create-tax.component';
 import { CreateColourVariationComponent } from './component/colour/create-colourvariation.component';
+import { ManagementService } from './service/management.service';
 
 const routes: Routes = [
     {path: '', component: AdminComponent},
@@ -96,6 +97,6 @@ const routes: Routes = [
       CreateSizeComponent,
       CreateTaxComponent
   ],
-  providers: [SkuService, AppGlobalDataService]
+  providers: [SkuService, AppGlobalDataService, ManagementService]
 })
 export class AdminModule {}

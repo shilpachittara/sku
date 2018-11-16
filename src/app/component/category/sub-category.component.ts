@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/internal/Observable';
 import { Sku } from '../../model/sku';
-import { SkuService } from '../../service/sku.service';
+import { ManagementService } from '../../service/management.service';
 
 @Component({
     styleUrls   : ['./sub-category.component.css'],
@@ -12,23 +12,17 @@ import { SkuService } from '../../service/sku.service';
 })
 export class SubCategoryComponent implements OnInit {
 
-  skudata: Sku[];
+  subcategory: Sku[];
   code: string;
   statusValue: any;
   constructor (
-    private router: Router, private service: SkuService
+    private router: Router, private service: ManagementService
   ) {}
 
   ngOnInit() { 
-    this.service.getProducts().subscribe(
-      (res) => this.skudata = res.json()
+    this.service.getSubCategory().subscribe(
+      (res) => this.subcategory = res.json()
     );
-  }
-
-  getstatus(sku: Sku){
-    var value = sku.status;
-    value = value + "%";
-    document.getElementById("status_bar").style.width = value;
   }
 
 }

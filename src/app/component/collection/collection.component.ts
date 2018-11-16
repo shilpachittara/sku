@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/internal/Observable';
 import { Sku } from '../../model/sku';
-import { SkuService } from '../../service/sku.service';
+import { ManagementService } from '../../service/management.service';
 
 @Component({
     styleUrls   : ['./collection.component.css'],
@@ -12,16 +12,16 @@ import { SkuService } from '../../service/sku.service';
 })
 export class CollectionComponent implements OnInit {
 
-  skudata: Sku[];
+  collection: Sku[];
   code: string;
   statusValue: any;
   constructor (
-    private router: Router, private service: SkuService
+    private router: Router, private service: ManagementService
   ) {}
 
   ngOnInit() { 
-    this.service.getProducts().subscribe(
-      (res) => this.skudata = res.json()
+    this.service.getCollection().subscribe(
+      (res) => this.collection = res.json()
     );
   }
 
