@@ -56,7 +56,6 @@ export class CreateComponent implements OnInit {
   }
 
   validate(): Boolean{
-    ///TO DO validate order and set status
     this.errorvalue = true;
     const count = 0;
      
