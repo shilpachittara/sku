@@ -31,4 +31,6 @@ export class DashboardComponent implements OnInit {
     document.getElementById("status_bar").style.width = value;
   }
 
+  inactive(){}
+
 }

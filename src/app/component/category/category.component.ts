@@ -15,14 +15,19 @@ export class CategoryComponent implements OnInit {
   category: Sku[];
   code: string;
   statusValue: any;
+  create: Boolean;
   constructor (
     private router: Router, private service: ManagementService
   ) {}
 
   ngOnInit() { 
+    this.create = false;
     this.service.getCategory().subscribe(
       (res) => this.category = res.json()
     );
   }
 
+  inactive(){}
+
+ 
 }

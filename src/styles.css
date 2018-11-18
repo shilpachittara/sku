@@ -260,6 +260,18 @@ table.dataTable, table.dataTable th, table.dataTable td {
     border-radius: 0px 0px 5px 5px;
 }
 
+.box-content {
+    position: relative;
+    z-index: 1000;
+    margin-top: 100px;
+    padding: 10px;
+    border: 1px solid #f1f1f1;
+    background: #fff;
+    -webkit-border-radius: 0px 0px 5px 5px;
+    -moz-border-radius: 0px 0px 5px 5px;
+    border-radius: 0px 0px 5px 5px;
+}
+
 .control-group {
      width: 600px; 
      margin: 30px 350px 50px auto;
@@ -304,4 +316,24 @@ width: auto;
     margin: 0px 550px;
     color: red;
     font-weight: bold;
+}
+
+/*icon*/
+.glyphicons-icon {
+    display: inline-block;
+    width: 48px;
+    height: 48px;
+    line-height: 48px;
+    vertical-align: text-top;
+    background-image: url(/src/assets/glyphicons.svg);
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    vertical-align: top;
+    *display: inline;
+    *zoom: 1;
+    *margin-right: .3em;
+}
+
+.glyphicons-icon.remove_2 {
+    background-position: -284px -949px;
 }

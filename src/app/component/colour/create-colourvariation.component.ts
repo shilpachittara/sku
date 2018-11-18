@@ -6,7 +6,7 @@ import { ManagementService } from '../../service/management.service';
 
 @Component({
     styleUrls   : ['./create-colourvariation.component.css'],
-  selector: 'app-create-category',
+  selector: 'app-create-colourvariation',
   templateUrl: './create-colourvariation.component.html'
 })
 export class CreateColourVariationComponent implements OnInit {
