@@ -25,9 +25,6 @@ export class CreateGenderComponent implements OnInit {
   ngOnInit() {
   }
 
-  back(){
-    this.router.navigateByUrl("/sku/management/gender");
-  }
 
   save(){    
    if(this.validate()){

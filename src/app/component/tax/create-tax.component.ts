@@ -25,10 +25,6 @@ export class CreateTaxComponent implements OnInit {
   ngOnInit() {
   }
 
-  back(){
-    this.router.navigateByUrl("/sku/management/tax");
-  }
-
   save(){    
    if(this.validate()){
     this.service.postTax(this.tax).subscribe(

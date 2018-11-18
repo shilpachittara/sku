@@ -24,11 +24,7 @@ export class CreateSubCategoryComponent implements OnInit {
 
   ngOnInit() {
   }
-
-  back(){
-    this.router.navigateByUrl("/sku/management/subcategory");
-  }
-
+  
   save(){    
    if(this.validate()){
     this.service.postSubCategory(this.subcategory).subscribe(

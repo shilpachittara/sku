@@ -336,3 +336,7 @@ width: auto;
 .glyphicons-icon.remove_2 {
     background-position: -284px -949px;
 }
+
+#myDIV {
+    display: none;
+}

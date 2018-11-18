@@ -29,5 +29,13 @@ export class CategoryComponent implements OnInit {
 
   inactive(){}
 
+  myFunction() {
+    var x = document.getElementById("myDIV");
+    if (x.style.display === "block") {
+        x.style.display = "none";
+    } else {
+        x.style.display = "block";
+    }
+}
  
 }

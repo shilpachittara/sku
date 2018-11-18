@@ -25,9 +25,6 @@ export class CreateColourComponent implements OnInit {
   ngOnInit() {
   }
 
-  back(){
-    this.router.navigateByUrl("/sku/management/colour");
-  }
 
   save(){    
    if(this.validate()){

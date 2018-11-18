@@ -25,10 +25,6 @@ export class CreateColourVariationComponent implements OnInit {
   ngOnInit() {
   }
 
-  back(){
-    this.router.navigateByUrl("/sku/management/colourvariation");
-  }
-
   save(){    
    if(this.validate()){
     this.service.postColourVariation(this.colourvariation).subscribe(

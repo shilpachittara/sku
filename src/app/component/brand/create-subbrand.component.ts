@@ -25,10 +25,6 @@ export class CreateSubBrandComponent implements OnInit {
   ngOnInit() {
   }
 
-  back(){
-    this.router.navigateByUrl("/sku/management/subbrand");
-  }
-
   save(){    
    if(this.validate()){
     this.service.postSubBrand(this.subbrand).subscribe(

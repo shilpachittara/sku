@@ -25,9 +25,6 @@ export class CreateCollectionComponent implements OnInit {
   ngOnInit() {
   }
 
-  back(){
-    this.router.navigateByUrl("/sku/management/collection");
-  }
 
   save(){    
    if(this.validate()){

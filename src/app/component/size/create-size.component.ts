@@ -25,9 +25,6 @@ export class CreateSizeComponent implements OnInit {
   ngOnInit() {
   }
 
-  back(){
-    this.router.navigateByUrl("/sku/management/size");
-  }
 
   save(){    
    if(this.validate()){
