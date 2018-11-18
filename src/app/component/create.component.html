@@ -15,10 +15,21 @@
 </div>
 
 
+<div class="control-group ">
+        <label class="control-label" for="title"> SKU <span class="red">*</span></label>
+        <div class="controls">
+                <select id="selectcategory" class="chzn-drop form-control" name="selectcategory" [(ngModel)]="model" required="" >
+                      <option selected="" disabled="" value="">Choose Option</option>
+                      <option id="category01" value="01"  >Create SKU</option>
+                      <option id="category02" value="02" >Get SKU</option>
+                </select>	          
+        </div>
+    </div>
+
 <div class="box-content " style="border:none; ">
 				
         <form #skuForm="ngForm" action="" method="post" id="filterform" class="form-horizontal" name="add_pattern" style="margin: 0px auto;">
-                
+                <div id = "createsku" *ngIf="model == 01">
                     <div class="control-group ">
                         <label class="control-label" for="title"> Category <span class="red">*</span></label>
                         <div class="controls">
@@ -30,7 +41,7 @@
                                 
                         </div>
                     </div>
-
+                
                     <div class="control-group ">
                         <label class="control-label" for="title"> HSN Code </label>
                         <div class="controls">
@@ -386,11 +397,17 @@
                     </div>
     
                     </div>
-
+                </div>
                     <div class="control-group ">
-                        <label class="control-label" for="title"> SKU Code </label>
+                        <label class="control-label" for="title"> SKU Code <span class="red">*</span></label>
                         <div class="controls">
-                                <input class="form-control" type="text" id="sku_code" name="sku_code" placeholder={{skuCodeValue}} disabled="" >
+                                <div id = "createsku" *ngIf="model == 01">
+                                <input class="form-control" type="text" id="sku_code" name="sku_code" placeholder={{skuCodeValue}} disabled="" ></div>
+                                <div id = "createsku" *ngIf="model == 02">
+                                <input class="form-control" type="text" id="sku_code" name="sku_code" placeholder={{skuCodeValue}} [(ngModel)]="datasku.skuCode" ></div>
+                                <div id = "createsku" *ngIf="model == 03">
+                                <input class="form-control" type="text" id="sku_code" name="sku_code" placeholder={{skuCodeValue}} disabled="" ></div>
+                                        
                         </div>
     
                     </div>

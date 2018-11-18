@@ -22,11 +22,13 @@ export class CreateComponent implements OnInit {
   b2csp: any;
   errorvalue:any;
   errors: any;
+  model: string;
 
   constructor (
     private router  : Router, private service: SkuService
   ) {
     this.datasku = new Sku();
+    this.model = "03";
   }
 
   ngOnInit() {
@@ -58,11 +60,16 @@ export class CreateComponent implements OnInit {
   validate(): Boolean{
     this.errorvalue = true;
     const count = 0;
-     
+    
+    if(this.model == "01"){
     if(this.datasku.category == null || this.datasku.subCategory == null || this.datasku.brand == null ||
     this.datasku.gender == null || this.datasku.collection == null || this.datasku.color == null || 
-    this.datasku.colorVariation == null || this.datasku.size == null || this.datasku.manufacturingYear == null
-    || this.datasku.productName== null || this.datasku.productDescription == null || this.datasku.actualColor == null
+    this.datasku.colorVariation == null || this.datasku.size == null || this.datasku.manufacturingYear == null)
+    {
+      this.errors = "Please fill all the required fields";
+      this.errorvalue = false;
+        }}
+    if(this.datasku.skuCode == null || this.datasku.productName== null || this.datasku.productDescription == null || this.datasku.actualColor == null
     || this.datasku.itemHeight == null || this.datasku.itemLength == null || this.datasku.itemVolume == null
     || this.datasku.itemWeight == null || this.datasku.itemWidth == null){
       this.errors = "Please fill all the required fields";

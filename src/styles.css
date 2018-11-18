@@ -263,7 +263,6 @@ table.dataTable, table.dataTable th, table.dataTable td {
 .box-content {
     position: relative;
     z-index: 1000;
-    margin-top: 100px;
     padding: 10px;
     border: 1px solid #f1f1f1;
     background: #fff;
