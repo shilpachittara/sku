@@ -6,6 +6,7 @@ import { Sku } from "../model/sku";
 export class AppGlobalDataService
 {
     private _sku: Sku;
+    public actionType: string;
 
     constructor(){
         this._sku = new Sku();
@@ -13,5 +14,9 @@ export class AppGlobalDataService
 
     get sku(): Sku {
         return this._sku;
+    }
+
+    set sku(data: Sku){
+        this._sku;
     }
 }

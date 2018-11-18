@@ -34,11 +34,13 @@ import { CreateSizeComponent } from './component/size/create-size.component';
 import { CreateTaxComponent } from './component/tax/create-tax.component';
 import { CreateColourVariationComponent } from './component/colour/create-colourvariation.component';
 import { ManagementService } from './service/management.service';
+import { ActionComponent } from './component/action.component';
 
 const routes: Routes = [
     {path: '', component: AdminComponent},
     {path: 'dashboard', component: DashboardComponent},
     {path: 'dashboard/create', component: CreateComponent},
+    {path: 'dashboard/action', component: ActionComponent},
     {path: 'management', component: ManagementComponent},
     {path: 'management/category', component: CategoryComponent},
     {path: 'management/subcategory', component: SubCategoryComponent},
@@ -95,7 +97,8 @@ const routes: Routes = [
       CreateColourVariationComponent,
       CreateGenderComponent,
       CreateSizeComponent,
-      CreateTaxComponent
+      CreateTaxComponent,
+      ActionComponent
   ],
   providers: [SkuService, AppGlobalDataService, ManagementService]
 })
