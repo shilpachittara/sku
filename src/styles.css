@@ -317,6 +317,11 @@ width: auto;
     font-weight: bold;
 }
 
+label{
+    font-weight: 100;
+}
+
+
 /*icon*/
 .glyphicons-icon {
     display: inline-block;

@@ -135,7 +135,19 @@ export class ManagementService {
     const options = new RequestOptions({headers : headers});
     return this.http.post(this.postURL, 
         JSON.stringify(data),options).pipe(catchError(this.formatErrors));;
-    }   
+    }  
+    
+    public getUser(): Observable<any>{
+        return this.http.get(this.getURL).pipe((catchError(this.formatErrors)));
+       }
+
+    public postUser(data: Sku): Observable<any> {
+
+        const headers = new Headers({ 'Content-Type': 'application/json' });
+        const options = new RequestOptions({headers : headers});
+        return this.http.post(this.postURL, 
+            JSON.stringify(data),options).pipe(catchError(this.formatErrors));;
+        }  
 
    private formatErrors(error: any) {
     return  throwError(error.error);

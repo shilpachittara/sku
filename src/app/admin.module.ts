@@ -35,6 +35,8 @@ import { CreateTaxComponent } from './component/tax/create-tax.component';
 import { CreateColourVariationComponent } from './component/colour/create-colourvariation.component';
 import { ManagementService } from './service/management.service';
 import { ActionComponent } from './component/action.component';
+import { UserComponent } from './component/user/user.component';
+import { CreateUserComponent } from './component/user/create-user.component';
 
 const routes: Routes = [
     {path: '', component: AdminComponent},
@@ -52,16 +54,7 @@ const routes: Routes = [
     {path: 'management/gender', component: GenderComponent},
     {path: 'management/size', component: SizeComponent},
     {path: 'management/tax', component: TaxComponent},
-    {path: 'management/category/create', component: CreateCategoryComponent},
-    {path: 'management/subcategory/create', component: CreateSubCategoryComponent},
-    {path: 'management/brand/create', component: CreateBrandComponent},
-    {path: 'management/subbrand/create', component: CreateSubBrandComponent},
-    {path: 'management/collection/create', component: CreateCollectionComponent},
-    {path: 'management/colour/create', component: CreateColourComponent},
-    {path: 'management/colourvariation/create', component: CreateColourVariationComponent},
-    {path: 'management/gender/create', component: CreateGenderComponent},
-    {path: 'management/size/create', component: CreateSizeComponent},
-    {path: 'management/tax/create', component: CreateTaxComponent}
+    {path: 'management/user', component: UserComponent}
 ];
 
 @NgModule({ 
@@ -88,6 +81,7 @@ const routes: Routes = [
       GenderComponent,
       SizeComponent,
       TaxComponent,
+      UserComponent,
       CreateCategoryComponent,
       CreateSubCategoryComponent,
       CreateBrandComponent,
@@ -98,6 +92,7 @@ const routes: Routes = [
       CreateGenderComponent,
       CreateSizeComponent,
       CreateTaxComponent,
+      CreateUserComponent,
       ActionComponent
   ],
   providers: [SkuService, AppGlobalDataService, ManagementService]
