@@ -33,8 +33,8 @@ export class DashboardComponent implements OnInit {
   }
 
   action(data: Sku, type: string){
-    this.globalService.sku = data;
-    this.globalService.actionType = type;
+    //this.globalService.sku = data;
+    //this.globalService.actionType = type;
     this.router.navigateByUrl("/sku/dashboard/action");
   }
 
