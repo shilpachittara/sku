@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/internal/Observable';
-import { Sku } from '../../model/sku';
 import { ManagementService } from '../../service/management.service';
+import { Code } from '../../model/code';
+import { Active } from '../../model/active';
 
 @Component({
     styleUrls   : ['./brand.component.css'],
@@ -12,9 +13,12 @@ import { ManagementService } from '../../service/management.service';
 })
 export class BrandComponent implements OnInit {
 
-  brand: Sku[];
+  brand: Code[];
   code: string;
   statusValue: any;
+  data: Code;
+  activedata: Active;
+
   constructor (
     private router: Router, private service: ManagementService
   ) {}
@@ -33,5 +37,31 @@ export class BrandComponent implements OnInit {
         x.style.display = "block";
     }
 }
+  
+status(data: Code):boolean{
+if(this.data.status == "1"){
+  return true;
+}
+else{
+return false;
+}
+
+}
+  inactive(data: Code){
+
+    this.activedata.code = this.data.code;
+    this.activedata.db = this.data.db;
+    this.service.postInactive(this.activedata).subscribe(
+      (code: string) =>{}    )
+  
+  }
+
+  active(data: Code){
+    this.activedata.code = this.data.code;
+    this.activedata.db = this.data.db;
+    this.service.postActive(this.activedata).subscribe(
+      (code: string) =>{}    )
+  
+  }
 
 }

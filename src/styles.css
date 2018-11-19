@@ -338,8 +338,12 @@ label{
     *margin-right: .3em;
 }
 
-.glyphicons-icon.remove_2 {
+.glyphicons-icon.add {
     background-position: -284px -949px;
+}
+
+.glyphicons-icon.remove_2 {
+    background-position: -332px -949px;
 }
 
 #myDIV {

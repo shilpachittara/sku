@@ -8,11 +8,17 @@ import { Response } from '@angular/http/src/static_response';
 
 import { throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { Code } from '../model/code';
+import { Active } from '../model/active';
+import { AddCode } from '../model/addcode';
 
 @Injectable()
 export class ManagementService {
     private getURL = "http://localhost:8000/showsku";
     private postURL = "http://localhost:8000/addsku";
+    private URI = "http://localhost:8000"
+    private getmanageURL = "http://localhost:8000/show";
+    private postmanageURL = "http://localhost:8000/add";
 
    constructor(private http : Http, private jsonp: Jsonp) { 
    }
@@ -42,14 +48,14 @@ export class ManagementService {
     }
 
    public getBrand(): Observable<any>{
-    return this.http.get(this.getURL).pipe((catchError(this.formatErrors)));
+    return this.http.get(this.getmanageURL).pipe((catchError(this.formatErrors)));
    }
 
-   public postBrand(data: Sku): Observable<any> {
+   public postBrand(data: AddCode): Observable<any> {
 
     const headers = new Headers({ 'Content-Type': 'application/json' });
     const options = new RequestOptions({headers : headers});
-    return this.http.post(this.postURL, 
+    return this.http.post(this.postmanageURL, 
         JSON.stringify(data),options).pipe(catchError(this.formatErrors));;
     }   
 
@@ -148,6 +154,22 @@ export class ManagementService {
         return this.http.post(this.postURL, 
             JSON.stringify(data),options).pipe(catchError(this.formatErrors));;
         }  
+
+         public postInactive(data: Active): Observable<any> {
+        const inactiveUrl = this.URI + "/inactive";
+        const headers = new Headers({ 'Content-Type': 'application/json' });
+        const options = new RequestOptions({headers : headers});
+        return this.http.post(inactiveUrl, 
+            JSON.stringify(data),options).pipe(catchError(this.formatErrors));;
+        }  
+
+        public postActive(data: Active): Observable<any> {
+            const activeUrl = this.URI + "/active";
+            const headers = new Headers({ 'Content-Type': 'application/json' });
+            const options = new RequestOptions({headers : headers});
+            return this.http.post(activeUrl, 
+                JSON.stringify(data),options).pipe(catchError(this.formatErrors));;
+            }  
 
    private formatErrors(error: any) {
     return  throwError(error.error);

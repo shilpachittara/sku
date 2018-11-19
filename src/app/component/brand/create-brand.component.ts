@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Input } from '@angular/core';
 import { ManagementService } from '../../service/management.service';
+import { AddCode } from '../../model/addcode';
 
 @Component({
     styleUrls   : ['./create-brand.component.css'],
@@ -11,7 +12,7 @@ import { ManagementService } from '../../service/management.service';
 })
 export class CreateBrandComponent implements OnInit {
 
-  @Input() brand: any;
+  @Input() brand: AddCode;
   errorvalue: any;
   errors: any;
 
@@ -19,7 +20,7 @@ export class CreateBrandComponent implements OnInit {
   constructor (
     private router  : Router, private service: ManagementService
   ) {
-    //this.brand = any;
+    this.brand = new AddCode();
   }
 
   ngOnInit() {
@@ -31,6 +32,7 @@ export class CreateBrandComponent implements OnInit {
 
   save(){    
    if(this.validate()){
+     this.brand.db = "brand";
     this.service.postBrand(this.brand).subscribe(
       (skuId: string) =>
       {
@@ -45,8 +47,7 @@ export class CreateBrandComponent implements OnInit {
     this.errorvalue = true;
     const count = 0;
      
-    if(null){
-      //TO DO Condition
+    if(this.brand.code == null || this.brand.name == null){
       this.errors = "Please fill all the required fields";
       this.errorvalue = false;
     }
