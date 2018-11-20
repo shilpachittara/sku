@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs/internal/Observable';
 import { Sku } from '../../model/sku';
 import { ManagementService } from '../../service/management.service';
+import { User } from '../../model/user';
 
 @Component({
     styleUrls   : ['./user.component.css'],
@@ -12,9 +13,11 @@ import { ManagementService } from '../../service/management.service';
 })
 export class UserComponent implements OnInit {
 
-  user: Sku[];
+  user: User[];
   code: string;
   statusValue: any;
+  data: User;
+
   constructor (
     private router: Router, private service: ManagementService
   ) {}
@@ -33,4 +36,11 @@ export class UserComponent implements OnInit {
         x.style.display = "block";
     }
 }
+
+remove(user: User){
+  user.db = "user";
+this.service.deleteUser(user).subscribe(
+  (code: string) =>{}    )
+}
+
 }

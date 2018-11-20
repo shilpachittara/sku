@@ -24,7 +24,7 @@ export class BrandComponent implements OnInit {
   ) {}
 
   ngOnInit() { 
-    this.service.getBrand().subscribe(
+    this.service.getManage().subscribe(
       (res) => this.brand = res.json()
     );
   }

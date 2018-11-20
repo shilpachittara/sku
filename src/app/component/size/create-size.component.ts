@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Input } from '@angular/core';
 import { ManagementService } from '../../service/management.service';
+import { AddCode } from '../../model/addcode';
 
 @Component({
     styleUrls   : ['./create-size.component.css'],
@@ -11,7 +12,7 @@ import { ManagementService } from '../../service/management.service';
 })
 export class CreateSizeComponent implements OnInit {
 
-  @Input() size: any;
+  @Input() size: AddCode;
   errorvalue: any;
   errors: any;
 
@@ -19,7 +20,7 @@ export class CreateSizeComponent implements OnInit {
   constructor (
     private router  : Router, private service: ManagementService
   ) {
-    //this.size = any;
+    this.size = new AddCode();
   }
 
   ngOnInit() {
@@ -28,12 +29,10 @@ export class CreateSizeComponent implements OnInit {
 
   save(){    
    if(this.validate()){
-    this.service.postSize(this.size).subscribe(
-      (skuId: string) =>
-      {
-        console.log('posting data');
-        this.router.navigateByUrl("/sku/management/size");
-      }
+     this.size.db = "size"
+    this.service.postManage(this.size).subscribe(
+      (name: string) =>
+      { }
     )
   }
   }
@@ -42,8 +41,7 @@ export class CreateSizeComponent implements OnInit {
     this.errorvalue = true;
     const count = 0;
      
-    if(null){
-      //TO DO Condition
+    if(this.size.name == null || this.size.code == null){
       this.errors = "Please fill all the required fields";
       this.errorvalue = false;
     }

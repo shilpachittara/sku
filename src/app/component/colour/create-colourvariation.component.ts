@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Input } from '@angular/core';
 import { ManagementService } from '../../service/management.service';
+import { AddSubcode } from '../../model/addsubcode';
+import { AppGlobalDataService } from '../../service/app-global-data.service';
 
 @Component({
     styleUrls   : ['./create-colourvariation.component.css'],
@@ -11,15 +13,15 @@ import { ManagementService } from '../../service/management.service';
 })
 export class CreateColourVariationComponent implements OnInit {
   
-  @Input() colourvariation: any;
+  @Input() colourvariation: AddSubcode;
   errorvalue: any;
   errors: any;
 
 
   constructor (
-    private router  : Router, private service: ManagementService
-  ) {
-    //this.colourvariation = any;
+    private router  : Router, private service: ManagementService, private globaldata: AppGlobalDataService
+  )  {
+    this.colourvariation = new AddSubcode();
   }
 
   ngOnInit() {
@@ -27,12 +29,11 @@ export class CreateColourVariationComponent implements OnInit {
 
   save(){    
    if(this.validate()){
-    this.service.postColourVariation(this.colourvariation).subscribe(
-      (skuId: string) =>
-      {
-        console.log('posting data');
-        this.router.navigateByUrl("/sku/management/colourvariation");
-      }
+    this.colourvariation.nameCode = this.globaldata.subcode.nameCode;
+    this.colourvariation.db = "colourvariation";
+    this.service.postManageSub(this.colourvariation).subscribe(
+      (subnameCode: string) =>
+      {}
     )
   }
   }
@@ -41,8 +42,8 @@ export class CreateColourVariationComponent implements OnInit {
     this.errorvalue = true;
     const count = 0;
      
-    if(null){
-      //TO DO Condition
+    if(this.colourvariation.name == null || this.colourvariation.subname == null 
+      || this.colourvariation.subnameCode == null){
       this.errors = "Please fill all the required fields";
       this.errorvalue = false;
     }

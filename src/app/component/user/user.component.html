@@ -43,15 +43,14 @@
             </tr>
         </thead>
     <tbody>
-         <tr *ngFor ="let data of tax">                
-                <td>{{data}}</td>
-                <td>{{data}}</td>
-                <td>
-                    <div align="left" style="padding-bottom: 10px; display: inline-block;">
-                        <a href="javascript:dodelete('http://52.221.204.90/skus/sku/admin/status/3','inactive','master_category')" class="glyphicons-icon remove_2" title="Click inactive"></a>
-                    </div>
-                </td>
-
+         <tr *ngFor ="let data of user">                
+            <td>{{data.mail}}</td>
+            <td>{{data.role}}</td>
+            <td>
+                <div align="left" style="padding-bottom: 10px; display: inline-block;">
+                    <a (click)="remove(data)" class="glyphicons-icon remove_2" title="Click delete"></a>
+                </div>
+            </td>
             </tr>
         </tbody>
     </table>

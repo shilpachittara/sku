@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Input } from '@angular/core';
 import { ManagementService } from '../../service/management.service';
+import { AddCode } from '../../model/addcode';
 
 @Component({
     styleUrls   : ['./create-colour.component.css'],
@@ -11,7 +12,7 @@ import { ManagementService } from '../../service/management.service';
 })
 export class CreateColourComponent implements OnInit {
 
-  @Input() colour: any;
+  @Input() colour: AddCode;
   errorvalue: any;
   errors: any;
 
@@ -19,7 +20,7 @@ export class CreateColourComponent implements OnInit {
   constructor (
     private router  : Router, private service: ManagementService
   ) {
-    //this.colour = any;
+    this.colour = new AddCode();
   }
 
   ngOnInit() {
@@ -28,12 +29,10 @@ export class CreateColourComponent implements OnInit {
 
   save(){    
    if(this.validate()){
-    this.service.postColour(this.colour).subscribe(
+    this.colour.db = "colour";
+    this.service.postManage(this.colour).subscribe(
       (skuId: string) =>
-      {
-        console.log('posting data');
-        this.router.navigateByUrl("/sku/management/colour");
-      }
+      { }
     )
   }
   }
@@ -42,8 +41,7 @@ export class CreateColourComponent implements OnInit {
     this.errorvalue = true;
     const count = 0;
      
-    if(null){
-      //TO DO Condition
+    if(this.colour.code == null || this.colour.name == null){
       this.errors = "Please fill all the required fields";
       this.errorvalue = false;
     }

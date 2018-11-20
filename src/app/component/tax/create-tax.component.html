@@ -4,7 +4,7 @@
                             <div class="control-group ">
                                     <label class="control-label" for="title"> Tax Name<span class="red">*</span></label>
                                     <div class="controls">
-                                            <input class="form-control" type="text" id="taxname" name="taxname" [(ngModel)]="datasku.actualColor" placeholder="Tax Name" required="">
+                                            <input class="form-control" type="text" id="taxname" name="taxname" [(ngModel)]="tax.name" placeholder="Tax Name" required="">
                                     </div>
                 
                                 </div>
@@ -12,7 +12,7 @@
                                 <div class="control-group ">
                                         <label class="control-label" for="title"> Tax Category<span class="red">*</span></label>
                                         <div class="controls">
-                                                <select id="tax_category" class="chzn-drop form-control" name="tax_category" required="">
+                                                <select id="tax_category" class="chzn-drop form-control" name="tax_category"  [(ngModel)]="tax.subname" required="">
                                                         <option selected="" disabled="" value="">Choose Tax Category</option>
                                                       
                                                         <option id="" value="CST">CST</option>
@@ -26,7 +26,7 @@
                                 <div class="control-group ">
                                         <label class="control-label" for="title"> Tax Percentage <span class="red">*</span></label>
                                         <div class="controls">
-                                                <input class="form-control" type="text" id="taxper" name="taxper" [(ngModel)]="datasku.actualColor" placeholder="Tax Percentage" required="">
+                                                <input class="form-control" type="text" id="taxper" name="taxper" [(ngModel)]="tax.namecode" placeholder="Tax Percentage" required="">
                                         </div>
                     
                                     </div>

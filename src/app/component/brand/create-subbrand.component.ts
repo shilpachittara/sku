@@ -3,6 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Input } from '@angular/core';
 import { ManagementService } from '../../service/management.service';
+import { Subcode } from '../../model/subcode';
+import { AddSubcode } from '../../model/addsubcode';
+import { AddCode } from '../../model/addcode';
 
 @Component({
     styleUrls   : ['./create-subbrand.component.css'],
@@ -11,7 +14,7 @@ import { ManagementService } from '../../service/management.service';
 })
 export class CreateSubBrandComponent implements OnInit {
 
-  @Input() subbrand: any;
+  @Input() subbrand: AddCode;
   errorvalue: any;
   errors: any;
 
@@ -19,7 +22,7 @@ export class CreateSubBrandComponent implements OnInit {
   constructor (
     private router  : Router, private service: ManagementService
   ) {
-    //this.subbrand = any;
+    this.subbrand = new AddCode();
   }
 
   ngOnInit() {
@@ -27,13 +30,9 @@ export class CreateSubBrandComponent implements OnInit {
 
   save(){    
    if(this.validate()){
-    this.service.postSubBrand(this.subbrand).subscribe(
-      (skuId: string) =>
-      {
-        console.log('posting data');
-        this.router.navigateByUrl("/sku/management/subbrand");
-      }
-    )
+     this.subbrand.db = "subBrand"
+    this.service.postManage(this.subbrand).subscribe(
+      (skuId: string) => { })
   }
   }
 
@@ -41,8 +40,7 @@ export class CreateSubBrandComponent implements OnInit {
     this.errorvalue = true;
     const count = 0;
      
-    if(null){
-      //TO DO Condition
+    if(this.subbrand.code == null || this.subbrand.name == null ){
       this.errors = "Please fill all the required fields";
       this.errorvalue = false;
     }

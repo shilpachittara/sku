@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Input } from '@angular/core';
 import { ManagementService } from '../../service/management.service';
+import { User } from '../../model/user';
 
 @Component({
     styleUrls   : ['./create-user.component.css'],
@@ -11,7 +12,7 @@ import { ManagementService } from '../../service/management.service';
 })
 export class CreateUserComponent implements OnInit {
 
-  @Input() user: any;
+  @Input() user: User;
   errorvalue: any;
   errors: any;
   role: any;
@@ -21,7 +22,7 @@ export class CreateUserComponent implements OnInit {
   constructor (
     private router  : Router, private service: ManagementService
   ) {
-    //this.user = any;
+    this.user = new User();
   }
 
   ngOnInit() {
@@ -40,8 +41,11 @@ export class CreateUserComponent implements OnInit {
   }
 
   admin(){
-    if(this.role == "admin"){
+    if(this.user.role == "admin"){
       this.roleAdmin = true;
+    }
+    else{
+      this.roleAdmin = false;
     }
   }
 

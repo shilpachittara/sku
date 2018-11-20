@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Input } from '@angular/core';
 import { ManagementService } from '../../service/management.service';
+import { AddCode } from '../../model/addcode';
 
 @Component({
     styleUrls   : ['./create-category.component.css'],
@@ -12,7 +13,7 @@ import { ManagementService } from '../../service/management.service';
 export class CreateCategoryComponent implements OnInit {
 
 
-  @Input() category: any;
+  @Input() category: AddCode;
   errorvalue: any;
   errors: any;
 
@@ -20,24 +21,17 @@ export class CreateCategoryComponent implements OnInit {
   constructor (
     private router  : Router, private service: ManagementService
   ) {
-    //this.category = any;
+    this.category = new AddCode();
   }
 
   ngOnInit() {
   }
 
-  back(){
-    this.router.navigateByUrl("/sku/management/category");
-  }
-
   save(){    
    if(this.validate()){
-    this.service.postCategory(this.category).subscribe(
-      (skuId: string) =>
-      {
-        console.log('posting data');
-        this.router.navigateByUrl("/sku/management/category");
-      }
+     this.category.db = "category";
+    this.service.postManage(this.category).subscribe(
+      (skuId: string) =>{}
     )
   }
   }
@@ -46,8 +40,7 @@ export class CreateCategoryComponent implements OnInit {
     this.errorvalue = true;
     const count = 0;
      
-    if(null){
-      //TO DO Condition
+    if(this.category.name == null || this.category.code == null){
       this.errors = "Please fill all the required fields";
       this.errorvalue = false;
     }

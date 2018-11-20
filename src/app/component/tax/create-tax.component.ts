@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Input } from '@angular/core';
 import { ManagementService } from '../../service/management.service';
+import { AddSubcode } from '../../model/addsubcode';
 
 @Component({
     styleUrls   : ['./create-tax.component.css'],
@@ -11,7 +12,7 @@ import { ManagementService } from '../../service/management.service';
 })
 export class CreateTaxComponent implements OnInit {
 
-  @Input() tax: any;
+  @Input() tax: AddSubcode;
   errorvalue: any;
   errors: any;
 
@@ -19,7 +20,7 @@ export class CreateTaxComponent implements OnInit {
   constructor (
     private router  : Router, private service: ManagementService
   ) {
-    //this.tax = any;
+    this.tax = new AddSubcode();
   }
 
   ngOnInit() {
@@ -27,12 +28,10 @@ export class CreateTaxComponent implements OnInit {
 
   save(){    
    if(this.validate()){
-    this.service.postTax(this.tax).subscribe(
+     this.tax.db = "tax";
+    this.service.postManageSub(this.tax).subscribe(
       (skuId: string) =>
-      {
-        console.log('posting data');
-        this.router.navigateByUrl("/sku/management/tax");
-      }
+      {}
     )
   }
   }
@@ -41,8 +40,7 @@ export class CreateTaxComponent implements OnInit {
     this.errorvalue = true;
     const count = 0;
      
-    if(null){
-      //TO DO Condition
+    if(this.tax.name == null || this.tax.nameCode == null || this.tax.subname == null){
       this.errors = "Please fill all the required fields";
       this.errorvalue = false;
     }

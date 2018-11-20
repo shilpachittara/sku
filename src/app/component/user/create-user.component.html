@@ -4,7 +4,7 @@
                 <div class="control-group ">
                         <label class="control-label" for="title"> User Email<span class="red">*</span></label>
                         <div class="controls">
-                                <input class="form-control" type="text" id="user" name="user" [(ngModel)]="user" placeholder="Email" required="">
+                                <input class="form-control" type="text" id="user" name="user" [(ngModel)]="user.mail" placeholder="Email" required="">
                         </div>
     
                     </div>
@@ -12,7 +12,7 @@
                     <div class="control-group ">
                             <label class="control-label" for="title"> Role<span class="red">*</span></label>
                             <div class="controls">
-                                    <select id="role" class="chzn-drop form-control" name="role" required="" [(ngModel)]="role" (click)="admin()">
+                                    <select id="role" class="chzn-drop form-control" name="role" required="" [(ngModel)]="user.role" (click)="admin()">
                                             <option selected="" disabled="" value="">Choose Role</option>
                                             <option id="" value="admin">admin</option>
                                             <option id="" value="customer">customer</option>
@@ -28,7 +28,7 @@
                     <div class="control-group ">
                             <label class="control-label" for="title"> Password <span class="red">*</span></label>
                             <div class="controls">
-                                    <input class="form-control" type="text" id="password" name="password" [(ngModel)]="datasku.actualColor" placeholder="Password" required="">
+                                    <input class="form-control" type="text" id="password" name="password" [(ngModel)]="user.password" placeholder="Password" required="">
                             </div>
         
                         </div>

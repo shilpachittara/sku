@@ -33,7 +33,7 @@ export class CreateBrandComponent implements OnInit {
   save(){    
    if(this.validate()){
      this.brand.db = "brand";
-    this.service.postBrand(this.brand).subscribe(
+    this.service.postManage(this.brand).subscribe(
       (skuId: string) =>
       {
         console.log('posting data');

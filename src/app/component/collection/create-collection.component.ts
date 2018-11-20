@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Input } from '@angular/core';
 import { ManagementService } from '../../service/management.service';
+import { AddSubcode } from '../../model/addsubcode';
+import { AppGlobalDataService } from '../../service/app-global-data.service';
 
 @Component({
     styleUrls   : ['./create-collection.component.css'],
@@ -11,16 +13,17 @@ import { ManagementService } from '../../service/management.service';
 })
 export class CreateCollectionComponent implements OnInit {
 
-  @Input() collection: any;
+  @Input() collection: AddSubcode;
   errorvalue: any;
   errors: any;
 
 
   constructor (
-    private router  : Router, private service: ManagementService
+    private router  : Router, private service: ManagementService, private globaldata: AppGlobalDataService
   ) {
-    //this.collection = any;
+    this.collection = new AddSubcode();
   }
+
 
   ngOnInit() {
   }
@@ -28,12 +31,11 @@ export class CreateCollectionComponent implements OnInit {
 
   save(){    
    if(this.validate()){
-    this.service.postCollection(this.collection).subscribe(
-      (skuId: string) =>
-      {
-        console.log('posting data');
-        this.router.navigateByUrl("/sku/management/collection");
-      }
+    this.collection.nameCode = this.globaldata.subcode.nameCode;
+    this.collection.db = "collection";
+    this.service.postManageSub(this.collection).subscribe(
+      (subnameCode: string) =>
+      {}
     )
   }
   }
@@ -42,8 +44,7 @@ export class CreateCollectionComponent implements OnInit {
     this.errorvalue = true;
     const count = 0;
      
-    if(null){
-      //TO DO Condition
+    if(this.collection.name == null || this.collection.subname == null){
       this.errors = "Please fill all the required fields";
       this.errorvalue = false;
     }

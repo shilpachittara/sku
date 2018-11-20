@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Input } from '@angular/core';
 import { ManagementService } from '../../service/management.service';
+import { Code } from '../../model/code';
+import { AddCode } from '../../model/addcode';
 
 @Component({
     styleUrls   : ['./create-gender.component.css'],
@@ -11,7 +13,7 @@ import { ManagementService } from '../../service/management.service';
 })
 export class CreateGenderComponent implements OnInit {
 
-  @Input() gender: any;
+  @Input() gender: AddCode;
   errorvalue: any;
   errors: any;
 
@@ -19,7 +21,7 @@ export class CreateGenderComponent implements OnInit {
   constructor (
     private router  : Router, private service: ManagementService
   ) {
-    //this.gender = any;
+    this.gender = new AddCode();
   }
 
   ngOnInit() {
@@ -28,12 +30,10 @@ export class CreateGenderComponent implements OnInit {
 
   save(){    
    if(this.validate()){
-    this.service.postGender(this.gender).subscribe(
-      (skuId: string) =>
-      {
-        console.log('posting data');
-        this.router.navigateByUrl("/sku/management/gender");
-      }
+     this.gender.db = "gender"
+    this.service.postManage(this.gender).subscribe(
+      (name: string) =>
+      {}
     )
   }
   }
@@ -42,8 +42,7 @@ export class CreateGenderComponent implements OnInit {
     this.errorvalue = true;
     const count = 0;
      
-    if(null){
-      //TO DO Condition
+    if(this.gender.name == null || this.gender.code == null){
       this.errors = "Please fill all the required fields";
       this.errorvalue = false;
     }

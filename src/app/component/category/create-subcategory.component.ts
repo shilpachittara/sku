@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Input } from '@angular/core';
 import { ManagementService } from '../../service/management.service';
+import { AddSubcode } from '../../model/addsubcode';
+import { AppGlobalDataService } from '../../service/app-global-data.service';
 
 @Component({
     styleUrls   : ['./create-subcategory.component.css'],
@@ -11,15 +13,15 @@ import { ManagementService } from '../../service/management.service';
 })
 export class CreateSubCategoryComponent implements OnInit {
 
-  @Input() subcategory: any;
+  @Input() subcategory: AddSubcode;
   errorvalue: any;
   errors: any;
 
 
   constructor (
-    private router  : Router, private service: ManagementService
+    private router  : Router, private service: ManagementService, private globaldata: AppGlobalDataService
   ) {
-    //this.subcategory = any;
+    this.subcategory = new AddSubcode();
   }
 
   ngOnInit() {
@@ -27,13 +29,10 @@ export class CreateSubCategoryComponent implements OnInit {
   
   save(){    
    if(this.validate()){
-    this.service.postSubCategory(this.subcategory).subscribe(
-      (skuId: string) =>
-      {
-        console.log('posting data');
-        this.router.navigateByUrl("/sku/management/subcategory");
-      }
-    )
+     this.subcategory.db = "subcategory";
+     this.subcategory.nameCode = this.globaldata.code.code;
+    this.service.postManageSub(this.subcategory).subscribe(
+      (nameCode: string) =>{})
   }
   }
 
@@ -41,8 +40,7 @@ export class CreateSubCategoryComponent implements OnInit {
     this.errorvalue = true;
     const count = 0;
      
-    if(null){
-      //TO DO Condition
+    if(this.subcategory.name == null || this.subcategory.subname || this.subcategory.subnameCode){
       this.errors = "Please fill all the required fields";
       this.errorvalue = false;
     }

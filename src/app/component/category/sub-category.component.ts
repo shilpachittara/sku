@@ -4,6 +4,10 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs/internal/Observable';
 import { Sku } from '../../model/sku';
 import { ManagementService } from '../../service/management.service';
+import { AddSubcode } from '../../model/addsubcode';
+import { Subcode } from '../../model/subcode';
+import { Active } from '../../model/active';
+import { AddCode } from '../../model/addcode';
 
 @Component({
     styleUrls   : ['./sub-category.component.css'],
@@ -12,15 +16,18 @@ import { ManagementService } from '../../service/management.service';
 })
 export class SubCategoryComponent implements OnInit {
 
-  subcategory: Sku[];
+  subcategory: Subcode[];
   code: string;
   statusValue: any;
+  data: Subcode;
+  activedata: Active;
+
   constructor (
     private router: Router, private service: ManagementService
   ) {}
 
   ngOnInit() { 
-    this.service.getSubCategory().subscribe(
+    this.service.getManage().subscribe(
       (res) => this.subcategory = res.json()
     );
   }
@@ -32,6 +39,33 @@ export class SubCategoryComponent implements OnInit {
     } else {
         x.style.display = "block";
     }
+}
+
+status(data: Subcode):boolean{
+  if(this.data.status == "1"){
+    return true;
+  }
+  else{
+  return false;
+  }
+}
+
+
+inactive(data: Subcode){
+
+  this.activedata.code = this.data.subnameCode;
+  this.activedata.db = this.data.db;
+  this.service.postInactive(this.activedata).subscribe(
+    (code: string) =>{}    )
+
+}
+
+active(data: Subcode){
+  this.activedata.code = this.data.subnameCode;
+  this.activedata.db = this.data.db;
+  this.service.postActive(this.activedata).subscribe(
+    (code: string) =>{}    )
+
 }
 
 }
