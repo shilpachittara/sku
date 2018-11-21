@@ -58,13 +58,21 @@ export class ManagementService {
     return this.http.get(getmanageURL).pipe((catchError(this.formatErrors)));
    }
 
+   public getCollection(data: AddCode): Observable<any>{
+    const postmanageURL = this.URI + "/add"
+    const headers = new Headers({ 'Content-Type': 'application/json' });
+    const options = new RequestOptions({headers : headers});
+    return this.http.post(postmanageURL, 
+        JSON.stringify(data),options).pipe(catchError(this.formatErrors));;
+   }
+
    public postManage(data: AddCode): Observable<any> {
 
     const postmanageURL = this.URI + "/add"
     const headers = new Headers({ 'Content-Type': 'application/json' });
     const options = new RequestOptions({headers : headers});
     return this.http.post(postmanageURL, 
-        JSON.stringify(data),options).pipe(catchError(this.formatErrors));;
+        JSON.stringify(data),options).pipe(catchError(this.formatErrors));
     }   
 
     public postManageSub(data: AddSubcode): Observable<any> {
@@ -73,7 +81,7 @@ export class ManagementService {
         const headers = new Headers({ 'Content-Type': 'application/json' });
         const options = new RequestOptions({headers : headers});
         return this.http.post(postmanageURL, 
-            JSON.stringify(data),options).pipe(catchError(this.formatErrors));;
+            JSON.stringify(data),options).pipe(catchError(this.formatErrors));
         }  
 
   /* public getSubBrand(): Observable<any>{
@@ -161,7 +169,7 @@ export class ManagementService {
    }  */
     
     public getUser(): Observable<any>{
-        const userUrl = this.URI + "/show";
+        const userUrl = this.URI + "/showrole";
         return this.http.get(userUrl).pipe(catchError(this.formatErrors));
        }
 

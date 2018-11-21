@@ -6,6 +6,7 @@ import { Sku } from '../../model/sku';
 import { ManagementService } from '../../service/management.service';
 import { Code } from '../../model/code';
 import { Active } from '../../model/active';
+import { AddCode } from '../../model/addcode';
 
 @Component({
     styleUrls   : ['./category.component.css'],
@@ -21,14 +22,18 @@ export class CategoryComponent implements OnInit {
   data: Code;
   activedata: Active;
   errors: any;
+  postdata: AddCode;
   
   constructor (
     private router: Router, private service: ManagementService
-  ) {}
+  ) {
+    this.postdata = new AddCode();
+  }
 
   ngOnInit() { 
     this.create = false;
-    this.service.getManage().subscribe(
+    this.postdata.db = "collection";
+    this.service.getCollection(this.postdata).subscribe(
       (res) => this.category = res.json(),
       errors => {
         this.errors = errors;

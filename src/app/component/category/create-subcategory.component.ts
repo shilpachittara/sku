@@ -24,9 +24,14 @@ export class CreateSubCategoryComponent implements OnInit {
     private router  : Router, private service: ManagementService, private globaldata: AppGlobalDataService
   ) {
     this.subcategory = new AddSubcode();
+    this.dropDown = new Subcode();
   }
 
   ngOnInit() {
+    this.dropDown.db = "collection";
+    this.service.getDropDown(this.dropDown).subscribe(
+      (res) => this.dropDown = res.json()
+      )
   }
   
   save(){    
