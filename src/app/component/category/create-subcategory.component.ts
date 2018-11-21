@@ -34,7 +34,10 @@ export class CreateSubCategoryComponent implements OnInit {
      this.subcategory.db = "subcategory";
      this.subcategory.nameCode = this.globaldata.code.code;
     this.service.postManageSub(this.subcategory).subscribe(
-      (nameCode: string) =>{})
+      (nameCode: string) =>{},
+      errors => {
+        this.errors = errors;
+      })
   }
   }
 

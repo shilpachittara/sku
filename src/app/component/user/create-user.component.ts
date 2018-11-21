@@ -17,6 +17,8 @@ export class CreateUserComponent implements OnInit {
   errors: any;
   role: any;
   roleAdmin: boolean;
+  regexEmail   = /^([a-zA-Z0-9_\-]+)(\.[a-zA-Z0-9_\-]+)*@[a-zA-Z0-9_\-]+(\.[a-zA-Z0-9_\-]+)*\.([a-zA-Z]{2,5})$/;
+    
 
 
   constructor (
@@ -33,7 +35,10 @@ export class CreateUserComponent implements OnInit {
      this.user.db = "user";
     this.service.postUser(this.user).subscribe(
       (mail: string) =>
-      {}
+      {},
+      errors => {
+        this.errors = errors;
+      }
     )
   }
   }
@@ -51,6 +56,12 @@ export class CreateUserComponent implements OnInit {
     this.errorvalue = true;
     const count = 0;
      
+    if(this.user.mail != null){
+      if(!this.isValidEmail(this.user.mail)){
+      this.errors = "Please enter valid email";
+      this.errorvalue = false;
+      }
+    }
     if(this.user.role == "admin" && this.user.password == null){
       this.errors = "Please fill all the required fields";
       this.errorvalue = false;
@@ -62,4 +73,8 @@ export class CreateUserComponent implements OnInit {
     return this.errorvalue;
 
   }
+
+  isValidEmail(email: string): boolean {
+    return this.regexEmail.test(email);
+}
 }

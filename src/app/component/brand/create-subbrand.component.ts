@@ -32,7 +32,10 @@ export class CreateSubBrandComponent implements OnInit {
    if(this.validate()){
      this.subbrand.db = "subBrand"
     this.service.postManage(this.subbrand).subscribe(
-      (skuId: string) => { })
+      (skuId: string) => { },
+      errors => {
+        this.errors = errors;
+      })
   }
   }
 

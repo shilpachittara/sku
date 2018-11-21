@@ -16,13 +16,17 @@ export class DashboardComponent implements OnInit {
   skudata: Sku[];
   code: string;
   statusValue: any;
+  errors: any;
   constructor (
     private router: Router, private service: SkuService, private globalService: AppGlobalDataService
   ) {}
 
   ngOnInit() { 
     this.service.getProducts().subscribe(
-      (res) => this.skudata = res.json()
+      (res) => this.skudata = res.json(),
+      errors => {
+        this.errors = errors;
+      }
     );
   }
 

@@ -32,7 +32,10 @@ export class CreateSizeComponent implements OnInit {
      this.size.db = "size"
     this.service.postManage(this.size).subscribe(
       (name: string) =>
-      { }
+      { },
+      errors => {
+        this.errors = errors;
+      }
     )
   }
   }

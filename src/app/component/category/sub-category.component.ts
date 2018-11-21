@@ -21,6 +21,7 @@ export class SubCategoryComponent implements OnInit {
   statusValue: any;
   data: Subcode;
   activedata: Active;
+  errors: any;
 
   constructor (
     private router: Router, private service: ManagementService
@@ -28,7 +29,10 @@ export class SubCategoryComponent implements OnInit {
 
   ngOnInit() { 
     this.service.getManage().subscribe(
-      (res) => this.subcategory = res.json()
+      (res) => this.subcategory = res.json(),
+      errors => {
+        this.errors = errors;
+      }
     );
   }
 

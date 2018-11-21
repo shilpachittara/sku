@@ -31,7 +31,10 @@ export class CreateTaxComponent implements OnInit {
      this.tax.db = "tax";
     this.service.postManageSub(this.tax).subscribe(
       (skuId: string) =>
-      {}
+      {},
+      errors => {
+        this.errors = errors;
+      }
     )
   }
   }

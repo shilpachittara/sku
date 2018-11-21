@@ -35,7 +35,10 @@ export class CreateCollectionComponent implements OnInit {
     this.collection.db = "collection";
     this.service.postManageSub(this.collection).subscribe(
       (subnameCode: string) =>
-      {}
+      {},
+      errors => {
+        this.errors = errors;
+      }
     )
   }
   }

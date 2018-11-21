@@ -19,6 +19,7 @@ export class SubBrandComponent implements OnInit {
   statusValue: any;
   data: Code;
   activedata: Active;
+  errors: any;
   
   constructor (
     private router: Router, private service: ManagementService
@@ -26,7 +27,10 @@ export class SubBrandComponent implements OnInit {
 
   ngOnInit() { 
     this.service.getManage().subscribe(
-      (res) => this.subbrand = res.json()
+      (res) => this.subbrand = res.json(),
+      errors => {
+        this.errors = errors;
+      }
     );
   }
 

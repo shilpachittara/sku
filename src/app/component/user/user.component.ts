@@ -17,6 +17,7 @@ export class UserComponent implements OnInit {
   code: string;
   statusValue: any;
   data: User;
+  errors: any;
 
   constructor (
     private router: Router, private service: ManagementService
@@ -24,7 +25,10 @@ export class UserComponent implements OnInit {
 
   ngOnInit() { 
     this.service.getUser().subscribe(
-      (res) => this.user = res.json()
+      (res) => this.user = res.json(),
+      errors => {
+        this.errors = errors;
+      }
     );
   }
 

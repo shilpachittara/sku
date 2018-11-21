@@ -18,6 +18,7 @@ export class BrandComponent implements OnInit {
   statusValue: any;
   data: Code;
   activedata: Active;
+  errors: any;
 
   constructor (
     private router: Router, private service: ManagementService
@@ -25,7 +26,10 @@ export class BrandComponent implements OnInit {
 
   ngOnInit() { 
     this.service.getManage().subscribe(
-      (res) => this.brand = res.json()
+      (res) => this.brand = res.json(),
+      errors => {
+        this.errors = errors;
+      }
     );
   }
 

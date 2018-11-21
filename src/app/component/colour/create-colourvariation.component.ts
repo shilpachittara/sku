@@ -33,7 +33,10 @@ export class CreateColourVariationComponent implements OnInit {
     this.colourvariation.db = "colourvariation";
     this.service.postManageSub(this.colourvariation).subscribe(
       (subnameCode: string) =>
-      {}
+      {},
+      errors => {
+        this.errors = errors;
+      }
     )
   }
   }

@@ -32,7 +32,10 @@ export class CreateColourComponent implements OnInit {
     this.colour.db = "colour";
     this.service.postManage(this.colour).subscribe(
       (skuId: string) =>
-      { }
+      { },
+      errors => {
+        this.errors = errors;
+      }
     )
   }
   }

@@ -20,6 +20,7 @@ export class ColourVariationComponent implements OnInit {
   statusValue: any;
   data: Subcode;
   activedata: Active;
+  errors: any;
   
   constructor (
     private router: Router, private service: ManagementService
@@ -27,7 +28,10 @@ export class ColourVariationComponent implements OnInit {
 
   ngOnInit() { 
     this.service.getManage().subscribe(
-      (res) => this.colourvariation = res.json()
+      (res) => this.colourvariation = res.json(),
+      errors => {
+        this.errors = errors;
+      }
     );
   }
 

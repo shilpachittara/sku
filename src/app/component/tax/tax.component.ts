@@ -20,13 +20,17 @@ export class TaxComponent implements OnInit {
   statusValue: any;
   data: Code;
   activedata: Active;
+  errors: any;
   constructor (
     private router: Router, private service: ManagementService
   ) {}
 
   ngOnInit() { 
     this.service.getManage().subscribe(
-      (res) => this.tax = res.json()
+      (res) => this.tax = res.json(),
+      errors => {
+        this.errors = errors;
+      }
     );
   }
 

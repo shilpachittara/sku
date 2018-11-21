@@ -52,6 +52,9 @@ export class CreateComponent implements OnInit {
       {
         console.log('posting data');
         this.router.navigateByUrl("/sku/dashboard");
+      },
+      errors => {
+        this.errors = errors;
       }
     )
   }

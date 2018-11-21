@@ -20,6 +20,7 @@ export class CollectionComponent implements OnInit {
   statusValue: any;
   data: Subcode;
   activedata: Active;
+  errors: any;
   
   constructor (
     private router: Router, private service: ManagementService
@@ -27,7 +28,10 @@ export class CollectionComponent implements OnInit {
 
   ngOnInit() { 
     this.service.getManage().subscribe(
-      (res) => this.collection = res.json()
+      (res) => this.collection = res.json(),
+      errors => {
+        this.errors = errors;
+      }
     );
   }
 

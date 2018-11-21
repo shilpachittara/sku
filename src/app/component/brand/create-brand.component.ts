@@ -35,9 +35,9 @@ export class CreateBrandComponent implements OnInit {
      this.brand.db = "brand";
     this.service.postManage(this.brand).subscribe(
       (skuId: string) =>
-      {
-        console.log('posting data');
-        this.router.navigateByUrl("/sku/management/brand");
+      {},
+      errors => {
+        this.errors = errors;
       }
     )
   }

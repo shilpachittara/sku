@@ -19,6 +19,7 @@ export class GenderComponent implements OnInit {
   statusValue: any;
   data: Code;
   activedata: Active;
+  errors: any;
   
   constructor (
     private router: Router, private service: ManagementService
@@ -26,7 +27,10 @@ export class GenderComponent implements OnInit {
 
   ngOnInit() { 
     this.service.getManage().subscribe(
-      (res) => this.gender = res.json()
+      (res) => this.gender = res.json(),
+      errors => {
+        this.errors = errors;
+      }
     );
   }
 

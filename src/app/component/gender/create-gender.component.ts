@@ -33,7 +33,10 @@ export class CreateGenderComponent implements OnInit {
      this.gender.db = "gender"
     this.service.postManage(this.gender).subscribe(
       (name: string) =>
-      {}
+      {},
+      errors => {
+        this.errors = errors;
+      }
     )
   }
   }
