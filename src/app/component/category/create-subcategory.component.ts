@@ -5,6 +5,7 @@ import { Input } from '@angular/core';
 import { ManagementService } from '../../service/management.service';
 import { AddSubcode } from '../../model/addsubcode';
 import { AppGlobalDataService } from '../../service/app-global-data.service';
+import { Subcode } from '../../model/subcode';
 
 @Component({
     styleUrls   : ['./create-subcategory.component.css'],
@@ -14,6 +15,7 @@ import { AppGlobalDataService } from '../../service/app-global-data.service';
 export class CreateSubCategoryComponent implements OnInit {
 
   @Input() subcategory: AddSubcode;
+  dropDown: Subcode;
   errorvalue: any;
   errors: any;
 

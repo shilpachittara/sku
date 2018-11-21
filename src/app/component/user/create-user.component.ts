@@ -30,12 +30,10 @@ export class CreateUserComponent implements OnInit {
 
   save(){    
    if(this.validate()){
+     this.user.db = "user";
     this.service.postUser(this.user).subscribe(
-      (skuId: string) =>
-      {
-        console.log('posting data');
-        this.router.navigateByUrl("/sku/management/user");
-      }
+      (mail: string) =>
+      {}
     )
   }
   }
@@ -53,8 +51,11 @@ export class CreateUserComponent implements OnInit {
     this.errorvalue = true;
     const count = 0;
      
-    if(null){
-      //TO DO Condition
+    if(this.user.role == "admin" && this.user.password == null){
+      this.errors = "Please fill all the required fields";
+      this.errorvalue = false;
+    }
+    if(this.user.role == null || this.user.mail == null){
       this.errors = "Please fill all the required fields";
       this.errorvalue = false;
     }

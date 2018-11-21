@@ -31,7 +31,10 @@ export class CreateCategoryComponent implements OnInit {
    if(this.validate()){
      this.category.db = "category";
     this.service.postManage(this.category).subscribe(
-      (skuId: string) =>{}
+      (skuId: string) =>{},
+      errors => {
+        this.errors = errors;
+      }
     )
   }
   }

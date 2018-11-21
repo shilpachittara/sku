@@ -20,6 +20,7 @@ export class CategoryComponent implements OnInit {
   create: Boolean;
   data: Code;
   activedata: Active;
+  errors: any;
   
   constructor (
     private router: Router, private service: ManagementService
@@ -28,7 +29,10 @@ export class CategoryComponent implements OnInit {
   ngOnInit() { 
     this.create = false;
     this.service.getManage().subscribe(
-      (res) => this.category = res.json()
+      (res) => this.category = res.json(),
+      errors => {
+        this.errors = errors;
+      }
     );
   }
 

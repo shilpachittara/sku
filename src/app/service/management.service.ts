@@ -13,6 +13,7 @@ import { Active } from '../model/active';
 import { AddCode } from '../model/addcode';
 import { AddSubcode } from '../model/addsubcode';
 import { User } from '../model/user';
+import { Subcode } from '../model/subcode';
 
 @Injectable()
 export class ManagementService {
@@ -161,7 +162,7 @@ export class ManagementService {
     
     public getUser(): Observable<any>{
         const userUrl = this.URI + "/show";
-        return this.http.get(userUrl).pipe((catchError(this.formatErrors)));
+        return this.http.get(userUrl).pipe(catchError(this.formatErrors));
        }
 
     public postUser(data: User): Observable<any> {
@@ -193,11 +194,19 @@ export class ManagementService {
         const headers = new Headers({ 'Content-Type': 'application/json' });
         const options = new RequestOptions({headers : headers});
         return this.http.post(activeUrl, 
-            JSON.stringify(data),options).pipe(catchError(this.formatErrors));;
+            JSON.stringify(data),options).pipe(catchError(this.formatErrors));
     }  
 
+    public getDropDown(data: Subcode): Observable<any>{
+        const url = this.URI + "/get";
+        const headers = new Headers({ 'Content-Type': 'application/json' });
+        const options = new RequestOptions({headers : headers});
+        return this.http.post(url, 
+            JSON.stringify(data),options).pipe(catchError(this.formatErrors));;
+       }
+
    private formatErrors(error: any) {
-    return  throwError(error.error);
+    return  throwError(error.statusText);
   }
 
 }
