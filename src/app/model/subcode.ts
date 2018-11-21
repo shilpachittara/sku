@@ -6,4 +6,5 @@ export class Subcode{
     subnameCode: string;
     nameCode: string;
     status: string;
+    _id: string;
 }

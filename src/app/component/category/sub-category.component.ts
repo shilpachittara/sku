@@ -22,13 +22,17 @@ export class SubCategoryComponent implements OnInit {
   data: Subcode;
   activedata: Active;
   errors: any;
-
+  postdata: AddCode;
+  
   constructor (
     private router: Router, private service: ManagementService
-  ) {}
+  ) {
+    this.postdata = new AddCode();
+  }
 
   ngOnInit() { 
-    this.service.getManage().subscribe(
+    this.postdata.db = "subcategory";
+    this.service.getManage(this.postdata).subscribe(
       (res) => this.subcategory = res.json(),
       errors => {
         this.errors = errors;
@@ -57,16 +61,16 @@ status(data: Subcode):boolean{
 
 inactive(data: Subcode){
 
-  this.activedata.code = this.data.subnameCode;
-  this.activedata.db = this.data.db;
+  this.activedata.code = data.subnameCode;
+  this.activedata.db = data.db;
   this.service.postInactive(this.activedata).subscribe(
     (code: string) =>{}    )
 
 }
 
 active(data: Subcode){
-  this.activedata.code = this.data.subnameCode;
-  this.activedata.db = this.data.db;
+  this.activedata.code = data.subnameCode;
+  this.activedata.db = data.db;
   this.service.postActive(this.activedata).subscribe(
     (code: string) =>{}    )
 

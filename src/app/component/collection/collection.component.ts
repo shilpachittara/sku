@@ -7,6 +7,7 @@ import { ManagementService } from '../../service/management.service';
 import { Subcode } from '../../model/subcode';
 import { Active } from '../../model/active';
 import { Code } from '../../model/code';
+import { AddCode } from '../../model/addcode';
 
 @Component({
     styleUrls   : ['./collection.component.css'],
@@ -21,19 +22,24 @@ export class CollectionComponent implements OnInit {
   data: Subcode;
   activedata: Active;
   errors: any;
+  postdata: AddCode;
   
   constructor (
     private router: Router, private service: ManagementService
-  ) {}
+  ) {
+    this.postdata = new AddCode();
+  }
 
   ngOnInit() { 
-    this.service.getManage().subscribe(
+    this.postdata.db = "collection";
+    this.service.getManage(this.postdata).subscribe(
       (res) => this.collection = res.json(),
       errors => {
         this.errors = errors;
       }
     );
   }
+
 
   myFunction() {
     var x = document.getElementById("myDIV");
@@ -45,7 +51,7 @@ export class CollectionComponent implements OnInit {
 }
 
 status(data: Subcode):boolean{
-  if(this.data.status == "1"){
+  if(data.status == "1"){
     return true;
   }
   else{
@@ -55,16 +61,16 @@ status(data: Subcode):boolean{
 
 inactive(data: Subcode){
 
-  this.activedata.code = this.data.subnameCode;
-  this.activedata.db = this.data.db;
+  this.activedata.code = data.subnameCode;
+  this.activedata.db = data.db;
   this.service.postInactive(this.activedata).subscribe(
     (code: string) =>{}    )
 
 }
 
 active(data: Subcode){
-  this.activedata.code = this.data.subnameCode;
-  this.activedata.db = this.data.db;
+  this.activedata.code = data.subnameCode;
+  this.activedata.db = data.db;
   this.service.postActive(this.activedata).subscribe(
     (code: string) =>{}    )
 

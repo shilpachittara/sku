@@ -6,6 +6,7 @@ import { Sku } from '../../model/sku';
 import { ManagementService } from '../../service/management.service';
 import { Code } from '../../model/code';
 import { Active } from '../../model/active';
+import { AddCode } from '../../model/addcode';
 
 @Component({
     styleUrls   : ['./size.component.css'],
@@ -20,12 +21,17 @@ export class SizeComponent implements OnInit {
   data: Code;
   activedata: Active;
   errors: any;
+  postdata: AddCode;
+  
   constructor (
     private router: Router, private service: ManagementService
-  ) {}
+  ) {
+    this.postdata = new AddCode();
+  }
 
   ngOnInit() { 
-    this.service.getManage().subscribe(
+    this.postdata.db = "size";
+    this.service.getManage(this.postdata).subscribe(
       (res) => this.size = res.json(),
       errors => {
         this.errors = errors;
@@ -43,7 +49,7 @@ export class SizeComponent implements OnInit {
 }
 
 status(data: Code):boolean{
-  if(this.data.status == "1"){
+  if(data.status == "1"){
     return true;
   }
   else{
@@ -53,16 +59,16 @@ status(data: Code):boolean{
 
 inactive(data: Code){
 
-  this.activedata.code = this.data.code;
-  this.activedata.db = this.data.db;
+  this.activedata.code = data.code;
+  this.activedata.db = data.db;
   this.service.postInactive(this.activedata).subscribe(
     (code: string) =>{}    )
 
 }
 
 active(data: Code){
-  this.activedata.code = this.data.code;
-  this.activedata.db = this.data.db;
+  this.activedata.code = data.code;
+  this.activedata.db = data.db;
   this.service.postActive(this.activedata).subscribe(
     (code: string) =>{}    )
 

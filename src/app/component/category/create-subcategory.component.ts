@@ -28,7 +28,7 @@ export class CreateSubCategoryComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.dropDown.db = "collection";
+    this.dropDown.db = "subcategory";
     this.service.getDropDown(this.dropDown).subscribe(
       (res) => this.dropDown = res.json()
       )
@@ -50,7 +50,7 @@ export class CreateSubCategoryComponent implements OnInit {
     this.errorvalue = true;
     const count = 0;
      
-    if(this.subcategory.name == null || this.subcategory.subname || this.subcategory.subnameCode){
+    if(this.subcategory.name == null || this.subcategory.subname == null || this.subcategory.subnameCode == null){
       this.errors = "Please fill all the required fields";
       this.errorvalue = false;
     }

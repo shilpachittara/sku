@@ -32,8 +32,8 @@ export class CategoryComponent implements OnInit {
 
   ngOnInit() { 
     this.create = false;
-    this.postdata.db = "collection";
-    this.service.getCollection(this.postdata).subscribe(
+    this.postdata.db = "category";
+    this.service.getManage(this.postdata).subscribe(
       (res) => this.category = res.json(),
       errors => {
         this.errors = errors;
@@ -51,7 +51,7 @@ export class CategoryComponent implements OnInit {
 }
 
 status(data: Code):boolean{
-  if(this.data.status == "1"){
+  if(data.status == "1"){
     return true;
   }
   else{
@@ -61,19 +61,16 @@ status(data: Code):boolean{
 
 
 inactive(data: Code){
-
-  this.activedata.code = this.data.code;
-  this.activedata.db = this.data.db;
+  this.activedata.code = data._id;
+  this.activedata.db = data.db;
   this.service.postInactive(this.activedata).subscribe(
     (code: string) =>{}    )
-
 }
 
 active(data: Code){
-  this.activedata.code = this.data.code;
-  this.activedata.db = this.data.db;
+  this.activedata.code = data._id;
+  this.activedata.db = data.db;
   this.service.postActive(this.activedata).subscribe(
     (code: string) =>{}    )
-
 }
 }

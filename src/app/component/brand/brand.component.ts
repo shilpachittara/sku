@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/internal/Observable';
 import { ManagementService } from '../../service/management.service';
 import { Code } from '../../model/code';
 import { Active } from '../../model/active';
+import { AddCode } from '../../model/addcode';
 
 @Component({
     styleUrls   : ['./brand.component.css'],
@@ -18,20 +19,25 @@ export class BrandComponent implements OnInit {
   statusValue: any;
   data: Code;
   activedata: Active;
+  postdata: AddCode;
   errors: any;
-
+  
   constructor (
     private router: Router, private service: ManagementService
-  ) {}
+  ) {
+    this.postdata = new AddCode();
+  }
 
   ngOnInit() { 
-    this.service.getManage().subscribe(
+    this.postdata.db = "brand";
+    this.service.getManage(this.postdata).subscribe(
       (res) => this.brand = res.json(),
       errors => {
         this.errors = errors;
       }
     );
   }
+
 
   myFunction() {
     var x = document.getElementById("myDIV");
@@ -43,7 +49,7 @@ export class BrandComponent implements OnInit {
 }
   
 status(data: Code):boolean{
-if(this.data.status == "1"){
+if(data.status == "1"){
   return true;
 }
 else{
@@ -51,21 +57,18 @@ return false;
 }
 
 }
-  inactive(data: Code){
-
-    this.activedata.code = this.data.code;
-    this.activedata.db = this.data.db;
-    this.service.postInactive(this.activedata).subscribe(
-      (code: string) =>{}    )
-  
-  }
-
-  active(data: Code){
-    this.activedata.code = this.data.code;
-    this.activedata.db = this.data.db;
-    this.service.postActive(this.activedata).subscribe(
-      (code: string) =>{}    )
-  
-  }
-
+inactive(data: Code){
+  this.activedata.code = data._id;
+  this.activedata.db = data.db;
+  this.service.postInactive(this.activedata).subscribe(
+    (code: string) =>{}    )
 }
+
+active(data: Code){
+  this.activedata.code = data._id;
+  this.activedata.db = data.db;
+  this.service.postActive(this.activedata).subscribe(
+    (code: string) =>{}    )
+}
+}
+

@@ -7,6 +7,7 @@ import { ManagementService } from '../../service/management.service';
 import { Code } from '../../model/code';
 import { Active } from '../../model/active';
 import { Subcode } from '../../model/subcode';
+import { AddCode } from '../../model/addcode';
 
 @Component({
     styleUrls   : ['./tax.component.css'],
@@ -21,18 +22,24 @@ export class TaxComponent implements OnInit {
   data: Code;
   activedata: Active;
   errors: any;
+  postdata: AddCode;
+  
   constructor (
     private router: Router, private service: ManagementService
-  ) {}
+  ) {
+    this.postdata = new AddCode();
+  }
 
   ngOnInit() { 
-    this.service.getManage().subscribe(
+    this.postdata.db = "tax";
+    this.service.getManage(this.postdata).subscribe(
       (res) => this.tax = res.json(),
       errors => {
         this.errors = errors;
       }
     );
   }
+
 
   myFunction() {
     var x = document.getElementById("myDIV");
@@ -44,7 +51,7 @@ export class TaxComponent implements OnInit {
 }
 
 status(data: Subcode):boolean{
-  if(this.data.status == "1"){
+  if(data.status == "1"){
     return true;
   }
   else{
@@ -54,16 +61,16 @@ status(data: Subcode):boolean{
 
 inactive(data: Subcode){
 
-  this.activedata.code = this.data.code;
-  this.activedata.db = this.data.db;
+  this.activedata.code = data._id;
+  this.activedata.db = data.db;
   this.service.postInactive(this.activedata).subscribe(
     (code: string) =>{}    )
 
 }
 
 active(data: Subcode){
-  this.activedata.code = this.data.code;
-  this.activedata.db = this.data.db;
+  this.activedata.code = data._id;
+  this.activedata.db = data.db;
   this.service.postActive(this.activedata).subscribe(
     (code: string) =>{}    )
 

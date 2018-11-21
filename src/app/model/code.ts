@@ -4,4 +4,5 @@ export class Code{
     code: string;
     name: string;
     status: string;
+    _id: string;
 }

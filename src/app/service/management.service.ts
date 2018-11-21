@@ -53,13 +53,8 @@ export class ManagementService {
         JSON.stringify(data),options).pipe(catchError(this.formatErrors));;
    } */
 
-   public getManage(): Observable<any>{
-    const getmanageURL = this.URI + "/show";
-    return this.http.get(getmanageURL).pipe((catchError(this.formatErrors)));
-   }
-
-   public getCollection(data: AddCode): Observable<any>{
-    const postmanageURL = this.URI + "/add"
+   public getManage(data: AddCode): Observable<any>{
+    const postmanageURL = this.URI + "/show"
     const headers = new Headers({ 'Content-Type': 'application/json' });
     const options = new RequestOptions({headers : headers});
     return this.http.post(postmanageURL, 
@@ -168,9 +163,12 @@ export class ManagementService {
         JSON.stringify(data),options).pipe(catchError(this.formatErrors));;
    }  */
     
-    public getUser(): Observable<any>{
+    public getUser(data: AddCode): Observable<any>{
         const userUrl = this.URI + "/showrole";
-        return this.http.get(userUrl).pipe(catchError(this.formatErrors));
+        const headers = new Headers({ 'Content-Type': 'application/json' });
+        const options = new RequestOptions({headers : headers});
+        return this.http.post(userUrl, 
+            JSON.stringify(data),options).pipe(catchError(this.formatErrors));
        }
 
     public postUser(data: User): Observable<any> {
@@ -178,7 +176,7 @@ export class ManagementService {
         const headers = new Headers({ 'Content-Type': 'application/json' });
         const options = new RequestOptions({headers : headers});
         return this.http.post(userUrl, 
-            JSON.stringify(data),options).pipe(catchError(this.formatErrors));;
+            JSON.stringify(data),options).pipe(catchError(this.formatErrors));
      }  
 
     public deleteUser(data: User): Observable<any> {

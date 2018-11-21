@@ -49,10 +49,10 @@
             <td>{{data.subname}}</td>
             <td>{{data.namecode}}</td>
             <td>
-                <div *ngIf="status(data) == false"align="left" style="padding-bottom: 10px; display: inline-block;">
+                <div *ngIf="status(data) == true"align="left" style="padding-bottom: 10px; display: inline-block;">
                     <a (click)="inactive(data)" class="glyphicons-icon remove_2" title="Click inactive"></a>
                 </div>
-                <div *ngIf="status(data) == true"align="left" style="padding-bottom: 10px; display: inline-block;">
+                <div *ngIf="status(data) == false"align="left" style="padding-bottom: 10px; display: inline-block;">
                     <a (click)="active(data)" class="glyphicons-icon add" title="Click active"></a>
                 </div>
             </td>

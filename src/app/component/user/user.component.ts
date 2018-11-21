@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/internal/Observable';
 import { Sku } from '../../model/sku';
 import { ManagementService } from '../../service/management.service';
 import { User } from '../../model/user';
+import { AddCode } from '../../model/addcode';
 
 @Component({
     styleUrls   : ['./user.component.css'],
@@ -18,13 +19,17 @@ export class UserComponent implements OnInit {
   statusValue: any;
   data: User;
   errors: any;
-
+  postdata: AddCode;
+  
   constructor (
     private router: Router, private service: ManagementService
-  ) {}
+  ) {
+    this.postdata = new AddCode();
+  }
 
   ngOnInit() { 
-    this.service.getUser().subscribe(
+    this.postdata.db = "user";
+    this.service.getUser(this.postdata).subscribe(
       (res) => this.user = res.json(),
       errors => {
         this.errors = errors;
