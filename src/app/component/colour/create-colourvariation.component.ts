@@ -56,7 +56,7 @@ export class CreateColourVariationComponent implements OnInit {
     this.errorvalue = true;
     const count = 0;
      
-    if(this.colour.name == null || this.colour._id ||
+    if(this.colour.name == null || this.colour._id == null ||
        this.colourvariation.subname == null || this.colourvariation.subnameCode == null){
       this.errors = "Please fill all the required fields";
       this.errorvalue = false;

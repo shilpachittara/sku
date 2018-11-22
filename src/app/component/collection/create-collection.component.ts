@@ -59,7 +59,7 @@ export class CreateCollectionComponent implements OnInit {
     const count = 0;
      
     if(this.brand.name == null || this.brand._id == null||
-       this.collection.subname == null || this.collection.subnameCode){
+       this.collection.subname == null || this.collection.subnameCode == null){
       this.errors = "Please fill all the required fields";
       this.errorvalue = false;
     }
