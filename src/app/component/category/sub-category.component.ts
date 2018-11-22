@@ -28,6 +28,7 @@ export class SubCategoryComponent implements OnInit {
     private router: Router, private service: ManagementService
   ) {
     this.postdata = new AddCode();
+    this.activedata = new Active();
   }
 
   ngOnInit() { 

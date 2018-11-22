@@ -43,15 +43,15 @@
             </tr>
         </thead>
     <tbody>
-         <tr *ngFor ="let data of category">                
-                <td>{{data.name}}</td>
-                <td>{{data._id}}</td>
+         <tr >                
+                <td></td>
+                <td></td>
                 <td>
                     <div *ngIf="status(data) == true"align="left" style="padding-bottom: 10px; display: inline-block;">
-                        <a (click)="inactive(data)" class="glyphicons-icon remove_2" title="Click inactive"></a>
+                        <a (click)="inactive(test)" class="glyphicons-icon remove_2" title="Click inactive"></a>
                     </div>
                     <div *ngIf="status(data) == false"align="left" style="padding-bottom: 10px; display: inline-block;">
-                        <a (click)="active(data)" class="glyphicons-icon add" title="Click active"></a>
+                        <a (click)="active(test)" class="glyphicons-icon add" title="Click active"></a>
                     </div>
                 </td>
 

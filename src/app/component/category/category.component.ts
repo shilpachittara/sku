@@ -18,20 +18,23 @@ export class CategoryComponent implements OnInit {
   category: Code[];
   code: string;
   statusValue: any;
-  create: Boolean;
   data: Code;
   activedata: Active;
   errors: any;
   postdata: AddCode;
+  test: Code;
   
   constructor (
     private router: Router, private service: ManagementService
   ) {
     this.postdata = new AddCode();
+    this.activedata = new Active();
+    this.test = new Code();
   }
 
   ngOnInit() { 
-    this.create = false;
+    this.test._id = "01";
+    this.test.db = "category";
     this.postdata.db = "category";
     this.service.getManage(this.postdata).subscribe(
       (res) => this.category = res.json(),
@@ -51,12 +54,12 @@ export class CategoryComponent implements OnInit {
 }
 
 status(data: Code):boolean{
-  if(data.status == "1"){
+ // if(data.status == "1"){
     return true;
-  }
-  else{
-  return false;
-  }
+  //}
+  //else{
+  //return false;
+  //}
 }
 
 
