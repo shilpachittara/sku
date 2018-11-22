@@ -16,7 +16,7 @@ import { AddCode } from '../../model/addcode';
 })
 export class TaxComponent implements OnInit {
 
-  tax: Subcode[];
+  tax: Code[];
   code: string;
   statusValue: any;
   data: Code;
@@ -51,7 +51,7 @@ export class TaxComponent implements OnInit {
     }
 }
 
-status(data: Subcode):boolean{
+status(data: Code):boolean{
   if(data.status == "1"){
     return true;
   }
@@ -60,7 +60,7 @@ status(data: Subcode):boolean{
   }
 }
 
-inactive(data: Subcode){
+inactive(data: Code){
 
   this.activedata.code = data._id;
   this.activedata.db = data.db;
@@ -69,7 +69,7 @@ inactive(data: Subcode){
 
 }
 
-active(data: Subcode){
+active(data: Code){
   this.activedata.code = data._id;
   this.activedata.db = data.db;
   this.service.postActive(this.activedata).subscribe(
