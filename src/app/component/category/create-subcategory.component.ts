@@ -54,7 +54,8 @@ export class CreateSubCategoryComponent implements OnInit {
     this.errorvalue = true;
     const count = 0;
      
-    if(this.subcategory.name == null || this.subcategory.subname == null || this.subcategory.subnameCode == null){
+    if(this.category.name == null || this.category._id == null ||
+      this.subcategory.subname == null || this.subcategory.subnameCode == null){
       this.errors = "Please fill all the required fields";
       this.errorvalue = false;
     }

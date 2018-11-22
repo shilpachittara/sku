@@ -10,7 +10,8 @@
                                             <label class="control-label" for="title"> Category <span class="red">*</span></label>
                                             <div class="controls">
                                                     <select class="chzn-drop form-control" id="category" name="category" [(ngModel)]="category" required="" >
-                                                            <option *ngFor="let category of categories" value="category.name">{{category.name}}</option>
+                                                        <option selected="" disabled="" value="">Choose Option</option>    
+                                                        <option *ngFor="let category of categories" [value]="category">{{category.name}}</option>
                                                     </select>
                                             </div>
                         
