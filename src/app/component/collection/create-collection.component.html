@@ -5,7 +5,7 @@
                                     <div class="controls">
                                                 <select class="chzn-drop form-control" id="brand" name="brand" [(ngModel)]="brand" required="" >
                                                                 <option selected="" disabled="" value="">Choose Option</option>    
-                                                                <option *ngFor="let brand of brands" [value]="brand">{{brand.name}}</option>
+                                                                <option *ngFor="let brand of brands" [ngValue]="brand">{{brand.name}}</option>
                                                 </select>
                                      </div>
                 

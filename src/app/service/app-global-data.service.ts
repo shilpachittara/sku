@@ -11,6 +11,7 @@ export class AppGlobalDataService
     private _code: Code; 
     private _subcode: Subcode;
     public actionType: string;
+    public backvalue: string;
 
     constructor(){
         this._sku = new Sku();

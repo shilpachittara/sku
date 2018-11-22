@@ -13,7 +13,7 @@
                                         <div class="controls">
                                                 <select class="chzn-drop form-control" id="colour" name="colour" [(ngModel)]="colour" required="" >
                                                         <option selected="" disabled="" value="">Choose Option</option>    
-                                                        <option *ngFor="let colour of colours" [value]="colour">{{colour.name}}</option>
+                                                        <option *ngFor="let colour of colours" [ngValue]="colour">{{colour.name}}</option>
                                                 </select>
                                         </div>
                     

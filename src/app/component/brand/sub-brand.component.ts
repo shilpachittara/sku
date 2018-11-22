@@ -60,14 +60,14 @@ status(data: Code):boolean{
 
 inactive(data: Code){
   this.activedata.code = data._id;
-  this.activedata.db = data.db;
+  this.activedata.db = this.postdata.db;
   this.service.postInactive(this.activedata).subscribe(
     (code: string) =>{}    )
 }
 
 active(data: Code){
   this.activedata.code = data._id;
-  this.activedata.db = data.db;
+  this.activedata.db = this.postdata.db;
   this.service.postActive(this.activedata).subscribe(
     (code: string) =>{}    )
 }

@@ -64,7 +64,7 @@ status(data: Subcode):boolean{
 inactive(data: Subcode){
 
   this.activedata.code = data.subnameCode;
-  this.activedata.db = data.db;
+  this.activedata.db = this.postdata.db;
   this.service.postInactive(this.activedata).subscribe(
     (code: string) =>{}    )
 
@@ -72,7 +72,7 @@ inactive(data: Subcode){
 
 active(data: Subcode){
   this.activedata.code = data.subnameCode;
-  this.activedata.db = data.db;
+  this.activedata.db = this.postdata.db;
   this.service.postActive(this.activedata).subscribe(
     (code: string) =>{}    )
 
