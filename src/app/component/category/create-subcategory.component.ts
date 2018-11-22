@@ -6,6 +6,7 @@ import { ManagementService } from '../../service/management.service';
 import { AddSubcode } from '../../model/addsubcode';
 import { AppGlobalDataService } from '../../service/app-global-data.service';
 import { Subcode } from '../../model/subcode';
+import { Code } from '../../model/code';
 
 @Component({
     styleUrls   : ['./create-subcategory.component.css'],
@@ -18,6 +19,8 @@ export class CreateSubCategoryComponent implements OnInit {
   dropDown: Subcode;
   errorvalue: any;
   errors: any;
+  categories: Code [];
+  category: Code;
 
 
   constructor (
@@ -28,16 +31,17 @@ export class CreateSubCategoryComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.dropDown.db = "subcategory";
+    this.dropDown.db = "category";
     this.service.getDropDown(this.dropDown).subscribe(
-      (res) => this.dropDown = res.json()
+      (res) => this.categories = res.json()
       )
   }
   
   save(){    
    if(this.validate()){
      this.subcategory.db = "subcategory";
-     this.subcategory.nameCode = this.globaldata.code.code;
+     this.subcategory.nameCode = this.category._id;
+     this.subcategory.name = this.category.name;
     this.service.postManageSub(this.subcategory).subscribe(
       (nameCode: string) =>{},
       errors => {
@@ -55,6 +59,6 @@ export class CreateSubCategoryComponent implements OnInit {
       this.errorvalue = false;
     }
     return this.errorvalue;
-
   }
+
 }

@@ -31,7 +31,8 @@ export class CreateCollectionComponent implements OnInit {
 
   save(){    
    if(this.validate()){
-    this.collection.nameCode = this.globaldata.subcode.nameCode;
+     // TO DO
+   // this.collection.nameCode = this.globaldata.subcode.nameCode;
     this.collection.db = "collection";
     this.service.postManageSub(this.collection).subscribe(
       (subnameCode: string) =>

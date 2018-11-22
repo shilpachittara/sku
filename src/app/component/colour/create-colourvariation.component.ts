@@ -29,7 +29,7 @@ export class CreateColourVariationComponent implements OnInit {
 
   save(){    
    if(this.validate()){
-    this.colourvariation.nameCode = this.globaldata.subcode.nameCode;
+    //this.colourvariation.nameCode = this.globaldata.subcode.nameCode; // TO DO
     this.colourvariation.db = "colourvariation";
     this.service.postManageSub(this.colourvariation).subscribe(
       (subnameCode: string) =>

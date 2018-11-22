@@ -50,7 +50,7 @@ export class SubCategoryComponent implements OnInit {
 }
 
 status(data: Subcode):boolean{
-  if(this.data.status == "1"){
+  if(data.status == "1"){
     return true;
   }
   else{
