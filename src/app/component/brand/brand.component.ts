@@ -6,6 +6,7 @@ import { ManagementService } from '../../service/management.service';
 import { Code } from '../../model/code';
 import { Active } from '../../model/active';
 import { AddCode } from '../../model/addcode';
+import { AppGlobalDataService } from '../../service/app-global-data.service';
 
 @Component({
     styleUrls   : ['./brand.component.css'],
@@ -23,13 +24,15 @@ export class BrandComponent implements OnInit {
   errors: any;
   
   constructor (
-    private router: Router, private service: ManagementService
+    private router: Router, private service: ManagementService,
+    private globaldata: AppGlobalDataService
   ) {
     this.postdata = new AddCode();
     this.activedata = new Active();
   }
 
   ngOnInit() { 
+    this.globaldata.backurl = "management";
     this.postdata.db = "brand";
     this.service.getManage(this.postdata).subscribe(
       (res) => this.brand = res.json(),

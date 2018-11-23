@@ -7,6 +7,7 @@ import { ManagementService } from '../../service/management.service';
 import { Code } from '../../model/code';
 import { Active } from '../../model/active';
 import { AddCode } from '../../model/addcode';
+import { AppGlobalDataService } from '../../service/app-global-data.service';
 
 @Component({
     styleUrls   : ['./gender.component.css'],
@@ -24,13 +25,15 @@ export class GenderComponent implements OnInit {
   postdata: AddCode;
   
   constructor (
-    private router: Router, private service: ManagementService
+    private router: Router, private service: ManagementService,
+    private globaldata: AppGlobalDataService
   ) {
     this.postdata = new AddCode();
     this.activedata = new Active();
   }
 
   ngOnInit() { 
+    this.globaldata.backurl = "management";
     this.postdata.db = "gender";
     this.service.getManage(this.postdata).subscribe(
       (res) => this.gender = res.json(),

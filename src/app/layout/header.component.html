@@ -2,14 +2,15 @@
     <div class="container">
         <div class="logo">
             <a href = "/sku">            
-            <img src="assets/logo.png" width="100" height="25">
-            </a>
-                    
+            <img src="assets/logo.png" width="100" height="25"></a> 
+            <div  *ngIf= "backvalue != null" class="navbar-breadcrumbs fa fa-chevron-right" width="100" height="25"> 
+            <a class="back" (click)="back()">{{backvalue}}</a>
+        </div> 
+          
         </div>
-            
                 <ul  class="nav navbar-nav">
                         <li class="dropdown">
-                            <a class="btn " href="#"> 
+                            <a class="btn" href="#"> 
                             Log out					
 						   </a>
 							<ul class="dropdown-menu" style="text-align: center;">

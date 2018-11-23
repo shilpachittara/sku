@@ -8,6 +8,7 @@ import { Subcode } from '../../model/subcode';
 import { Active } from '../../model/active';
 import { Code } from '../../model/code';
 import { AddCode } from '../../model/addcode';
+import { AppGlobalDataService } from '../../service/app-global-data.service';
 
 @Component({
     styleUrls   : ['./colour-variation.component.css'],
@@ -25,13 +26,16 @@ export class ColourVariationComponent implements OnInit {
   postdata: AddCode;
   
   constructor (
-    private router: Router, private service: ManagementService
+    private router: Router, private service: ManagementService,
+    private globaldata: AppGlobalDataService
+
   ) {
     this.postdata = new AddCode();
     this.activedata = new Active();
   }
 
   ngOnInit() { 
+    this.globaldata.backurl = "management";
     this.postdata.db = "colourvariation";
     this.service.getManage(this.postdata).subscribe(
       (res) => this.colourvariation = res.json(),

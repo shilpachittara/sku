@@ -67,9 +67,21 @@ margin-top: 60px;
 }
 
 .back {
-    position: relative;
-    left: 0;
-    display: block;
-    float: left;
-    margin: 0 10px 0 0;
+    font-size: 13px;
+    font-weight: 550;
+}
+
+.navbar-breadcrumbs {
+    display: inline-block;
+    padding: 6;
+    padding: 6px 6px 6px 0;
+    color:  #6c7680;
+    
+}
+
+a {
+    color: black;
+    text-decoration: none;
+    text-shadow: none !important;
+    padding: 10px 5px !important;
 }

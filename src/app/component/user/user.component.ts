@@ -6,6 +6,7 @@ import { Sku } from '../../model/sku';
 import { ManagementService } from '../../service/management.service';
 import { User } from '../../model/user';
 import { AddCode } from '../../model/addcode';
+import { AppGlobalDataService } from '../../service/app-global-data.service';
 
 @Component({
     styleUrls   : ['./user.component.css'],
@@ -22,12 +23,14 @@ export class UserComponent implements OnInit {
   postdata: AddCode;
   
   constructor (
-    private router: Router, private service: ManagementService
+    private router: Router, private service: ManagementService,
+    private globaldata: AppGlobalDataService
   ) {
     this.postdata = new AddCode();
   }
 
   ngOnInit() { 
+    this.globaldata.backurl = "management";
     this.postdata.db = "user";
     this.service.getUser(this.postdata).subscribe(
       (res) => this.user = res.json(),

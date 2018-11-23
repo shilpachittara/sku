@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { SkuService } from '../service/sku.service';
 import { Sku } from '../model/sku';
 import { Input } from '@angular/core';
+import { AppGlobalDataService } from '../service/app-global-data.service';
 
 @Component({
     styleUrls   : ['./create.component.css'],
@@ -25,7 +26,8 @@ export class CreateComponent implements OnInit {
   model: string;
 
   constructor (
-    private router  : Router, private service: SkuService
+    private router  : Router, private service: SkuService,
+    private globaldata: AppGlobalDataService
   ) {
     this.datasku = new Sku();
     this.model = "03";
@@ -39,6 +41,7 @@ export class CreateComponent implements OnInit {
     this.costAfterOverHeadValue = "Cost";
     this.b2bsp = "B2B Selling Price";
     this.b2csp = "Selling Price";
+    this.globaldata.backurl = "Sku";
   }
 
   back(){

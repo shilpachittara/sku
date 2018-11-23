@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Router } from '@angular/router';
+import { AppGlobalDataService } from '../service/app-global-data.service';
 
 @Component({
     styleUrls   : ['./management.component.css'],
@@ -8,11 +9,12 @@ import { Router } from '@angular/router';
   templateUrl: './management.component.html'
 })
 export class ManagementComponent implements OnInit {
-  constructor (
+  constructor (  private globalService: AppGlobalDataService,
     private router               : Router
   ) {}
 
   ngOnInit() {
+    this.globalService.backurl = "no";
   }
 
 }

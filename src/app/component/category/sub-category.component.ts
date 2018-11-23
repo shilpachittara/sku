@@ -8,6 +8,7 @@ import { AddSubcode } from '../../model/addsubcode';
 import { Subcode } from '../../model/subcode';
 import { Active } from '../../model/active';
 import { AddCode } from '../../model/addcode';
+import { AppGlobalDataService } from '../../service/app-global-data.service';
 
 @Component({
     styleUrls   : ['./sub-category.component.css'],
@@ -25,13 +26,15 @@ export class SubCategoryComponent implements OnInit {
   postdata: AddCode;
   
   constructor (
-    private router: Router, private service: ManagementService
+    private router: Router, private service: ManagementService,
+    private globaldata: AppGlobalDataService
   ) {
     this.postdata = new AddCode();
     this.activedata = new Active();
   }
 
   ngOnInit() { 
+    this.globaldata.backurl = "management";
     this.postdata.db = "subcategory";
     this.service.getManage(this.postdata).subscribe(
       (res) => this.subcategory = res.json(),
