@@ -354,11 +354,11 @@
                         </div>
 
                         <div class="control-group ">
-                                <label class="control-label" for="title"> Tax <span class="red">*</span></label>
+                                <label class="control-label" for="title"> Tax (%) <span class="red">*</span></label>
                                 <div class="controls">
-                                        <select id="category" class="chzn-drop form-control" name="category" [(ngModel)]="tax"   required="" >
+                                        <select id="tax" class="chzn-drop form-control" name="tax" [(ngModel)]="tax"   required="" >
                                               <option selected="" disabled="" value="">Tax</option>
-                                              <option *ngFor="let tax of taxes" [ngValue]="tax">{{tax.code}}</option>
+                                              <option *ngFor="let tax of taxes" [ngValue]="tax">{{tax._id}}</option>
                                  </select>	  
                                         
                                 </div>

@@ -49,7 +49,7 @@ export class CreateComponent implements OnInit {
   sizes: Code [];
   size: Code;
   taxes: Subcode [];
-  tax: Subcode;;
+  tax: Code;;
 
   constructor (
     private router  : Router, private service: SkuService,
@@ -68,7 +68,7 @@ export class CreateComponent implements OnInit {
     this.colourvariation = new Subcode();
     this.gender = new Code();
     this.size = new Code();
-    this.tax = new Subcode();
+    this.tax = new Code();
   }
 
   ngOnInit() {
@@ -100,7 +100,7 @@ export class CreateComponent implements OnInit {
     this.dropDown.db = "subcategory";
     // TO DO
     this.dropDown.name = this.category.name;
-    this.dropDown._id = this.category._id;
+    this.dropDown.nameCode = this.category._id;
     this.manageservice.getDropDown(this.dropDown).subscribe(
       (res) => this.subcategories = res.json()
       );
