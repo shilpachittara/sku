@@ -36,6 +36,10 @@ export class ColourVariationComponent implements OnInit {
 
   ngOnInit() { 
     this.globaldata.backurl = "management";
+    this.loadColourvariation();
+  }
+
+  loadColourvariation() {
     this.postdata.db = "colourvariation";
     this.service.getManage(this.postdata).subscribe(
       (res) => this.colourvariation = res.json(),

@@ -23,6 +23,10 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() { 
     this.globalService.backurl = "no";
+    this.loadSku();
+  }
+
+  loadSku(){
     this.service.getProducts().subscribe(
       (res) => this.skudata = res.json(),
       errors => {

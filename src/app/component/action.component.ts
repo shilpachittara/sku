@@ -59,9 +59,9 @@ export class ActionComponent implements OnInit {
     const count = 0;
     
     if(this.datasku.category == null || this.datasku.subCategory == null || this.datasku.brand == null ||
-    this.datasku.gender == null || this.datasku.collection == null || this.datasku.color == null || 
-    this.datasku.colorVariation == null || this.datasku.size == null || this.datasku.manufacturingYear == null
-    ||this.datasku.skuCode == null || this.datasku.productName== null || this.datasku.productDescription == null || this.datasku.actualColor == null
+    this.datasku.gender == null || this.datasku.collection == null || this.datasku.colour == null || 
+    this.datasku.colourVariation == null || this.datasku.size == null || this.datasku.manufacturingYear == null
+    ||this.datasku.skuCode == null || this.datasku.productName== null || this.datasku.productDescription == null || this.datasku.actualColour == null
     || this.datasku.itemHeight == null || this.datasku.itemLength == null || this.datasku.itemVolume == null
     || this.datasku.itemWeight == null || this.datasku.itemWidth == null){
       this.errors = "Please fill all the required fields";
@@ -80,8 +80,8 @@ export class ActionComponent implements OnInit {
     this.groupIdValue = this.datasku.groupId;
       }
 
-    if(this.datasku.groupId != null && this.datasku.color != null && this.datasku.colorVariation != null){
-        this.datasku.styleCode = this.datasku.groupId + this.datasku.color + this.datasku.colorVariation;
+    if(this.datasku.groupId != null && this.datasku.colour != null && this.datasku.colourVariation != null){
+        this.datasku.styleCode = this.datasku.groupId + this.datasku.colour + this.datasku.colourVariation;
         this.styleCodeValue = this.datasku.styleCode;
       }
     

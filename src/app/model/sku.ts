@@ -6,8 +6,8 @@ export class Sku {
     brand: string;
     gender: string;
     collection: string;
-    color: string;
-    colorVariation: string;
+    colour: string;
+    colourVariation: string;
     size: string;
     manufacturingYear: string;
     subBrand: string;
@@ -16,7 +16,7 @@ export class Sku {
     sizeCode: string;
     skuCode: string;
     productName: string;
-    actualColor: string;
+    actualColour: string;
     productDescription: string;
     itemWeight: string;
     itemLength: string;

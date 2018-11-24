@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 import { Router } from '@angular/router';
 import { Input } from '@angular/core';
@@ -13,6 +13,8 @@ import { User } from '../../model/user';
 export class CreateUserComponent implements OnInit {
 
   @Input() user: User;
+  @Output()
+  loaduser: EventEmitter<String> = new EventEmitter<String>();
   errorvalue: any;
   errors: any;
   role: any;
@@ -34,8 +36,8 @@ export class CreateUserComponent implements OnInit {
    if(this.validate()){
      this.user.db = "user";
     this.service.postUser(this.user).subscribe(
-      (mail: string) =>
-      {},
+      (res) =>
+      { this.loaduser.emit()},
       errors => {
         this.errors = errors;
       }

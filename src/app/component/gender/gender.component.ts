@@ -34,6 +34,10 @@ export class GenderComponent implements OnInit {
 
   ngOnInit() { 
     this.globaldata.backurl = "management";
+    this.loadGender();
+  }
+
+  loadGender() {
     this.postdata.db = "gender";
     this.service.getManage(this.postdata).subscribe(
       (res) => this.gender = res.json(),

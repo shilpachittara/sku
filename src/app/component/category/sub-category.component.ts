@@ -35,6 +35,10 @@ export class SubCategoryComponent implements OnInit {
 
   ngOnInit() { 
     this.globaldata.backurl = "management";
+    this.loadSubCategory();
+  }
+
+  loadSubCategory() {
     this.postdata.db = "subcategory";
     this.service.getManage(this.postdata).subscribe(
       (res) => this.subcategory = res.json(),

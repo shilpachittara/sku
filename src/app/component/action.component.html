@@ -59,7 +59,7 @@
                     <div class="control-group ">
                         <label class="control-label" for="title"> Colour <span class="red">*</span></label>
                         <div class="controls">
-                                <select id="colour" class="chzn-drop form-control" name="colour" [(ngModel)]="datasku.color" required="" (change)="generateId()">
+                                <select id="colour" class="chzn-drop form-control" name="colour" [(ngModel)]="datasku.colour" required="" (change)="generateId()">
                                       <option selected="" disabled="" value="">Choose Colour</option>
                                                                         <option id="colour_F" value="F">Beige</option>
                                                                           <option id="colour_A" value="A">Black</option>
@@ -88,7 +88,7 @@
                     <div class="control-group ">
                         <label class="control-label" for="title"> Colour Variation <span class="red">*</span></label>
                         <div class="controls">
-                                <select id="colour_variation" class="chzn-drop form-control" name="colour_variation" [(ngModel)]="datasku.colorVariation" required="" (change)="generateId()">
+                                <select id="colour_variation" class="chzn-drop form-control" name="colour_variation" [(ngModel)]="datasku.colourVariation" required="" (change)="generateId()">
                                       <option selected="" disabled="" value="">Choose Colour Variation</option>
                                       
                                       <option id="colour_S" value="S">Yellow</option>
@@ -193,7 +193,7 @@
                     <div class="control-group ">
                         <label class="control-label" for="title"> Actual Colour <span class="red">*</span></label>
                         <div class="controls">
-                                <input class="form-control" type="text" id="actual_colour" name="actual_colour" [(ngModel)]="datasku.actualColor" placeholder="Actual Colour" required="">
+                                <input class="form-control" type="text" id="actual_colour" name="actual_colour" [(ngModel)]="datasku.actualColour" placeholder="Actual Colour" required="">
                         </div>
     
                     </div>

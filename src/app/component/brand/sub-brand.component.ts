@@ -34,6 +34,10 @@ export class SubBrandComponent implements OnInit {
 
   ngOnInit() { 
     this.globaldata.backurl = "management";
+    this.loadSubBrand();
+  }
+
+  loadSubBrand() {
     this.postdata.db = "subbrand";
     this.service.getManage(this.postdata).subscribe(
       (res) => this.subbrand = res.json(),

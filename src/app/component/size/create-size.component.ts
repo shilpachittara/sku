@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 import { Router } from '@angular/router';
 import { Input } from '@angular/core';
@@ -13,6 +13,8 @@ import { AddCode } from '../../model/addcode';
 export class CreateSizeComponent implements OnInit {
 
   @Input() size: AddCode;
+  @Output()
+  loadsize: EventEmitter<String> = new EventEmitter<String>();
   errorvalue: any;
   errors: any;
 
@@ -31,8 +33,8 @@ export class CreateSizeComponent implements OnInit {
    if(this.validate()){
      this.size.db = "size"
     this.service.postManage(this.size).subscribe(
-      (name: string) =>
-      { },
+      (res) =>
+      { this.loadsize.emit(); },
       errors => {
         this.errors = errors;
       }

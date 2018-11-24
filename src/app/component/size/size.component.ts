@@ -34,6 +34,10 @@ export class SizeComponent implements OnInit {
 
   ngOnInit() { 
     this.globaldata.backurl = "management";
+    this.loadSize();
+  }
+
+  loadSize() {
     this.postdata.db = "size";
     this.service.getManage(this.postdata).subscribe(
       (res) => this.size = res.json(),

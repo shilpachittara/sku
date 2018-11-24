@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 import { Router } from '@angular/router';
 import { Input } from '@angular/core';
@@ -14,6 +14,8 @@ import { AddCode } from '../../model/addcode';
 export class CreateGenderComponent implements OnInit {
 
   @Input() gender: AddCode;
+  @Output()
+  loadgender: EventEmitter<String> = new EventEmitter<String>();
   errorvalue: any;
   errors: any;
 
@@ -32,8 +34,8 @@ export class CreateGenderComponent implements OnInit {
    if(this.validate()){
      this.gender.db = "gender"
     this.service.postManage(this.gender).subscribe(
-      (name: string) =>
-      {},
+      (res) =>
+      {this.loadgender.emit();},
       errors => {
         this.errors = errors;
       }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 import { Router } from '@angular/router';
 import { Input } from '@angular/core';
@@ -13,6 +13,8 @@ import { AddSubcode } from '../../model/addsubcode';
 export class CreateTaxComponent implements OnInit {
 
   @Input() tax: AddSubcode;
+  @Output()
+  loadtax: EventEmitter<String> = new EventEmitter<String>();
   errorvalue: any;
   errors: any;
 
@@ -30,8 +32,8 @@ export class CreateTaxComponent implements OnInit {
    if(this.validate()){
      this.tax.db = "tax";
     this.service.postManageSub(this.tax).subscribe(
-      (skuId: string) =>
-      {},
+      (res) =>
+      { this.loadtax.emit(); },
       errors => {
         this.errors = errors;
       }

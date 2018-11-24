@@ -31,6 +31,10 @@ export class UserComponent implements OnInit {
 
   ngOnInit() { 
     this.globaldata.backurl = "management";
+    this.loadUser();
+  }
+
+  loadUser() {
     this.postdata.db = "user";
     this.service.getUser(this.postdata).subscribe(
       (res) => this.user = res.json(),

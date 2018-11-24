@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 import { Router } from '@angular/router';
 import { Input } from '@angular/core';
@@ -16,6 +16,8 @@ import { Code } from '../../model/code';
 export class CreateCollectionComponent implements OnInit {
 
   @Input() collection: AddSubcode;
+  @Output()
+  loadcollection: EventEmitter<String> = new EventEmitter<String>();
   dropDown: Subcode;
   errorvalue: any;
   errors: any;
@@ -45,8 +47,8 @@ export class CreateCollectionComponent implements OnInit {
     this.collection.name = this.brand.name;
     this.collection.db = "collection";
     this.service.postManageSub(this.collection).subscribe(
-      (subnameCode: string) =>
-      {},
+      (res) =>
+      {this.loadcollection.emit()},
       errors => {
         this.errors = errors;
       }

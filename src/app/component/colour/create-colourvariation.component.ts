@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 import { Router } from '@angular/router';
 import { Input } from '@angular/core';
@@ -16,6 +16,8 @@ import { Code } from '../../model/code';
 export class CreateColourVariationComponent implements OnInit {
   
   @Input() colourvariation: AddSubcode;
+  @Output()
+  loadcolourvariation: EventEmitter<String> = new EventEmitter<String>();
   dropDown: Subcode;
   errorvalue: any;
   errors: any;
@@ -43,8 +45,8 @@ export class CreateColourVariationComponent implements OnInit {
     this.colourvariation.name = this.colour.name;
     this.colourvariation.db = "colourvariation";
     this.service.postManageSub(this.colourvariation).subscribe(
-      (subnameCode: string) =>
-      {},
+      (res) =>
+      {this.loadcolourvariation.emit();},
       errors => {
         this.errors = errors;
       }

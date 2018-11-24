@@ -33,11 +33,10 @@
                     <div class="control-group ">
                         <label class="control-label" for="title"> Category <span class="red">*</span></label>
                         <div class="controls">
-                                <select id="category" class="chzn-drop form-control" name="category" [(ngModel)]="datasku.category"   required=""  (change)="generateId()">
-                                      <option selected="" disabled="" value="">Category</option>
-                                                                          <option id="colour_03" value="03">Packaging</option>
-                                                                          
-                                      </select>	  
+                                <select class="chzn-drop form-control" id="category" name="category" [(ngModel)]="category" required="" (change)="getsubcategoreis()">
+                                        <option selected="" disabled="" value="">Choose Category</option>    
+                                        <option *ngFor="let category of categories" [ngValue]="category">{{category.name}}</option>
+                                    </select>	  
                                 
                         </div>
                     </div>
@@ -45,7 +44,7 @@
                     <div class="control-group ">
                         <label class="control-label" for="title"> HSN Code </label>
                         <div class="controls">
-                                <input class="form-control" type="text" id="group_id" name="group_id" disabled="" placeholder={{datasku.category}}>
+                                <input class="form-control" type="text" id="group_id" name="group_id" disabled="" placeholder={{category._id}}>
                         </div>
     
                     </div>
@@ -53,39 +52,21 @@
                     <div class="control-group ">
                         <label class="control-label" for="title"> Sub Category <span class="red">*</span></label>
                         <div class="controls">
-                            <select id="sub_category_master" class="chzn-drop form-control" name="sub_category_master" [(ngModel)]="datasku.subCategory" required="" (change)="generateId()">
-                                <option selected="" disabled="" value="">Choose Sub Category</option>
-                                <option value="MTR">Meal Trays</option>
-                                <option value="PTP">Pizza Tripods</option>
-                                <option value="PCU">Paper Cups</option>
-                                <option value="PDB">Paper Delivery Bags</option>
-                                <option value="COB">Cold Box</option>
-                                <option value="CTG">Tessol Cartridges</option>
-                            </select>	  
+                                <select class="chzn-drop form-control" id="subcategory" name="subcategory" [(ngModel)]="subcategory" required="" (change)="generateId()">
+                                    <option selected="" disabled="" value="">Choose Sub Category</option>    
+                                    <option *ngFor="let subcategory of subcategories" [ngValue]="subcategory">{{subcategory.subname}}</option>
+                                </select>	  
+                        </div>	  
                                 
                         </div>
-    
-                    </div>
     
             <div class="control-group ">
                         <label class="control-label" for="title"> Brand <span class="red">*</span></label>
                         <div class="controls">
-                                <select id="brand" class="chzn-drop form-control" name="brand" [(ngModel)]="datasku.brand" required="" (change)="generateId()">
-                                      <option selected="" disabled="" value="">Choose Brand</option>
-                                                                        <option id="colour_TL" value="TL">Tessol</option>
-                                                                          <option id="colour_JK" value="JK">Jockey</option>
-                                                                          <option id="colour_OM" value="OM">Om Packaging</option>
-                                                                          <option id="colour_LP" value="LP">Lathikasri Packaging</option>
-                                                                          <option id="colour_UC" value="UC">Unicops</option>
-                                                                          <option id="colour_BF" value="BF">Bombay Fashion</option>
-                                                                          <option id="colour_SR" value="SR">Sowkar Uniforms</option>
-                                                                          <option id="colour_EP" value="EP">Eco Paper</option>
-                                                                          <option id="colour_ZP" value="ZP">Zpack</option>
-                                                                          <option id="colour_VS" value="VS">Versalis</option>
-                                                                          <option id="colour_HC" value="HC">Hand And Craft</option>
-                                                                          <option id="colour_IN" value="IN">Insular</option>
-                                                                          
-                                      </select>	  
+                                <select class="chzn-drop form-control" id="brand" name="brand" [(ngModel)]="brand" required="" (change)="getcollections()">
+                                    <option selected="" disabled="" value="">Choose brand</option>    
+                                    <option *ngFor="let brand of brands" [ngValue]="brand">{{brand.name}}</option>
+                                </select>	  
                                 
                         </div>
     
@@ -94,14 +75,10 @@
                     <div class="control-group ">
                         <label class="control-label" for="title"> Gender <span class="red">*</span></label>
                         <div class="controls">
-                                <select id="gender" class="chzn-drop form-control" name="gender" required="" [(ngModel)]="datasku.gender" (change)="generateId()">
+                                <select id="gender" class="chzn-drop form-control" name="gender" required="" [(ngModel)]="gender" (change)="generateId()">
                                       <option selected="" disabled="" value="">Choose Gender</option>
-                                                                        <option id="colour_N" value="N">Nosex</option>
-                                                                          <option id="colour_U" value="U">Unisex</option>
-                                                                          <option id="colour_F" value="F">Female</option>
-                                                                          <option id="colour_M" value="M">Male</option>
-                                                                          
-                                      </select>	  
+                                      <option *ngFor="let gender of genders" [ngValue]="gender">{{gender.name}}</option>
+                               </select>	  
                                 
                         </div>
     
@@ -110,11 +87,10 @@
                     <div class="control-group ">
                         <label class="control-label" for="title"> Collection Name <span class="red">*</span></label>
                         <div class="controls">
-                            <select id="collection_name" class="chzn-drop form-control" name="collection_name" required="" [(ngModel)]="datasku.collection" >
+                            <select id="collection_name" class="chzn-drop form-control" name="collection_name" required="" [(ngModel)]="collection" >
                                 <option selected="" disabled="" value="">Choose Collection</option>
-                                <option value="245">Cult Duffel Bag</option>
-                                <option value="263">Gym Bag</option></select>	 
-                                
+                                <option *ngFor="let collection of collections" [ngValue]="collections">{{collection.subname}}</option>
+                            </select>                             
                         </div>
     
                     </div>
@@ -122,28 +98,10 @@
                     <div class="control-group ">
                         <label class="control-label" for="title"> Colour <span class="red">*</span></label>
                         <div class="controls">
-                                <select id="colour" class="chzn-drop form-control" name="colour" [(ngModel)]="datasku.color" required="" (change)="generateId()">
+                                <select id="colour" class="chzn-drop form-control" name="colour" [(ngModel)]="colour" required="" (change)="getcolourvariations()">
                                       <option selected="" disabled="" value="">Choose Colour</option>
-                                                                        <option id="colour_F" value="F">Beige</option>
-                                                                          <option id="colour_A" value="A">Black</option>
-                                                                          <option id="colour_C" value="C">Blue</option>
-                                                                          <option id="colour_I" value="I">Brown</option>
-                                                                          <option id="colour_H" value="H">Gold</option>
-                                                                          <option id="colour_G" value="G">Green</option>
-                                                                          <option id="colour_D" value="D">Grey</option>
-                                                                          <option id="colour_M" value="M">Multi-Colour</option>
-                                                                          <option id="colour_J" value="J">Off-White</option>
-                                                                          <option id="colour_O" value="O">Orange</option>
-                                                                          <option id="colour_P" value="P">Pink</option>
-                                                                          <option id="colour_L" value="L">Purple</option>
-                                                                          <option id="colour_N" value="N">Red</option>
-                                                                          <option id="colour_K" value="K">Silver</option>
-                                                                          <option id="colour_Q" value="Q">Transparent</option>
-                                                                          <option id="colour_R" value="R">Turquoise</option>
-                                                                          <option id="colour_B" value="B">White</option>
-                                                                          <option id="colour_S" value="S">Yellow</option>
-                                                                          
-                                      </select>	  
+                                      <option *ngFor="let colour of colours" [ngValue]="colour">{{colour.name}}</option>
+                                </select>	  
                                 
                         </div>
     
@@ -151,10 +109,9 @@
                     <div class="control-group ">
                         <label class="control-label" for="title"> Colour Variation <span class="red">*</span></label>
                         <div class="controls">
-                                <select id="colour_variation" class="chzn-drop form-control" name="colour_variation" [(ngModel)]="datasku.colorVariation" required="" (change)="generateId()">
+                                <select id="colour_variation" class="chzn-drop form-control" name="colour_variation" [(ngModel)]="colourvariation" required="" (change)="generateId()">
                                       <option selected="" disabled="" value="">Choose Colour Variation</option>
-                                      
-                                      <option id="colour_S" value="S">Yellow</option>
+                                      <option *ngFor="let colourVariation of colourVariations" [ngValue]="colourvariation">{{colourVariation.subname}}</option>
                                       </select>	  
                                 
                         </div>
@@ -164,28 +121,10 @@
                     <div class="control-group ">
                         <label class="control-label" for="title"> Size <span class="red">*</span></label>
                         <div class="controls">
-                                <select id="size" class="chzn-drop form-control" name="size" [(ngModel)]="datasku.size" required="" (change)="generateId()">
+                                <select id="size" class="chzn-drop form-control" name="size" [(ngModel)]="size" required="" (change)="generateId()">
                                       <option selected="" disabled="" value="">Choose Size</option>
-                                                                        <option id="colour_4XL" value="4XL">4XL</option>
-                                                                          <option id="colour_3XL" value="3XL">3XL</option>
-                                                                          <option id="colour_38" value="38">38</option>
-                                                                          <option id="colour_36" value="36">36</option>
-                                                                          <option id="colour_42" value="42">42</option>
-                                                                          <option id="colour_40" value="40">40</option>
-                                                                          <option id="colour_34" value="34">34</option>
-                                                                          <option id="colour_32" value="32">32</option>
-                                                                          <option id="colour_28" value="28">28</option>
-                                                                          <option id="colour_30" value="30">30</option>
-                                                                          <option id="colour_OS" value="OS">OS</option>
-                                                                          <option id="colour_XXXL" value="XXXL">XXXL</option>
-                                                                          <option id="colour_XXL" value="XXL">XXL</option>
-                                                                          <option id="colour_XL" value="XL">XL</option>
-                                                                          <option id="colour_L" value="L">L</option>
-                                                                          <option id="colour_M" value="M">M</option>
-                                                                          <option id="colour_S" value="S">S</option>
-                                                                          <option id="colour_XS" value="XS">XS</option>
-                                                                          
-                                      </select>	  
+                                      <option *ngFor="let size of sizes" [ngValue]="size">{{size.name}}</option>
+                                </select>	  
                                 
                         </div>
     
@@ -202,173 +141,9 @@
                     <div class="control-group ">
                         <label class="control-label" for="title"> Sub Brand <span class="red">*</span></label>
                         <div class="controls">
-                        <select id="sub_brand" class="chzn-drop form-control" name="sub_brand" [(ngModel)]="datasku.subBrand" (change) = "generateId()">
+                        <select id="sub_brand" class="chzn-drop form-control" name="sub_brand" [(ngModel)]="subbrand" (change) = "generateId()">
                                       <option selected="" disabled="" value="">Choose Sub Brand</option>
-                                                                        <option id="colour_164" value="Orgpick">Orgpick</option>
-                                                                          <option id="colour_163" value="Sabzi Junction">Sabzi Junction</option>
-                                                                          <option id="colour_162" value="Wefast">Wefast</option>
-                                                                          <option id="colour_161" value="Grofers">Grofers</option>
-                                                                          <option id="colour_160" value="Econ Machineries">Econ Machineries</option>
-                                                                          <option id="colour_159" value="Oyeats">Oyeats</option>
-                                                                          <option id="colour_158" value="Dunzo">Dunzo</option>
-                                                                          <option id="colour_157" value="Innovtech Global Solutions">Innovtech Global Solutions</option>
-                                                                          <option id="colour_156" value="Mirable Health">Mirable Health</option>
-                                                                          <option id="colour_155" value="Woshy">Woshy</option>
-                                                                          <option id="colour_154" value="Mastaan">Mastaan</option>
-                                                                          <option id="colour_153" value="Cure Fit">Cure Fit</option>
-                                                                          <option id="colour_152" value="Misi Farms">Misi Farms</option>
-                                                                          <option id="colour_151" value="Nandus Chicken">Nandus Chicken</option>
-                                                                          <option id="colour_150" value="Sunny Bee">Sunny Bee</option>
-                                                                          <option id="colour_149" value="Wesource">Wesource</option>
-                                                                          <option id="colour_148" value="Nandos">Nandos</option>
-                                                                          <option id="colour_147" value="Grabfood">Grabfood</option>
-                                                                          <option id="colour_146" value="Foodpanda">Foodpanda</option>
-                                                                          <option id="colour_145" value="Amazon Easy">Amazon Easy</option>
-                                                                          <option id="colour_144" value="Anything Delivered">Anything Delivered</option>
-                                                                          <option id="colour_143" value="Rentomojo">Rentomojo</option>
-                                                                          <option id="colour_142" value="Healthfolks">Healthfolks</option>
-                                                                          <option id="colour_141" value="Schindler">Schindler</option>
-                                                                          <option id="colour_140" value="Masala Box">Masala Box</option>
-                                                                          <option id="colour_139" value="Mothers Special">Mothers Special</option>
-                                                                          <option id="colour_138" value="Mealrides">Mealrides</option>
-                                                                          <option id="colour_137" value="Heathfolks">Heathfolks</option>
-                                                                          <option id="colour_136" value="Ifoodlounge">Ifoodlounge</option>
-                                                                          <option id="colour_135" value="Salad Days">Salad Days</option>
-                                                                          <option id="colour_134" value="Bigfix E-care">Bigfix E-care</option>
-                                                                          <option id="colour_133" value="Tu Go Z!">Tu Go Z!</option>
-                                                                          <option id="colour_132" value="Mia Dairy">Mia Dairy</option>
-                                                                          <option id="colour_131" value="Amiko">Amiko</option>
-                                                                          <option id="colour_130" value="Clave Organic">Clave Organic</option>
-                                                                          <option id="colour_129" value="Country Delight">Country Delight</option>
-                                                                          <option id="colour_128" value="Goli Soda">Goli Soda</option>
-                                                                          <option id="colour_127" value="Snowflakes">Snowflakes</option>
-                                                                          <option id="colour_126" value="Eat Fit">Eat Fit</option>
-                                                                          <option id="colour_125" value="Gir Farms">Gir Farms</option>
-                                                                          <option id="colour_124" value="Clever Care">Clever Care</option>
-                                                                          <option id="colour_123" value="Aajfresh">Aajfresh</option>
-                                                                          <option id="colour_122" value="Zomato">Zomato</option>
-                                                                          <option id="colour_121" value="Bhoj">Bhoj</option>
-                                                                          <option id="colour_120" value="Pretech">Pretech</option>
-                                                                          <option id="colour_119" value="Eagleboys">Eagleboys</option>
-                                                                          <option id="colour_118" value="Lalamove">Lalamove</option>
-                                                                          <option id="colour_117" value="Shell">Shell</option>
-                                                                          <option id="colour_116" value="Impress Services">Impress Services</option>
-                                                                          <option id="colour_115" value="E-kart">E-kart</option>
-                                                                          <option id="colour_114" value="Task Hopper">Task Hopper</option>
-                                                                          <option id="colour_113" value="Vroom">Vroom</option>
-                                                                          <option id="colour_112" value="Abhinesh">Abhinesh</option>
-                                                                          <option id="colour_111" value="Sultanali Lakdawalla">Sultanali Lakdawalla</option>
-                                                                          <option id="colour_110" value="Vaskart">Vaskart</option>
-                                                                          <option id="colour_109" value="Nr Foods">Nr Foods</option>
-                                                                          <option id="colour_108" value="Moms Made">Moms Made</option>
-                                                                          <option id="colour_107" value="Goody Foody">Goody Foody</option>
-                                                                          <option id="colour_106" value="Tessol">Tessol</option>
-                                                                          <option id="colour_105" value="Mast Kalandar">Mast Kalandar</option>
-                                                                          <option id="colour_104" value="Grabbr">Grabbr</option>
-                                                                          <option id="colour_103" value="Fresh To Home">Fresh To Home</option>
-                                                                          <option id="colour_102" value="Flipkart">Flipkart</option>
-                                                                          <option id="colour_101" value="Znack">Znack</option>
-                                                                          <option id="colour_100" value="Box 8">Box 8</option>
-                                                                          <option id="colour_99" value="Amazon">Amazon</option>
-                                                                          <option id="colour_98" value="Utivac">Utivac</option>
-                                                                          <option id="colour_97" value="Happy Milk">Happy Milk</option>
-                                                                          <option id="colour_96" value="Jumbotail">Jumbotail</option>
-                                                                          <option id="colour_95" value="Food Safari">Food Safari</option>
-                                                                          <option id="colour_94" value="Morningkart">Morningkart</option>
-                                                                          <option id="colour_93" value="Tinmen">Tinmen</option>
-                                                                          <option id="colour_92" value="Easy Taza">Easy Taza</option>
-                                                                          <option id="colour_91" value="Mitra Wellness">Mitra Wellness</option>
-                                                                          <option id="colour_90" value="Bylane Logistics">Bylane Logistics</option>
-                                                                          <option id="colour_89" value="Hypercity Fresh">Hypercity Fresh</option>
-                                                                          <option id="colour_88" value="Coldman">Coldman</option>
-                                                                          <option id="colour_87" value="Matha Freshfish">Matha Freshfish</option>
-                                                                          <option id="colour_86" value="Grab">Grab</option>
-                                                                          <option id="colour_85" value="Pizzaroma">Pizzaroma</option>
-                                                                          <option id="colour_84" value="Aaram Ladder">Aaram Ladder</option>
-                                                                          <option id="colour_83" value="Cookifi">Cookifi</option>
-                                                                          <option id="colour_82" value="Indian House">Indian House</option>
-                                                                          <option id="colour_81" value="Fysu">Fysu</option>
-                                                                          <option id="colour_80" value="Kwik24">Kwik24</option>
-                                                                          <option id="colour_79" value="Roe Kart">Roe Kart</option>
-                                                                          <option id="colour_78" value="Hipbar">Hipbar</option>
-                                                                          <option id="colour_77" value="Uber Eats">Uber Eats</option>
-                                                                          <option id="colour_76" value="Blumo">Blumo</option>
-                                                                          <option id="colour_75" value="Carryr">Carryr</option>
-                                                                          <option id="colour_74" value="Uber">Uber</option>
-                                                                          <option id="colour_73" value="Endgate">Endgate</option>
-                                                                          <option id="colour_72" value="Srs Dairy Pvt Ltd">Srs Dairy Pvt Ltd</option>
-                                                                          <option id="colour_71" value="Carriage Qatar">Carriage Qatar</option>
-                                                                          <option id="colour_70" value="Jockey">Jockey</option>
-                                                                          <option id="colour_69" value="Build2cook">Build2cook</option>
-                                                                          <option id="colour_68" value="Fische.in">Fische.in</option>
-                                                                          <option id="colour_67" value="California Buritto">California Buritto</option>
-                                                                          <option id="colour_66" value="Lallabi">Lallabi</option>
-                                                                          <option id="colour_65" value="Kongu Herbal Chicken">Kongu Herbal Chicken</option>
-                                                                          <option id="colour_64" value="Bhukkar">Bhukkar</option>
-                                                                          <option id="colour_63" value="Shaadi Ki Biryani">Shaadi Ki Biryani</option>
-                                                                          <option id="colour_62" value="Freshmenu">Freshmenu</option>
-                                                                          <option id="colour_61" value="Shawarma Factory">Shawarma Factory</option>
-                                                                          <option id="colour_60" value="Windsor Pub">Windsor Pub</option>
-                                                                          <option id="colour_59" value="Farm Fresh">Farm Fresh</option>
-                                                                          <option id="colour_58" value="My Hanger">My Hanger</option>
-                                                                          <option id="colour_57" value="Mobi Drink">Mobi Drink</option>
-                                                                          <option id="colour_56" value="Jugnoo">Jugnoo</option>
-                                                                          <option id="colour_55" value="Elasticrun">Elasticrun</option>
-                                                                          <option id="colour_54" value="Chotu Online">Chotu Online</option>
-                                                                          <option id="colour_53" value="Rejoov">Rejoov</option>
-                                                                          <option id="colour_52" value="Sultan">Sultan</option>
-                                                                          <option id="colour_51" value="Growfit">Growfit</option>
-                                                                          <option id="colour_50" value="Smoke">Smoke</option>
-                                                                          <option id="colour_49" value="Grow">Grow</option>
-                                                                          <option id="colour_48" value="Spar">Spar</option>
-                                                                          <option id="colour_47" value="Farmz">Farmz</option>
-                                                                          <option id="colour_46" value="Asia In Box">Asia In Box</option>
-                                                                          <option id="colour_45" value="Heritage Fresh">Heritage Fresh</option>
-                                                                          <option id="colour_44" value="Purple Basil">Purple Basil</option>
-                                                                          <option id="colour_43" value="Mother Diary">Mother Diary</option>
-                                                                          <option id="colour_42" value="Italian Pizzeria">Italian Pizzeria</option>
-                                                                          <option id="colour_41" value="Pizza Box">Pizza Box</option>
-                                                                          <option id="colour_40" value="Charcoal Biryani">Charcoal Biryani</option>
-                                                                          <option id="colour_39" value="Divum">Divum</option>
-                                                                          <option id="colour_38" value="Cupwala">Cupwala</option>
-                                                                          <option id="colour_37" value="Georgia">Georgia</option>
-                                                                          <option id="colour_36" value="Whooppeezz">Whooppeezz</option>
-                                                                          <option id="colour_35" value="Pasta Street">Pasta Street</option>
-                                                                          <option id="colour_34" value="Flakes Food">Flakes Food</option>
-                                                                          <option id="colour_33" value="Vasudev Adigas">Vasudev Adigas</option>
-                                                                          <option id="colour_32" value="Wok N Tava">Wok N Tava</option>
-                                                                          <option id="colour_31" value="Twigly">Twigly</option>
-                                                                          <option id="colour_30" value="Sami Zaika">Sami Zaika</option>
-                                                                          <option id="colour_29" value="Eazelyf">Eazelyf</option>
-                                                                          <option id="colour_28" value="Spoonbell">Spoonbell</option>
-                                                                          <option id="colour_27" value="Creamyum">Creamyum</option>
-                                                                          <option id="colour_26" value="Shernik">Shernik</option>
-                                                                          <option id="colour_25" value="Morningcart">Morningcart</option>
-                                                                          <option id="colour_24" value="Balwas">Balwas</option>
-                                                                          <option id="colour_23" value="Spin Cycle">Spin Cycle</option>
-                                                                          <option id="colour_22" value="The West End Hotel">The West End Hotel</option>
-                                                                          <option id="colour_21" value="Laundrex">Laundrex</option>
-                                                                          <option id="colour_20" value="Bikeninja">Bikeninja</option>
-                                                                          <option id="colour_19" value="Sagar">Sagar</option>
-                                                                          <option id="colour_18" value="Consegna">Consegna</option>
-                                                                          <option id="colour_17" value="Licious">Licious</option>
-                                                                          <option id="colour_16" value="Snapchai">Snapchai</option>
-                                                                          <option id="colour_15" value="Chefkraft">Chefkraft</option>
-                                                                          <option id="colour_14" value="Santa Delivers">Santa Delivers</option>
-                                                                          <option id="colour_13" value="Tiwari">Tiwari</option>
-                                                                          <option id="colour_12" value="Food Box">Food Box</option>
-                                                                          <option id="colour_11" value="Zopnow">Zopnow</option>
-                                                                          <option id="colour_10" value="Bhojari Manna">Bhojari Manna</option>
-                                                                          <option id="colour_9" value="Bluetokai">Bluetokai</option>
-                                                                          <option id="colour_8" value="Tendercuts">Tendercuts</option>
-                                                                          <option id="colour_7" value="Pepperfry">Pepperfry</option>
-                                                                          <option id="colour_6" value="Chai Point">Chai Point</option>
-                                                                          <option id="colour_5" value="Faasos">Faasos</option>
-                                                                          <option id="colour_4" value="Coffee Day">Coffee Day</option>
-                                                                          <option id="colour_3" value="Big Basket">Big Basket</option>
-                                                                          <option id="colour_2" value="Ammis Biryani">Ammis Biryani</option>
-                                                                          <option id="colour_1" value="Swiggy">Swiggy</option>
-                                                                          
+                                      <option *ngFor="let subbrand of subbrands" [ngValue]="subbrand">{{subbrand.name}}</option>                         
                                       </select>	 
                                 
                         </div>
@@ -431,7 +206,7 @@
                     <div class="control-group ">
                         <label class="control-label" for="title"> Actual Colour <span class="red">*</span></label>
                         <div class="controls">
-                                <input class="form-control" type="text" id="actual_colour" name="actual_colour" [(ngModel)]="datasku.actualColor" placeholder="Actual Colour" required="">
+                                <input class="form-control" type="text" id="actual_colour" name="actual_colour" [(ngModel)]="datasku.actualColour" placeholder="Actual Colour" required="">
                         </div>
     
                     </div>
@@ -581,13 +356,10 @@
                         <div class="control-group ">
                                 <label class="control-label" for="title"> Tax <span class="red">*</span></label>
                                 <div class="controls">
-                                        <select id="category" class="chzn-drop form-control" name="category" [(ngModel)]="datasku.tax"   required="" >
-                                              <option selected="" disabled="" value=""> Tax</option>
-                                                                                  <option id="5" value="5">5%</option>
-                                                                                  <option id="12" value="12">12%</option>
-                                                                                  <option id="18" value="18">18%</option>
-                                                                                  
-                                              </select>	  
+                                        <select id="category" class="chzn-drop form-control" name="category" [(ngModel)]="tax"   required="" >
+                                              <option selected="" disabled="" value="">Tax</option>
+                                              <option *ngFor="let tax of taxes" [ngValue]="tax">{{tax.code}}</option>
+                                 </select>	  
                                         
                                 </div>
                             </div>
@@ -618,7 +390,6 @@
                     <div class="error"> {{errors}} </div>
                              
                     <div class="form-actions" >
-                            <button type="back" class="btn btn-primary treset" (click)="back()">Back</button>
                             <button type="submit" class="btn btn-primary treset" (click)="save()">Submit</button>
     
                             <button type="reset" tabindex="-1" class="btn btn-primary treset">Reset</button>

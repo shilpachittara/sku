@@ -34,6 +34,10 @@ export class ColourComponent implements OnInit {
 
   ngOnInit() { 
     this.globaldata.backurl = "management";
+    this.loadColour();
+  }
+
+  loadColour() {
     this.postdata.db = "colour";
     this.service.getManage(this.postdata).subscribe(
       (res) => this.colour = res.json(),

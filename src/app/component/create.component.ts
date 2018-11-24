@@ -1,10 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 import { Router } from '@angular/router';
 import { SkuService } from '../service/sku.service';
 import { Sku } from '../model/sku';
 import { Input } from '@angular/core';
 import { AppGlobalDataService } from '../service/app-global-data.service';
+import { Code } from '../model/code';
+import { Subcode } from '../model/subcode';
+import { ManagementService } from '../service/management.service';
 
 @Component({
     styleUrls   : ['./create.component.css'],
@@ -14,6 +17,8 @@ import { AppGlobalDataService } from '../service/app-global-data.service';
 export class CreateComponent implements OnInit {
 
   @Input() datasku : Sku;
+  @Output()
+  loadsku: EventEmitter<String> = new EventEmitter<String>();
   groupIdValue: string;
   styleCodeValue: string;
   sizeCodeValue: string;
@@ -24,13 +29,46 @@ export class CreateComponent implements OnInit {
   errorvalue:any;
   errors: any;
   model: string;
+  dropDown: Subcode;
+  categories: Code [];
+  category: Code;
+  subcategories: Subcode [];
+  subcategory: Subcode;
+  brands: Code [];
+  brand: Code;
+  subbrands: Code [];
+  subbrand: Code;
+  collections: Subcode [];
+  collection: Subcode;
+  colours: Code [];
+  colour: Code;
+  colourvariations: Subcode [];
+  colourvariation: Subcode;
+  genders: Code [];
+  gender: Code;
+  sizes: Code [];
+  size: Code;
+  taxes: Subcode [];
+  tax: Subcode;;
 
   constructor (
     private router  : Router, private service: SkuService,
+    private manageservice: ManagementService,
     private globaldata: AppGlobalDataService
   ) {
     this.datasku = new Sku();
     this.model = "03";
+    this.dropDown = new Subcode();
+    this.category = new Code();
+    this.subcategory = new Subcode();
+    this.brand = new Code();
+    this.subbrand = new Code();
+    this.collection = new Subcode();
+    this.colour = new Code();
+    this.colourvariation = new Subcode();
+    this.gender = new Code();
+    this.size = new Code();
+    this.tax = new Subcode();
   }
 
   ngOnInit() {
@@ -42,6 +80,95 @@ export class CreateComponent implements OnInit {
     this.b2bsp = "B2B Selling Price";
     this.b2csp = "Selling Price";
     this.globaldata.backurl = "Sku";
+    this.getcategories();
+    this.getbrands();
+    this.getsubbrands();
+    this.getgenders();
+    this.getcolours();
+    this.getsizes();
+    this.gettaxes();
+  }
+
+  getcategories(){
+    this.dropDown.db = "category";
+    this.manageservice.getDropDown(this.dropDown).subscribe(
+      (res) => this.categories = res.json()
+      );
+  }
+
+  getsubcategoreis(){
+    this.dropDown.db = "subcategory";
+    // TO DO
+    this.dropDown.name = this.category.name;
+    this.dropDown._id = this.category._id;
+    this.manageservice.getDropDown(this.dropDown).subscribe(
+      (res) => this.subcategories = res.json()
+      );
+      this.generateId();
+  }
+
+  getbrands(){
+    this.dropDown.db = "brand";
+    this.manageservice.getDropDown(this.dropDown).subscribe(
+      (res) => this.brands = res.json()
+      );
+  }
+
+  getsubbrands(){
+    this.dropDown.db = "subbrand";
+    this.manageservice.getDropDown(this.dropDown).subscribe(
+      (res) => this.subbrands = res.json()
+      );
+  }
+
+  getcollections(){
+    // TO DO
+    this.dropDown.db = "collection";
+    this.dropDown.name = this.brand.name;
+    this.dropDown.nameCode = this.brand._id;
+    this.manageservice.getDropDown(this.dropDown).subscribe(
+      (res) => this.collections = res.json()
+      );
+      this.generateId();
+  }
+
+  getgenders(){
+    this.dropDown.db = "gender";
+    this.manageservice.getDropDown(this.dropDown).subscribe(
+      (res) => this.genders = res.json()
+      );
+  }
+
+  getcolours(){
+    this.dropDown.db = "colour";
+    this.manageservice.getDropDown(this.dropDown).subscribe(
+      (res) => this.colours = res.json()
+      );
+  }
+  
+  getcolourvariations(){
+    // TO DO
+    this.dropDown.db = "colourvariation";
+    this.dropDown.name = this.colour.name;
+    this.dropDown.nameCode = this.colour._id;
+    this.manageservice.getDropDown(this.dropDown).subscribe(
+      (res) => this.colourvariations = res.json()
+      );
+      this.generateId();
+  }
+
+  getsizes(){
+    this.dropDown.db = "size";
+    this.manageservice.getDropDown(this.dropDown).subscribe(
+      (res) => this.sizes = res.json()
+      );
+  }
+
+  gettaxes(){
+    this.dropDown.db = "tax";
+    this.manageservice.getDropDown(this.dropDown).subscribe(
+      (res) => this.taxes = res.json()
+      );
   }
 
   back(){
@@ -53,7 +180,7 @@ export class CreateComponent implements OnInit {
     this.service.postProducts(this.datasku).subscribe(
       (skuId: string) =>
       {
-        console.log('posting data');
+        this.loadsku.emit();
         this.router.navigateByUrl("/sku/dashboard");
       },
       errors => {
@@ -63,19 +190,33 @@ export class CreateComponent implements OnInit {
   }
   }
 
+  formatdata(){
+    this.datasku.category = this.category.name;
+    this.datasku.subCategory = this.subcategory.subname;
+    this.datasku.brand = this.brand.name;
+    this.datasku.subBrand = this.subbrand.name;
+    this.datasku.collection = this.collection.subnameCode;
+    this.datasku.colour = this.colour.name;
+    this.datasku.colourVariation = this.colourvariation.subname;
+    this.datasku.gender = this.gender.name;
+    this.datasku.size = this.size.name;
+    this.datasku.tax = this.tax.name;
+  }
+
   validate(): Boolean{
+    this.formatdata();
     this.errorvalue = true;
     const count = 0;
     
     if(this.model == "01"){
     if(this.datasku.category == null || this.datasku.subCategory == null || this.datasku.brand == null ||
-    this.datasku.gender == null || this.datasku.collection == null || this.datasku.color == null || 
-    this.datasku.colorVariation == null || this.datasku.size == null || this.datasku.manufacturingYear == null)
+    this.datasku.gender == null || this.datasku.collection == null || this.datasku.colour == null || this.datasku.subBrand == null
+    || this.datasku.colourVariation == null || this.datasku.size == null || this.datasku.manufacturingYear == null)
     {
       this.errors = "Please fill all the required fields";
       this.errorvalue = false;
         }}
-    if(this.datasku.skuCode == null || this.datasku.productName== null || this.datasku.productDescription == null || this.datasku.actualColor == null
+    if(this.datasku.skuCode == null || this.datasku.productName== null || this.datasku.productDescription == null || this.datasku.actualColour == null
     || this.datasku.itemHeight == null || this.datasku.itemLength == null || this.datasku.itemVolume == null
     || this.datasku.itemWeight == null || this.datasku.itemWidth == null){
       this.errors = "Please fill all the required fields";
@@ -108,25 +249,26 @@ export class CreateComponent implements OnInit {
   }*/
 
   generateId(){
-    if(this.datasku.brand != null && this.datasku.category!= null && this.datasku.gender!= null 
-      && this.datasku.subCategory){
-    this.datasku.groupId = this.datasku.brand + this.datasku.category
-     + this.datasku.gender + this.datasku.subCategory + "00000";
+    // TO DO
+    if(this.category._id != null && this.brand._id != null && this.gender._id != null 
+      && this.subcategory.subnameCode != null){
+    this.datasku.groupId = this.brand._id + this.category._id
+     + this.gender._id + this.subcategory.subnameCode + "00000";
     this.groupIdValue = this.datasku.groupId;
       }
 
-    if(this.datasku.groupId != null && this.datasku.color != null && this.datasku.colorVariation != null){
-        this.datasku.styleCode = this.datasku.groupId + this.datasku.color + this.datasku.colorVariation;
+    if(this.datasku.groupId != null && this.colour._id != null && this.colourvariation.subnameCode != null){
+        this.datasku.styleCode = this.datasku.groupId + this.colour._id + this.colourvariation.subnameCode;
         this.styleCodeValue = this.datasku.styleCode;
       }
     
-    if(this.datasku.styleCode != null && this.datasku.size){
-      this.datasku.sizeCode =  this.datasku.styleCode + this.datasku.size;
+    if(this.datasku.styleCode != null && this.size._id){
+      this.datasku.sizeCode =  this.datasku.styleCode + this.size._id;
       this.sizeCodeValue = this.datasku.sizeCode;
     } 
 
-    if(this.datasku.sizeCode != null && this.datasku.subBrand != null){
-      this.datasku.skuCode = this.datasku.sizeCode + this.datasku.subBrand;
+    if(this.datasku.sizeCode != null && this.subbrand._id != null){
+      this.datasku.skuCode = this.datasku.sizeCode + this.subbrand._id;
       this.skuCodeValue = this.datasku.skuCode;
     }
   }

@@ -35,6 +35,10 @@ export class TaxComponent implements OnInit {
 
   ngOnInit() { 
     this.globaldata.backurl = "management";
+    this.loadTax();
+  }
+
+  loadTax() {
     this.postdata.db = "tax";
     this.service.getManage(this.postdata).subscribe(
       (res) => this.tax = res.json(),

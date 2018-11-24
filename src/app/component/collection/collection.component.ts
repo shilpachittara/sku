@@ -36,6 +36,10 @@ export class CollectionComponent implements OnInit {
 
   ngOnInit() { 
     this.globaldata.backurl = "management";
+    this.loadCollection();
+  }
+
+  loadCollection() {
     this.postdata.db = "collection";
     this.service.getManage(this.postdata).subscribe(
       (res) => this.collection = res.json(),

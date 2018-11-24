@@ -33,6 +33,10 @@ export class BrandComponent implements OnInit {
 
   ngOnInit() { 
     this.globaldata.backurl = "management";
+    this.loadBrand();
+  }
+
+  loadBrand() {
     this.postdata.db = "brand";
     this.service.getManage(this.postdata).subscribe(
       (res) => this.brand = res.json(),

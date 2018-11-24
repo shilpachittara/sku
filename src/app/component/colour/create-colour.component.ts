@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 import { Router } from '@angular/router';
 import { Input } from '@angular/core';
@@ -13,6 +13,8 @@ import { AddCode } from '../../model/addcode';
 export class CreateColourComponent implements OnInit {
 
   @Input() colour: AddCode;
+  @Output()
+  loadcolour: EventEmitter<String> = new EventEmitter<String>();
   errorvalue: any;
   errors: any;
 
@@ -31,8 +33,8 @@ export class CreateColourComponent implements OnInit {
    if(this.validate()){
     this.colour.db = "colour";
     this.service.postManage(this.colour).subscribe(
-      (skuId: string) =>
-      { },
+      (res) =>
+      { this.loadcolour.emit();},
       errors => {
         this.errors = errors;
       }

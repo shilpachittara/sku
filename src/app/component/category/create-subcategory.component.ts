@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 import { Router } from '@angular/router';
 import { Input } from '@angular/core';
@@ -16,6 +16,8 @@ import { Code } from '../../model/code';
 export class CreateSubCategoryComponent implements OnInit {
 
   @Input() subcategory: AddSubcode;
+  @Output()
+  loadsubcategory: EventEmitter<String> = new EventEmitter<String>();
   dropDown: Subcode;
   errorvalue: any;
   errors: any;
@@ -43,7 +45,7 @@ export class CreateSubCategoryComponent implements OnInit {
      this.subcategory.nameCode = this.category._id;
      this.subcategory.name = this.category.name;
     this.service.postManageSub(this.subcategory).subscribe(
-      (nameCode: string) =>{},
+      (res) =>{this.loadsubcategory.emit();},
       errors => {
         this.errors = errors;
       })

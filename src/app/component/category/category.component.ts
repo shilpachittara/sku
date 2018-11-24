@@ -34,6 +34,10 @@ export class CategoryComponent implements OnInit {
 
   ngOnInit() { 
     this.globaldata.backurl = "management";
+    this.loadCategory();
+  }
+
+  loadCategory() {
     this.postdata.db = "category";
     this.service.getManage(this.postdata).subscribe(
       (res) => this.category = res.json(),

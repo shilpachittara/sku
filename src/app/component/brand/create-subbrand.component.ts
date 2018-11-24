@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 import { Router } from '@angular/router';
 import { Input } from '@angular/core';
@@ -15,6 +15,8 @@ import { AddCode } from '../../model/addcode';
 export class CreateSubBrandComponent implements OnInit {
 
   @Input() subbrand: AddCode;
+  @Output()
+  loadsubbrand: EventEmitter<String> = new EventEmitter<String>();
   errorvalue: any;
   errors: any;
 
@@ -32,7 +34,9 @@ export class CreateSubBrandComponent implements OnInit {
    if(this.validate()){
      this.subbrand.db = "subbrand"
     this.service.postManage(this.subbrand).subscribe(
-      (skuId: string) => { },
+      (res) => { 
+        this.loadsubbrand.emit();
+      },
       errors => {
         this.errors = errors;
       })

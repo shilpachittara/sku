@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 
 import { Router } from '@angular/router';
 import { Input } from '@angular/core';
 import { ManagementService } from '../../service/management.service';
 import { AddCode } from '../../model/addcode';
+import { EventEmitter } from '@angular/core';
 
 @Component({
     styleUrls   : ['./create-brand.component.css'],
@@ -13,6 +14,8 @@ import { AddCode } from '../../model/addcode';
 export class CreateBrandComponent implements OnInit {
 
   @Input() brand: AddCode;
+  @Output()
+  loadbrand: EventEmitter<String> = new EventEmitter<String>();
   errorvalue: any;
   errors: any;
 
@@ -34,8 +37,8 @@ export class CreateBrandComponent implements OnInit {
    if(this.validate()){
      this.brand.db = "brand";
     this.service.postManage(this.brand).subscribe(
-      (skuId: string) =>
-      {},
+      (res) =>
+      {this.loadbrand.emit();},
       errors => {
         this.errors = errors;
       }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 import { Router } from '@angular/router';
 import { Input } from '@angular/core';
@@ -14,6 +14,8 @@ export class CreateCategoryComponent implements OnInit {
 
 
   @Input() category: AddCode;
+  @Output()
+  loadcategory: EventEmitter<String> = new EventEmitter<String>();
   errorvalue: any;
   errors: any;
 
@@ -31,7 +33,9 @@ export class CreateCategoryComponent implements OnInit {
    if(this.validate()){
      this.category.db = "category";
     this.service.postManage(this.category).subscribe(
-      (skuId: string) =>{},
+      (res) =>{
+        this.loadcategory.emit();
+      },
       errors => {
         this.errors = errors;
       }
