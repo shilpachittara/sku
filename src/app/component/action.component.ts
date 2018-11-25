@@ -5,6 +5,9 @@ import { SkuService } from '../service/sku.service';
 import { Sku } from '../model/sku';
 import { Input } from '@angular/core';
 import { AppGlobalDataService } from '../service/app-global-data.service';
+import { ManagementService } from '../service/management.service';
+import { Subcode } from '../model/subcode';
+import { Code } from '../model/code';
 
 @Component({
     styleUrls   : ['./action.component.css'],
@@ -26,16 +29,22 @@ export class ActionComponent implements OnInit {
   errors: any;
   model: string;
   actionType: string;
+  dropDown: Subcode;
+  colours: Code [];
+  colour: Code;
+  colourvariations: Subcode [];
+  colourvariation: Subcode;
 
   constructor (
-    private router  : Router, private service: SkuService, private globalData: AppGlobalDataService
+    private router  : Router, private service: SkuService, private globalData: AppGlobalDataService,
+    private manageservice: ManagementService,
   ) {
-    this.sku = this.globalData.sku;
-    this.actionType = this.globalData.actionType;
+    
   }
 
   ngOnInit() {
-      this.groupIdValue ="test";
+      this.sku = this.globalData.sku;
+      this.actionType = this.globalData.actionType;
   }
 
   back(){
@@ -52,6 +61,24 @@ export class ActionComponent implements OnInit {
       }
     )
   }
+  }
+
+  getcolours(){
+    this.dropDown.db = "colour";
+    this.manageservice.getDropDown(this.dropDown).subscribe(
+      (res) => this.colours = res.json()
+      );
+  }
+  
+  getcolourvariations(){
+    // TO DO
+    this.dropDown.db = "colourvariation";
+    this.dropDown.name = this.colour.name;
+    this.dropDown.nameCode = this.colour._id;
+    this.manageservice.getDropDown(this.dropDown).subscribe(
+      (res) => this.colourvariations = res.json()
+      );
+      this.generateId();
   }
 
   validate(): Boolean{

@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Input } from '@angular/core';
 import { ManagementService } from '../../service/management.service';
 import { AddSubcode } from '../../model/addsubcode';
+import { AddCode } from '../../model/addcode';
 
 @Component({
     styleUrls   : ['./create-tax.component.css'],
@@ -12,7 +13,7 @@ import { AddSubcode } from '../../model/addsubcode';
 })
 export class CreateTaxComponent implements OnInit {
 
-  @Input() tax: AddSubcode;
+  @Input() tax: AddCode;
   @Output()
   loadtax: EventEmitter<String> = new EventEmitter<String>();
   errorvalue: any;
@@ -22,7 +23,7 @@ export class CreateTaxComponent implements OnInit {
   constructor (
     private router  : Router, private service: ManagementService
   ) {
-    this.tax = new AddSubcode();
+    this.tax = new AddCode();
   }
 
   ngOnInit() {
@@ -31,7 +32,7 @@ export class CreateTaxComponent implements OnInit {
   save(){    
    if(this.validate()){
      this.tax.db = "tax";
-    this.service.postManageSub(this.tax).subscribe(
+    this.service.postManage(this.tax).subscribe(
       (res) =>
       { this.loadtax.emit(); },
       errors => {
@@ -45,7 +46,7 @@ export class CreateTaxComponent implements OnInit {
     this.errorvalue = true;
     const count = 0;
      
-    if(this.tax.name == null || this.tax.nameCode == null || this.tax.subname == null){
+    if(this.tax.name == null || this.tax.code == null ){
       this.errors = "Please fill all the required fields";
       this.errorvalue = false;
     }

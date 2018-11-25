@@ -201,6 +201,7 @@ export class CreateComponent implements OnInit {
     this.datasku.gender = this.gender.name;
     this.datasku.size = this.size.name;
     this.datasku.tax = this.tax.name;
+    this.datasku.HSNCode = this.category._id;
   }
 
   validate(): Boolean{

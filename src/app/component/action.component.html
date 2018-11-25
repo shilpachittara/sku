@@ -28,7 +28,7 @@
                     <div class="control-group ">
                         <label class="control-label" for="title"> HSN Code </label>
                         <div class="controls">
-                                <input class="form-control" type="text" id="code" name="code" readonly placeholder={{sku.category}}>
+                                <input class="form-control" type="text" id="code" name="code" readonly placeholder={{sku.HSNCode}}>
                         </div>
                     </div>
 
@@ -59,41 +59,30 @@
                     <div class="control-group ">
                         <label class="control-label" for="title"> Colour <span class="red">*</span></label>
                         <div class="controls">
-                                <select id="colour" class="chzn-drop form-control" name="colour" [(ngModel)]="datasku.colour" required="" (change)="generateId()">
-                                      <option selected="" disabled="" value="">Choose Colour</option>
-                                                                        <option id="colour_F" value="F">Beige</option>
-                                                                          <option id="colour_A" value="A">Black</option>
-                                                                          <option id="colour_C" value="C">Blue</option>
-                                                                          <option id="colour_I" value="I">Brown</option>
-                                                                          <option id="colour_H" value="H">Gold</option>
-                                                                          <option id="colour_G" value="G">Green</option>
-                                                                          <option id="colour_D" value="D">Grey</option>
-                                                                          <option id="colour_M" value="M">Multi-Colour</option>
-                                                                          <option id="colour_J" value="J">Off-White</option>
-                                                                          <option id="colour_O" value="O">Orange</option>
-                                                                          <option id="colour_P" value="P">Pink</option>
-                                                                          <option id="colour_L" value="L">Purple</option>
-                                                                          <option id="colour_N" value="N">Red</option>
-                                                                          <option id="colour_K" value="K">Silver</option>
-                                                                          <option id="colour_Q" value="Q">Transparent</option>
-                                                                          <option id="colour_R" value="R">Turquoise</option>
-                                                                          <option id="colour_B" value="B">White</option>
-                                                                          <option id="colour_S" value="S">Yellow</option>
-                                                                          
-                                      </select>	  
-                                
+                            <div *ngIf="actionType == colour">
+                                <select id="colour" class="chzn-drop form-control" name="colour" [(ngModel)]="colour" required="" (change)="getcolourvariations()">
+                                        <option selected="" disabled="" value="">Choose Colour</option>
+                                        <option *ngFor="let colour of colours" [ngValue]="colour">{{colour.name}}</option>
+                                </select>
+                            </div>
+                            <div *ngIf="actionType != colour">
+                                    <input class="form-control" type="text" id="colour" name="colour" readonly placeholder={{sku.colour}}>
+                            </div>
                         </div>
     
                     </div>
                     <div class="control-group ">
                         <label class="control-label" for="title"> Colour Variation <span class="red">*</span></label>
                         <div class="controls">
-                                <select id="colour_variation" class="chzn-drop form-control" name="colour_variation" [(ngModel)]="datasku.colourVariation" required="" (change)="generateId()">
-                                      <option selected="" disabled="" value="">Choose Colour Variation</option>
-                                      
-                                      <option id="colour_S" value="S">Yellow</option>
-                                      </select>	  
-                                
+                                <div *ngIf="actionType == colour">
+                                <select id="colour_variation" class="chzn-drop form-control" name="colour_variation" [(ngModel)]="colourvariation" required="" (change)="generateId()">
+                                        <option selected="" disabled="" value="">Choose Colour Variation</option>
+                                        <option *ngFor="let colourVariation of colourVariations" [ngValue]="colourvariation">{{colourVariation.subname}}</option>
+                                </select>	
+                                </div>
+                                <div *ngIf="actionType != colour">
+                                        <input class="form-control" type="text" id="colourvariation" name="colourvariation" readonly placeholder={{sku.colourVariation}}>
+                                </div>         
                         </div>
     
                     </div>

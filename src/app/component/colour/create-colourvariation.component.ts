@@ -36,7 +36,7 @@ export class CreateColourVariationComponent implements OnInit {
     this.dropDown.db = "colour";
     this.service.getDropDown(this.dropDown).subscribe(
       (res) => this.colours = res.json()
-      )
+      );
   }
 
   save(){    
