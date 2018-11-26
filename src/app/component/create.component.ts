@@ -195,7 +195,7 @@ export class CreateComponent implements OnInit {
     this.datasku.subCategory = this.subcategory.subname;
     this.datasku.brand = this.brand.name;
     this.datasku.subBrand = this.subbrand.name;
-    this.datasku.collection = this.collection.subnameCode;
+    this.datasku.collection = this.collection.subname;
     this.datasku.colour = this.colour.name;
     this.datasku.colourVariation = this.colourvariation.subname;
     this.datasku.gender = this.gender.name;

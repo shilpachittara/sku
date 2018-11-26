@@ -47,7 +47,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr >
+                    <tr *ngFor ="let data of skudata">
                         <td >{{data.groupId}}</td>
                         <td >{{data.styleCode}}</td>
                         <td >{{data.skuCode}}</td>

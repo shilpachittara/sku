@@ -89,7 +89,7 @@
                         <div class="controls">
                             <select id="collection_name" class="chzn-drop form-control" name="collection_name" required="" [(ngModel)]="collection" >
                                 <option selected="" disabled="" value="">Choose Collection</option>
-                                <option *ngFor="let collection of collections" [ngValue]="collections">{{collection.subname}}</option>
+                                <option *ngFor="let collection of collections" [ngValue]="collection">{{collection.subname}}</option>
                             </select>                             
                         </div>
     
@@ -111,11 +111,9 @@
                         <div class="controls">
                                 <select id="colour_variation" class="chzn-drop form-control" name="colour_variation" [(ngModel)]="colourvariation" required="" (change)="generateId()">
                                       <option selected="" disabled="" value="">Choose Colour Variation</option>
-                                      <option *ngFor="let colourVariation of colourVariations" [ngValue]="colourvariation">{{colourVariation.subname}}</option>
-                                      </select>	  
-                                
+                                      <option *ngFor="let colourvariation of colourvariations" [ngValue]="colourvariation">{{colourvariation.subname}}</option>
+                                </select>	          
                         </div>
-    
                     </div>
                     
                     <div class="control-group ">
@@ -124,10 +122,8 @@
                                 <select id="size" class="chzn-drop form-control" name="size" [(ngModel)]="size" required="" (change)="generateId()">
                                       <option selected="" disabled="" value="">Choose Size</option>
                                       <option *ngFor="let size of sizes" [ngValue]="size">{{size.name}}</option>
-                                </select>	  
-                                
+                                </select>	     
                         </div>
-    
                     </div>
                                         
                     <div class="control-group ">
@@ -135,17 +131,15 @@
                         <div class="controls">
                                 <input class="form-control" type="text" id="manufacturing_year" name="manufacturing_year" [(ngModel)]="datasku.manufacturingYear" placeholder="DD/MM/YYYY">
                         </div>
-    
                     </div>
 
                     <div class="control-group ">
                         <label class="control-label" for="title"> Sub Brand <span class="red">*</span></label>
                         <div class="controls">
-                        <select id="sub_brand" class="chzn-drop form-control" name="sub_brand" [(ngModel)]="subbrand" (change) = "generateId()">
+                            <select id="sub_brand" class="chzn-drop form-control" name="sub_brand" [(ngModel)]="subbrand" (change) = "generateId()">
                                       <option selected="" disabled="" value="">Choose Sub Brand</option>
                                       <option *ngFor="let subbrand of subbrands" [ngValue]="subbrand">{{subbrand.name}}</option>                         
-                                      </select>	 
-                                
+                            </select>	         
                         </div>
     
                     </div>
