@@ -42,6 +42,7 @@ const routes: Routes = [
     {path: '', component: AdminComponent},
     {path: 'dashboard', component: DashboardComponent},
     {path: 'dashboard/create', component: CreateComponent},
+    {path: 'dashboard/action/:type/:id', component: ActionComponent},
     {path: 'dashboard/action', component: ActionComponent},
     {path: 'management', component: ManagementComponent},
     {path: 'management/category', component: CategoryComponent},

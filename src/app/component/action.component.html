@@ -59,13 +59,13 @@
                     <div class="control-group ">
                         <label class="control-label" for="title"> Colour <span class="red">*</span></label>
                         <div class="controls">
-                            <div *ngIf="actionType == colour">
+                            <div *ngIf="actionType == 'editcolour'">
                                 <select id="colour" class="chzn-drop form-control" name="colour" [(ngModel)]="colour" required="" (change)="getcolourvariations()">
                                         <option selected="" disabled="" value="">Choose Colour</option>
                                         <option *ngFor="let colour of colours" [ngValue]="colour">{{colour.name}}</option>
                                 </select>
                             </div>
-                            <div *ngIf="actionType != colour">
+                            <div *ngIf="actionType != 'editcolour'">
                                     <input class="form-control" type="text" id="colour" name="colour" readonly placeholder={{sku.colour}}>
                             </div>
                         </div>
@@ -74,13 +74,13 @@
                     <div class="control-group ">
                         <label class="control-label" for="title"> Colour Variation <span class="red">*</span></label>
                         <div class="controls">
-                                <div *ngIf="actionType == colour">
+                                <div *ngIf="actionType == 'editcolour'">
                                 <select id="colour_variation" class="chzn-drop form-control" name="colour_variation" [(ngModel)]="colourvariation" required="" (change)="generateId()">
                                         <option selected="" disabled="" value="">Choose Colour Variation</option>
                                         <option *ngFor="let colourVariation of colourVariations" [ngValue]="colourvariation">{{colourVariation.subname}}</option>
                                 </select>	
                                 </div>
-                                <div *ngIf="actionType != colour">
+                                <div *ngIf="actionType != 'editcolour'">
                                         <input class="form-control" type="text" id="colourvariation" name="colourvariation" readonly placeholder={{sku.colourVariation}}>
                                 </div>         
                         </div>
@@ -90,28 +90,15 @@
                     <div class="control-group ">
                         <label class="control-label" for="title"> Size <span class="red">*</span></label>
                         <div class="controls">
+                                <div *ngIf="actionType == 'editsize'">
                                 <select id="size" class="chzn-drop form-control" name="size" [(ngModel)]="datasku.size" required="" (change)="generateId()">
                                       <option selected="" disabled="" value="">Choose Size</option>
-                                                                        <option id="colour_4XL" value="4XL">4XL</option>
-                                                                          <option id="colour_3XL" value="3XL">3XL</option>
-                                                                          <option id="colour_38" value="38">38</option>
-                                                                          <option id="colour_36" value="36">36</option>
-                                                                          <option id="colour_42" value="42">42</option>
-                                                                          <option id="colour_40" value="40">40</option>
-                                                                          <option id="colour_34" value="34">34</option>
-                                                                          <option id="colour_32" value="32">32</option>
-                                                                          <option id="colour_28" value="28">28</option>
-                                                                          <option id="colour_30" value="30">30</option>
-                                                                          <option id="colour_OS" value="OS">OS</option>
-                                                                          <option id="colour_XXXL" value="XXXL">XXXL</option>
-                                                                          <option id="colour_XXL" value="XXL">XXL</option>
-                                                                          <option id="colour_XL" value="XL">XL</option>
-                                                                          <option id="colour_L" value="L">L</option>
-                                                                          <option id="colour_M" value="M">M</option>
-                                                                          <option id="colour_S" value="S">S</option>
-                                                                          <option id="colour_XS" value="XS">XS</option>
-                                                                          
-                                      </select>	  
+                                      <option *ngFor="let size of sizes" [ngValue]="size">{{size.name}}</option>
+                                </select>
+                                </div>	 
+                                <div *ngIf="actionType != 'editsize'">
+                                    <input class="form-control" type="text" id="size" name="size" readonly placeholder={{sku.size}}>
+                                </div> 
                                 
                         </div>
     
@@ -120,7 +107,7 @@
                     <div class="control-group ">
                         <label class="control-label" for="title"> Manufacturing Year <span class="red">*</span></label>
                         <div class="controls">
-                                <input class="form-control" type="text" id="manufacturing_year" name="manufacturing_year" placeholder={{sku.manufacturingYear}}>
+                                <input class="form-control" type="text" id="manufacturing_year" name="manufacturing_year" placeholder={{sku.manufacturingYear}} readonly>
                         </div>
     
                     </div>
@@ -174,7 +161,7 @@
                         <div class="control-group ">
                             <label class="control-label" for="title"> Product Description <span class="red">*</span></label>
                             <div class="controls">
-                            <textarea class="form-control" type="text" id="sku_description" name="sku_description" [(ngModel)]="datasku.productDescription" placeholder="Product Description"></textarea>
+                            <textarea class="form-control" type="text" id="sku_description" name="sku_description" [(ngModel)]="datasku.productDescription" >{{sku.productDescription}}</textarea>
                                     
                             </div>
                         </div>

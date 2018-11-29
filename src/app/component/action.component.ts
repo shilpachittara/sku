@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { SkuService } from '../service/sku.service';
 import { Sku } from '../model/sku';
 import { Input } from '@angular/core';
@@ -17,6 +17,9 @@ import { Code } from '../model/code';
 export class ActionComponent implements OnInit {
 
   @Input() datasku : Sku;
+  @Output()
+  loadsku: EventEmitter<String> = new EventEmitter<String>();
+  skuid: string;
   sku: Sku;
   groupIdValue: string;
   styleCodeValue: string;
@@ -34,17 +37,28 @@ export class ActionComponent implements OnInit {
   colour: Code;
   colourvariations: Subcode [];
   colourvariation: Subcode;
+  sizes: Code [];
+  size: Code;
 
   constructor (
-    private router  : Router, private service: SkuService, private globalData: AppGlobalDataService,
+    private router  : Router, private service: SkuService, private globaldata: AppGlobalDataService,
+    private route: ActivatedRoute,
     private manageservice: ManagementService,
   ) {
-    
+    this.datasku = new Sku();
+    this.colour = new Code();
+    this.colourvariation = new Subcode();
+    this.size = new Code();
   }
 
   ngOnInit() {
-      this.sku = this.globalData.sku;
-      this.actionType = this.globalData.actionType;
+      this.route.params.subscribe(
+        params => 
+        this.actionType = params['type'],
+        params =>
+        this.skuid = params['id']
+      );
+      this.globaldata.backurl = "Sku";
   }
 
   back(){
@@ -56,7 +70,7 @@ export class ActionComponent implements OnInit {
     this.service.postProducts(this.datasku).subscribe(
       (skuId: string) =>
       {
-        console.log('posting data');
+        this.loadsku.emit();
         this.router.navigateByUrl("/sku/dashboard");
       }
     )
@@ -79,6 +93,13 @@ export class ActionComponent implements OnInit {
       (res) => this.colourvariations = res.json()
       );
       this.generateId();
+  }
+
+  getsizes(){
+    this.dropDown.db = "size";
+    this.manageservice.getDropDown(this.dropDown).subscribe(
+      (res) => this.sizes = res.json()
+      );
   }
 
   validate(): Boolean{
