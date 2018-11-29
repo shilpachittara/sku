@@ -8,6 +8,7 @@ import { AppGlobalDataService } from '../service/app-global-data.service';
 import { ManagementService } from '../service/management.service';
 import { Subcode } from '../model/subcode';
 import { Code } from '../model/code';
+import { Skucode } from '../model/skucode';
 
 @Component({
     styleUrls   : ['./action.component.css'],
@@ -20,7 +21,7 @@ export class ActionComponent implements OnInit {
   @Output()
   loadsku: EventEmitter<String> = new EventEmitter<String>();
   skuid: string;
-  sku: Sku;
+  //sku: Sku;
   groupIdValue: string;
   styleCodeValue: string;
   sizeCodeValue: string;
@@ -39,6 +40,9 @@ export class ActionComponent implements OnInit {
   colourvariation: Subcode;
   sizes: Code [];
   size: Code;
+  taxes: Code [];
+  tax: Code;;
+  body: Skucode;
 
   constructor (
     private router  : Router, private service: SkuService, private globaldata: AppGlobalDataService,
@@ -49,6 +53,7 @@ export class ActionComponent implements OnInit {
     this.colour = new Code();
     this.colourvariation = new Subcode();
     this.size = new Code();
+    this.tax = new Code();
   }
 
   ngOnInit() {
@@ -59,6 +64,11 @@ export class ActionComponent implements OnInit {
         this.skuid = params['id']
       );
       this.globaldata.backurl = "Sku";
+      this.body.skucode = this.skuid;
+      this.service.getSku(this.body).subscribe(
+        (res) => this.datasku = res.json()
+        )
+      
   }
 
   back(){
@@ -67,7 +77,7 @@ export class ActionComponent implements OnInit {
 
   save(){    
    if(this.validate()){
-    this.service.postProducts(this.datasku).subscribe(
+    this.service.putProducts(this.datasku).subscribe(
       (skuId: string) =>
       {
         this.loadsku.emit();
@@ -102,15 +112,31 @@ export class ActionComponent implements OnInit {
       );
   }
 
+  gettaxes(){
+    this.dropDown.db = "tax";
+    this.manageservice.getDropDown(this.dropDown).subscribe(
+      (res) => this.taxes = res.json()
+      );
+  }
+
+  formatdata(){
+    this.datasku.colour = this.colour.name;
+    this.datasku.colourVariation = this.colourvariation.subname;
+    this.datasku.size = this.size.name;
+    this.datasku.tax = this.tax.name;
+  }
+
+  
   validate(): Boolean{
+    this.formatdata();
     this.errorvalue = true;
     const count = 0;
     
-    if(this.datasku.category == null || this.datasku.subCategory == null || this.datasku.brand == null ||
-    this.datasku.gender == null || this.datasku.collection == null || this.datasku.colour == null || 
-    this.datasku.colourVariation == null || this.datasku.size == null || this.datasku.manufacturingYear == null
-    ||this.datasku.skuCode == null || this.datasku.productName== null || this.datasku.productDescription == null || this.datasku.actualColour == null
-    || this.datasku.itemHeight == null || this.datasku.itemLength == null || this.datasku.itemVolume == null
+    if(this.datasku.colour == null || 
+    this.datasku.colourVariation == null || this.datasku.size == null 
+    ||this.datasku.skuCode == null || this.datasku.actualColour == null
+    || this.datasku.itemHeight == null || this.datasku.itemLength == null 
+    || this.datasku.itemVolume == null
     || this.datasku.itemWeight == null || this.datasku.itemWidth == null){
       this.errors = "Please fill all the required fields";
       this.errorvalue = false;
@@ -121,20 +147,14 @@ export class ActionComponent implements OnInit {
 
  
   generateId(){
-    if(this.datasku.brand != null && this.datasku.category!= null && this.datasku.gender!= null 
-      && this.datasku.subCategory){
-    this.datasku.groupId = this.datasku.brand + this.datasku.category
-     + this.datasku.gender + this.datasku.subCategory + "00000";
-    this.groupIdValue = this.datasku.groupId;
-      }
-
-    if(this.datasku.groupId != null && this.datasku.colour != null && this.datasku.colourVariation != null){
-        this.datasku.styleCode = this.datasku.groupId + this.datasku.colour + this.datasku.colourVariation;
-        this.styleCodeValue = this.datasku.styleCode;
-      }
     
-    if(this.datasku.styleCode != null && this.datasku.size){
-      this.datasku.sizeCode =  this.datasku.styleCode + this.datasku.size;
+    if(this.datasku.groupId != null && this.colour._id != null && this.colourvariation.subnameCode != null){
+      this.datasku.styleCode = this.datasku.groupId + this.colour._id + this.colourvariation.subnameCode;
+      this.styleCodeValue = this.datasku.styleCode;
+    }
+  
+    if(this.datasku.styleCode != null && this.size._id){
+      this.datasku.sizeCode =  this.datasku.styleCode + this.size._id;
       this.sizeCodeValue = this.datasku.sizeCode;
     } 
 

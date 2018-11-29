@@ -48,7 +48,7 @@ export class CreateComponent implements OnInit {
   gender: Code;
   sizes: Code [];
   size: Code;
-  taxes: Subcode [];
+  taxes: Code [];
   tax: Code;;
 
   constructor (

@@ -8,24 +8,47 @@ import { Response } from '@angular/http/src/static_response';
 
 import { throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { Skucode } from '../model/skucode';
 
 @Injectable()
 export class SkuService {
-    private getURL = "http://localhost:8000/showsku";
-    private postURL = "http://localhost:8000/addsku";
+    private URI = "http://localhost:8000";
+
 
    constructor(private http : Http, private jsonp: Jsonp) { 
    }
 
    public getProducts(): Observable<any>{
-       return this.http.get(this.getURL).pipe((catchError(this.formatErrors)));
+    const skuUrl = this.URI + "/showsku";
+       return this.http.get(skuUrl).pipe((catchError(this.formatErrors)));
    }
 
    public postProducts(skudata: Sku): Observable<any> {
 
+    const skuUrl = this.URI + "/addsku";
     const headers = new Headers({ 'Content-Type': 'application/json' });
     const options = new RequestOptions({headers : headers});
-    return this.http.post(this.postURL, 
+    return this.http.post(skuUrl, 
+        JSON.stringify(skudata),options).pipe(catchError(this.formatErrors));;
+
+   }
+
+   public getSku(skudata: Skucode): Observable<any> {
+
+    const skuUrl = this.URI + "/getsku";
+    const headers = new Headers({ 'Content-Type': 'application/json' });
+    const options = new RequestOptions({headers : headers});
+    return this.http.post(skuUrl, 
+        JSON.stringify(skudata),options).pipe(catchError(this.formatErrors));;
+
+   }
+
+   public putProducts(skudata: Sku): Observable<any> {
+
+    const skuUrl = this.URI + "/updatesku";
+    const headers = new Headers({ 'Content-Type': 'application/json' });
+    const options = new RequestOptions({headers : headers});
+    return this.http.post(skuUrl, 
         JSON.stringify(skudata),options).pipe(catchError(this.formatErrors));;
 
    }

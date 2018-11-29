@@ -351,10 +351,9 @@
                                 <label class="control-label" for="title"> Tax (%) <span class="red">*</span></label>
                                 <div class="controls">
                                         <select id="tax" class="chzn-drop form-control" name="tax" [(ngModel)]="tax"   required="" >
-                                              <option selected="" disabled="" value="">Tax</option>
+                                              <option selected="" disabled="" value="">{{datasku.tax}}</option>
                                               <option *ngFor="let tax of taxes" [ngValue]="tax">{{tax._id}}</option>
-                                 </select>	  
-                                        
+                                        </select>	  
                                 </div>
                             </div>
 
