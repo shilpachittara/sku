@@ -31,7 +31,7 @@
         </label>
     </div>
     <div id="example1_filter" class="dataTables_filter">
-        <label>Search <input type="search" class="" placeholder="Sku Id" aria-controls="example1">
+        <label>Search <input [(ngModel)]="searchText" type="search" class="" placeholder="Colour Variation" aria-controls="example1">
         </label>
     </div>
     <table class="table table-bordered display dataTable" id="example1" role="grid" aria-describedby="example1_info">
@@ -44,7 +44,7 @@
             </tr>
         </thead>
     <tbody>
-         <tr *ngFor ="let data of colourvariation">                
+         <tr *ngFor ="let data of colourvariation | filter : searchText">                
             <td>{{data.subname}}</td>
             <td>{{data.subnameCode}}</td>
             <td>{{data.name}}</td>

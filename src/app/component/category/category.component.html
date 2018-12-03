@@ -31,7 +31,7 @@
         </label>
     </div>
     <div id="example1_filter" class="dataTables_filter">
-        <label>Search <input type="search" class="" placeholder="category" aria-controls="example1">
+        <label>Search <input [(ngModel)]="searchText" type="search" class="" placeholder="category" aria-controls="example1">
         </label>
     </div>
     <table class="table table-bordered display dataTable" id="example1" role="grid" aria-describedby="example1_info">
@@ -43,7 +43,7 @@
             </tr>
         </thead>
     <tbody>
-         <tr *ngFor ="let data of category">                
+         <tr *ngFor ="let data of category | filter : searchText">                
                 <td>{{data.name}}</td>
                 <td>{{data._id}}</td>
                 <td>

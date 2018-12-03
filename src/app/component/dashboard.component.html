@@ -32,7 +32,8 @@
             </label>
         </div>
         <div id="example1_filter" class="dataTables_filter">
-            <label>Search <input type="search" class="" placeholder="Sku Id" aria-controls="example1">
+            <label>Search 
+                <input [(ngModel)]="searchText" type="search" class="" placeholder="Search" aria-controls="example1">
             </label>
         </div>
         <table class="table table-bordered display dataTable" id="example1" width="100%" style="margin-top: 40px; width: 100%;" role="grid" aria-describedby="example1_info">
@@ -45,14 +46,14 @@
                         <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending" style="width: 170px;">Status</th>
                         <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Action: activate to sort column ascending" style="width: 170px;">Action</th>
                     </tr>
-                </thead>
+                </thead>                
                 <tbody>
-                    <tr *ngFor ="let data of skudata">
+                    <tr *ngFor ="let data of skudata | filter : searchText">
                         <td >{{data.groupId}}</td>
                         <td >{{data.styleCode}}</td>
                         <td >{{data.skuCode}}</td>
                         <td >{{data.productName}}</td>
-                        <td >{{data.sku}}
+                        <td >
                                 <div class="progress"> {{getstatus(data)}}
                                         <div class="progress-bar" id="status_bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" >
                                         {{data.status}}%</div>

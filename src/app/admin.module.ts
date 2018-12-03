@@ -37,6 +37,7 @@ import { ManagementService } from './service/management.service';
 import { ActionComponent } from './component/action.component';
 import { UserComponent } from './component/user/user.component';
 import { CreateUserComponent } from './component/user/create-user.component';
+import { FilterPipe } from './pipes/filter.pipe';
 
 const routes: Routes = [
     {path: '', component: AdminComponent},
@@ -94,7 +95,8 @@ const routes: Routes = [
       CreateSizeComponent,
       CreateTaxComponent,
       CreateUserComponent,
-      ActionComponent
+      ActionComponent,
+      FilterPipe
   ],
   providers: [SkuService, AppGlobalDataService, ManagementService]
 })
