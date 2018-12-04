@@ -22,7 +22,7 @@
 <div class="datatable">
     <div class="dataTables_length" id="example1_length">
         <label>Show 
-            <select name="example1_length" aria-controls="example1" class="">
+            <select name="example1_length" aria-controls="example1" class="" [(ngModel)]="skuPerPage">
                 <option value="10">10</option>
                 <option value="25">25</option>
                 <option value="50">50</option>
@@ -44,7 +44,7 @@
             </tr>
         </thead>
     <tbody>
-         <tr *ngFor ="let data of colourvariation | filter : searchText">                
+         <tr *ngFor ="let data of colourvariation | filter : searchText | paginate: { itemsPerPage: skuPerPage, currentPage: p };">                
             <td>{{data.subname}}</td>
             <td>{{data.subnameCode}}</td>
             <td>{{data.name}}</td>
@@ -61,6 +61,7 @@
         </tbody>
     </table>
     <div class="error"> {{errors}} </div>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
      <!--   <div class="dataTables_info" id="example1_info" role="status" aria-live="polite">Showing FIRST to LAST of TOTAL entries</div>
         <div class="dataTables_paginate paging_simple_numbers" id="example1_paginate">
             <a class="paginate_button previous disabled" aria-controls="example1" data-dt-idx="0" tabindex="0" id="example1_previous">Previous</a>

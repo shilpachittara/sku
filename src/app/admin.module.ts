@@ -38,6 +38,7 @@ import { ActionComponent } from './component/action.component';
 import { UserComponent } from './component/user/user.component';
 import { CreateUserComponent } from './component/user/create-user.component';
 import { FilterPipe } from './pipes/filter.pipe';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 const routes: Routes = [
     {path: '', component: AdminComponent},
@@ -65,7 +66,8 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     SharedModule,
     HttpModule,
-    FormsModule
+    FormsModule,
+    NgxPaginationModule
   ],
   declarations: [
       AdminComponent,

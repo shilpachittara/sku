@@ -23,12 +23,15 @@ export class DashboardComponent implements OnInit {
   errors: any;
   activedata: Active;
   postdata: AddCode;
+  p: number = 1;
+  skuPerPage: number;
   constructor (
     private router: Router, private service: SkuService, private globalService: AppGlobalDataService,
     private manageservice: ManagementService
   ) {}
 
   ngOnInit() { 
+    this.skuPerPage = 10;
     this.globalService.backurl = "no";
     this.loadSku();
   }

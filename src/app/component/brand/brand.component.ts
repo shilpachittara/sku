@@ -22,6 +22,8 @@ export class BrandComponent implements OnInit {
   activedata: Active;
   postdata: AddCode;
   errors: any;
+  p: number = 1;
+  skuPerPage: number;
   
   constructor (
     private router: Router, private service: ManagementService,
@@ -32,6 +34,7 @@ export class BrandComponent implements OnInit {
   }
 
   ngOnInit() { 
+    this.skuPerPage = 10;
     this.globaldata.backurl = "management";
     this.loadBrand();
   }

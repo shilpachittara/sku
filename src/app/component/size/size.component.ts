@@ -23,6 +23,8 @@ export class SizeComponent implements OnInit {
   activedata: Active;
   errors: any;
   postdata: AddCode;
+  p: number = 1;
+  skuPerPage: number;
   
   constructor (
     private router: Router, private service: ManagementService,
@@ -33,6 +35,7 @@ export class SizeComponent implements OnInit {
   }
 
   ngOnInit() { 
+    this.skuPerPage = 10;
     this.globaldata.backurl = "management";
     this.loadSize();
   }
