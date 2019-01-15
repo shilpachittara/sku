@@ -61,7 +61,7 @@
                         <div class="controls">
                             <div *ngIf="actionType == 'editcolour'">
                                 <select id="colour" class="chzn-drop form-control" name="colour" [(ngModel)]="colour" required="" (change)="getcolourvariations()">
-                                        <option selected="" disabled="" value="">{{datasku.colour}}</option>
+                                        <option selected disabled hidden [value]="colour">{{datasku.colour}}</option>
                                         <option *ngFor="let colour of colours" [ngValue]="colour">{{colour.name}}</option>
                                 </select>
                             </div>
@@ -76,7 +76,7 @@
                         <div class="controls">
                                 <div *ngIf="actionType == 'editcolour'">
                                 <select id="colour_variation" class="chzn-drop form-control" name="colour_variation" [(ngModel)]="colourvariation" required="" (change)="generateId()">
-                                        <option selected="" disabled="" value="">{{datasku.colourVariation}}</option>
+                                        <option selected disabled hidden [value]="colourvariation">{{datasku.colourVariation}}</option>
                                         <option *ngFor="let colourvariation of colourvariations" [ngValue]="colourvariation">{{colourvariation.subname}}</option>
                                 </select>	
                                 </div>
@@ -92,7 +92,7 @@
                         <div class="controls">
                                 <div *ngIf="actionType == 'editsize'">
                                 <select id="size" class="chzn-drop form-control" name="size" [(ngModel)]="size" required="" (change)="generateId()">
-                                      <option selected="" disabled="" value="">Choose Size</option>
+                                      <option selected disabled hidden value="size">Choose Size</option>
                                       <option *ngFor="let size of sizes" [ngValue]="size">{{size.name}}</option>
                                 </select>
                                 </div>	 
@@ -265,7 +265,7 @@
                         <label class="control-label" for="title"> Branding <span class="red">*</span></label>
                         <div class="controls">
                                   <select id="category" class="chzn-drop form-control" name="category" [(ngModel)]="datasku.branding"   required=""  onchange="onchangegroup(this)">
-                                      <option selected="" disabled="" value=""> {{datasku.branding}} </option>
+                                      <option selected disabled [value]="datasku.branding"> {{datasku.branding}} </option>
                                             <option id="digital" value="digital type">Digital print</option>
                                             <option id="digital" value="embroidery">Embroidery</option>
                                                                 
@@ -320,7 +320,7 @@
                                 <label class="control-label" for="title"> Tax <span class="red">*</span></label>
                                 <div class="controls">
                                         <select id="tax" class="chzn-drop form-control" name="tax" [(ngModel)]="tax"   required="" >
-                                              <option selected="" disabled="" value="">{{datasku.tax}}</option>
+                                              <option selected disabled hidden [value]="tax">{{datasku.tax}}</option>
                                               <option *ngFor="let tax of taxes" [ngValue]="tax">{{tax._id}}</option>
                                         </select>	  
                                         
