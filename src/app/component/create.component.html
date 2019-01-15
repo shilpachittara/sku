@@ -18,9 +18,9 @@
 <div class="control-group ">
         <label class="control-label" for="title"> SKU <span class="red">*</span></label>
         <div class="controls">
-                <select id="selectcategory" class="chzn-drop form-control" name="selectcategory" [(ngModel)]="model" required="" >
-                      <option selected="" disabled="" value="">Choose Option</option>
-                      <option id="category01" value="01"  >Create SKU</option>
+                <select id="selectcategory" class="form-control" name="selectcategory" [(ngModel)]="model" required="" onkeydown="if(event.keyCode==13) event.keyCode=9;">
+                      <option selected disabled [value]="model">Choose Option</option>
+                      <option id="category01" value="01" >Create SKU</option>
                       <option id="category02" value="02" >Get SKU</option>
                 </select>	          
         </div>
@@ -34,7 +34,7 @@
                         <label class="control-label" for="title"> Category <span class="red">*</span></label>
                         <div class="controls">
                                 <select class="chzn-drop form-control" id="category" name="category" [(ngModel)]="category" required="" (change)="getsubcategoreis()">
-                                        <option selected="" disabled="" value="">Choose Category</option>    
+                                        <option selected disabled [value]="category">Choose Category</option>    
                                         <option *ngFor="let category of categories" [ngValue]="category">{{category.name}}</option>
                                     </select>	  
                                 
@@ -53,7 +53,7 @@
                         <label class="control-label" for="title"> Sub Category <span class="red">*</span></label>
                         <div class="controls">
                                 <select class="chzn-drop form-control" id="subcategory" name="subcategory" [(ngModel)]="subcategory" required="" (change)="generateId()">
-                                    <option selected="" disabled="" value="">Choose Sub Category</option>    
+                                    <option selected disabled [value]="subcategory">Choose Sub Category</option>    
                                     <option *ngFor="let subcategory of subcategories" [ngValue]="subcategory">{{subcategory.subname}}</option>
                                 </select>	  
                         </div>	  
@@ -64,7 +64,7 @@
                         <label class="control-label" for="title"> Brand <span class="red">*</span></label>
                         <div class="controls">
                                 <select class="chzn-drop form-control" id="brand" name="brand" [(ngModel)]="brand" required="" (change)="getcollections()">
-                                    <option selected="" disabled="" value="">Choose brand</option>    
+                                    <option selected disabled [value]="brand">Choose brand</option>    
                                     <option *ngFor="let brand of brands" [ngValue]="brand">{{brand.name}}</option>
                                 </select>	  
                                 
@@ -76,7 +76,7 @@
                         <label class="control-label" for="title"> Gender <span class="red">*</span></label>
                         <div class="controls">
                                 <select id="gender" class="chzn-drop form-control" name="gender" required="" [(ngModel)]="gender" (change)="generateId()">
-                                      <option selected="" disabled="" value="">Choose Gender</option>
+                                      <option selected disabled [value]="gender">Choose Gender</option>
                                       <option *ngFor="let gender of genders" [ngValue]="gender">{{gender.name}}</option>
                                </select>	  
                                 
@@ -88,7 +88,7 @@
                         <label class="control-label" for="title"> Collection Name <span class="red">*</span></label>
                         <div class="controls">
                             <select id="collection_name" class="chzn-drop form-control" name="collection_name" required="" [(ngModel)]="collection" >
-                                <option selected="" disabled="" value="">Choose Collection</option>
+                                <option selected disabled [value]="collection">Choose Collection</option>
                                 <option *ngFor="let collection of collections" [ngValue]="collection">{{collection.subname}}</option>
                             </select>                             
                         </div>
@@ -99,7 +99,7 @@
                         <label class="control-label" for="title"> Colour <span class="red">*</span></label>
                         <div class="controls">
                                 <select id="colour" class="chzn-drop form-control" name="colour" [(ngModel)]="colour" required="" (change)="getcolourvariations()">
-                                      <option selected="" disabled="" value="">Choose Colour</option>
+                                      <option selected disabled [value]="colour">Choose Colour</option>
                                       <option *ngFor="let colour of colours" [ngValue]="colour">{{colour.name}}</option>
                                 </select>	  
                                 
@@ -110,7 +110,7 @@
                         <label class="control-label" for="title"> Colour Variation <span class="red">*</span></label>
                         <div class="controls">
                                 <select id="colour_variation" class="chzn-drop form-control" name="colour_variation" [(ngModel)]="colourvariation" required="" (change)="generateId()">
-                                      <option selected="" disabled="" value="">Choose Colour Variation</option>
+                                      <option selected disabled [value]="colourvariation">Choose Colour Variation</option>
                                       <option *ngFor="let colourvariation of colourvariations" [ngValue]="colourvariation">{{colourvariation.subname}}</option>
                                 </select>	          
                         </div>
@@ -120,7 +120,7 @@
                         <label class="control-label" for="title"> Size <span class="red">*</span></label>
                         <div class="controls">
                                 <select id="size" class="chzn-drop form-control" name="size" [(ngModel)]="size" required="" (change)="generateId()">
-                                      <option selected="" disabled="" value="">Choose Size</option>
+                                      <option selected disabled [value]="size">Choose Size</option>
                                       <option *ngFor="let size of sizes" [ngValue]="size">{{size.name}}</option>
                                 </select>	     
                         </div>
@@ -137,7 +137,7 @@
                         <label class="control-label" for="title"> Sub Brand <span class="red">*</span></label>
                         <div class="controls">
                             <select id="sub_brand" class="chzn-drop form-control" name="sub_brand" [(ngModel)]="subbrand" (change) = "generateId()">
-                                      <option selected="" disabled="" value="">Choose Sub Brand</option>
+                                      <option selected disabled [value]="subbrand">Choose Sub Brand</option>
                                       <option *ngFor="let subbrand of subbrands" [ngValue]="subbrand">{{subbrand.name}}</option>                         
                             </select>	         
                         </div>
@@ -214,7 +214,7 @@
                     </div>
 
                     <div class="control-group ">
-                        <label class="control-label" for="title"> Item Length (cm) <span class="red">*</span></label>
+                        <label class="control-label" for="title"> Item Length (inch) <span class="red">*</span></label>
                         <div class="controls">
                                 <input class="form-control" type="number" step="0.01" min="0.00" id="item_length" name="item_length" [(ngModel)]="datasku.itemLength" placeholder="Item Length" required="">
                         </div>
@@ -222,7 +222,7 @@
                     </div>
 
                     <div class="control-group ">
-                        <label class="control-label" for="title"> Item Height (cm) <span class="red">*</span></label>
+                        <label class="control-label" for="title"> Item Height (inch) <span class="red">*</span></label>
                         <div class="controls">
                                 <input class="form-control" type="number" step="0.01" min="0.00" id="item_height" name="item_height" [(ngModel)]="datasku.itemHeight"  placeholder="Item Height" required="">
                         </div>
@@ -230,7 +230,7 @@
                     </div>
 
                     <div class="control-group ">
-                        <label class="control-label" for="title"> Item Width (cm) <span class="red">*</span></label>
+                        <label class="control-label" for="title"> Item Width (inch) <span class="red">*</span></label>
                         <div class="controls">
                                 <input class="form-control" type="number" step="0.01" min="0.00" id="item_width" name="item_width" [(ngModel)]="datasku.itemWidth"  placeholder="Item Width" required="">
                         </div>
@@ -248,31 +248,31 @@
                     <div class="control-group ">
                         <label class="control-label" for="title"> Package Weight (g) <span class="red">*</span></label>
                         <div class="controls">
-                                <input class="form-control" type="number" step="0.01" min="0.00" id="package_weight" name="package_weight" [(ngModel)]="datasku.packageWeight" placeholder="Package Weight" required="">
+                                <input class="form-control" type="number" step="0.01" min="0.00" id="package_weight" name="package_weight" [(ngModel)]="datasku.packageWeight" placeholder="Package Weight" required="" (input)="volumetricWeightCalculaion()">
                         </div>
     
                     </div>
                     
                     <div class="control-group ">
-                        <label class="control-label" for="title"> Package Length (cm) <span class="red">*</span></label>
+                        <label class="control-label" for="title"> Package Length (inch) <span class="red">*</span></label>
                         <div class="controls">
-                                <input class="form-control" type="number" step="0.01" min="0.00" id="package_length" name="package_length" [(ngModel)]="datasku.packageLength" placeholder="Package Length" required="">
+                                <input class="form-control" type="number" step="0.01" min="0.00" id="package_length" name="package_length" [(ngModel)]="datasku.packageLength" placeholder="Package Length" required="" (input)="volumetricWeightCalculaion()">
                         </div>
     
                     </div>
 
                     <div class="control-group ">
-                        <label class="control-label" for="title"> Package Height (cm) <span class="red">*</span></label>
+                        <label class="control-label" for="title"> Package Height (inch) <span class="red">*</span></label>
                         <div class="controls">
-                                <input class="form-control" type="number" step="0.01" min="0.00" id="package_height" name="package_height" [(ngModel)]="datasku.packageHeight" placeholder="Package Height" required="">
+                                <input class="form-control" type="number" step="0.01" min="0.00" id="package_height" name="package_height" [(ngModel)]="datasku.packageHeight" placeholder="Package Height" required="" (input)="volumetricWeightCalculaion()">
                         </div>
     
                     </div>
 
                     <div class="control-group ">
-                        <label class="control-label" for="title"> Package Width (cm) <span class="red">*</span></label>
+                        <label class="control-label" for="title"> Package Width (inch) <span class="red">*</span></label>
                         <div class="controls">
-                                <input class="form-control" type="number" step="0.01" min="0.00" id="package_width" name="package_width" [(ngModel)]="datasku.packageWidth" placeholder="Package Width" required="">
+                                <input class="form-control" type="number" step="0.01" min="0.00" id="package_width" name="package_width" [(ngModel)]="datasku.packageWidth" placeholder="Package Width" required="" (input)="volumetricWeightCalculaion()">
                         </div>
     
                     </div>
@@ -280,7 +280,7 @@
                     <div class="control-group ">
                             <label class="control-label" for="title"> Volumetric Weight(kg) <span class="red">*</span></label>
                             <div class="controls">
-                                    <input class="form-control" type="number" step="0.01" min="0.00" id="volumetric_weight" name="volumetric_weight" [(ngModel)]="datasku.volumetricWeight" placeholder="Volumetric Weight" required="">
+                                    <input class="form-control" type="number" id="volumetric_weight" name="volumetric_weight" placeholder={{volume}} disabled="" >
                             </div>
         
                         </div>       
@@ -296,7 +296,7 @@
                         <label class="control-label" for="title"> Branding <span class="red">*</span></label>
                         <div class="controls">
                                   <select id="category" class="chzn-drop form-control" name="category" [(ngModel)]="datasku.branding"   required=""  onchange="onchangegroup(this)">
-                                      <option selected="" disabled="" value=""> Branding </option>
+                                      <option selected disabled [value]="datasku.branding">Choose Branding </option>
                                             <option id="digital" value="digital type">Digital print</option>
                                             <option id="digital" value="embroidery">Embroidery</option>
                                                                 
@@ -307,7 +307,7 @@
                     <div class="control-group ">
                         <label class="control-label" for="title"> Cost per Unit<span class="red">*</span></label>
                         <div class="controls">
-                                <input class="form-control" type="number" step="1" min="0.00" id="fulfillment_price" name="branding_cost" [(ngModel)]="datasku.brandingCost" placeholder="Cost" required="" (input)="costCalculation($event)">
+                                <input class="form-control" type="number" step="1" min="0.00" id="fulfillment_price" name="branding_cost" [(ngModel)]="datasku.brandingCost" placeholder="Cost" required="" (input)="costCalculation()">
                         </div>
                     </div>
 
@@ -351,7 +351,7 @@
                                 <label class="control-label" for="title"> Tax (%) <span class="red">*</span></label>
                                 <div class="controls">
                                         <select id="tax" class="chzn-drop form-control" name="tax" [(ngModel)]="tax"   required="" >
-                                              <option selected="" disabled="" value="">{{datasku.tax}}</option>
+                                              <option selected disabled [value]="tax">Choose Tax</option>
                                               <option *ngFor="let tax of taxes" [ngValue]="tax">{{tax._id}}</option>
                                         </select>	  
                                 </div>

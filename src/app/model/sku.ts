@@ -23,11 +23,11 @@ export class Sku {
     itemHeight: string;
     itemWidth: string;
     itemVolume: string;
-    packageWeight:string;
-    packageLength: string;
-    packageHeight: string;
-    packageWidth: string;
-    volumetricWeight: string;
+    packageWeight:number;
+    packageLength: number;
+    packageHeight: number;
+    packageWidth: number;
+    volumetricWeight: number;
     basicCost: string;
     branding: string;
     brandingCost: number;

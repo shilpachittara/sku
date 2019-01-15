@@ -21,7 +21,6 @@ export class ActionComponent implements OnInit {
   @Output()
   loadsku: EventEmitter<String> = new EventEmitter<String>();
   skuid: string;
-  //sku: Sku;
   groupIdValue: string;
   styleCodeValue: string;
   sizeCodeValue: string;
@@ -150,17 +149,14 @@ export class ActionComponent implements OnInit {
     
     if(this.datasku.groupId != null && this.colour._id != null && this.colourvariation.subnameCode != null){
       this.datasku.styleCode = this.datasku.groupId + this.colour._id + this.colourvariation.subnameCode;
-      this.styleCodeValue = this.datasku.styleCode;
     }
   
     if(this.datasku.styleCode != null && this.size._id){
       this.datasku.sizeCode =  this.datasku.styleCode + this.size._id;
-      this.sizeCodeValue = this.datasku.sizeCode;
     } 
 
     if(this.datasku.sizeCode != null && this.datasku.subBrand != null){
       this.datasku.skuCode = this.datasku.sizeCode + this.datasku.subBrand;
-      this.skuCodeValue = this.datasku.skuCode;
     }
   }
 
@@ -178,14 +174,20 @@ export class ActionComponent implements OnInit {
     if(this.datasku.costAfterOverhead != null){
     if(this.datasku.b2bmargin != null){
       this.datasku.b2bSellingPrice = this.costAfterOverHeadValue / (1-(this.datasku.b2bmargin/100));
-      this.b2bsp = this.datasku.b2bSellingPrice;
     }
     if(this.datasku.b2cmargin != null){
       this.datasku.sellingPrice = this.costAfterOverHeadValue / (1-(this.datasku.b2cmargin/100));
-      this.b2csp = this.datasku.sellingPrice;
     }
   }
 
+  }
+
+  volumetricWeightCalculaion(){
+    if(this.datasku.packageHeight != null && this.datasku.packageLength != null &&
+       this.datasku.packageWeight != null && this.datasku.packageWidth != null){
+         this.datasku.volumetricWeight = (this.datasku.packageWidth* this.datasku.packageLength
+                                         *this.datasku.packageHeight)/306;                             
+       }
   }
 
   setData(data: Sku): void{

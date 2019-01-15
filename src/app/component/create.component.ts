@@ -23,6 +23,7 @@ export class CreateComponent implements OnInit {
   styleCodeValue: string;
   sizeCodeValue: string;
   skuCodeValue: string;
+  volume: any;
   costAfterOverHeadValue: any;
   b2bsp: any;
   b2csp: any;
@@ -49,7 +50,7 @@ export class CreateComponent implements OnInit {
   sizes: Code [];
   size: Code;
   taxes: Code [];
-  tax: Code;;
+  tax: Code;
 
   constructor (
     private router  : Router, private service: SkuService,
@@ -80,6 +81,7 @@ export class CreateComponent implements OnInit {
     this.b2bsp = "B2B Selling Price";
     this.b2csp = "Selling Price";
     this.globaldata.backurl = "Sku";
+    this.volume = "Volumetric Weight"
     this.getcategories();
     this.getbrands();
     this.getsubbrands();
@@ -309,7 +311,15 @@ export class CreateComponent implements OnInit {
       this.b2csp = this.datasku.sellingPrice;
     }
   }
+}
 
+  volumetricWeightCalculaion(){
+    if(this.datasku.packageHeight != null && this.datasku.packageLength != null &&
+       this.datasku.packageWeight != null && this.datasku.packageWidth != null){
+         this.datasku.volumetricWeight = (this.datasku.packageWidth* this.datasku.packageLength
+                                         *this.datasku.packageHeight)/306;
+         this.volume = this.datasku.volumetricWeight;                              
+       }
   }
 
   setData(data: Sku): void{
