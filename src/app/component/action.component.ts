@@ -20,7 +20,8 @@ export class ActionComponent implements OnInit {
   @Input() datasku : Sku;
   @Output()
   loadsku: EventEmitter<String> = new EventEmitter<String>();
-  skuid: string;
+  skuid: any;
+  sku: Sku[];
   groupIdValue: string;
   styleCodeValue: string;
   sizeCodeValue: string;
@@ -31,7 +32,7 @@ export class ActionComponent implements OnInit {
   errorvalue:any;
   errors: any;
   model: string;
-  actionType: string;
+  actionType: any;
   dropDown: Subcode;
   colours: Code [];
   colour: Code;
@@ -53,21 +54,35 @@ export class ActionComponent implements OnInit {
     this.colourvariation = new Subcode();
     this.size = new Code();
     this.tax = new Code();
+    this.body = new Skucode();
+    this.sku = new Array<Sku>();
+    this.dropDown = new Subcode();
   }
 
   ngOnInit() {
       this.route.params.subscribe(
-        params => 
-        this.actionType = params['type'],
-        params =>
-        this.skuid = params['id']
+        params => this.actionType = params['type']
       );
-      this.globaldata.backurl = "Sku";
-      this.body.skucode = this.skuid;
-      this.service.getSku(this.body).subscribe(
-        (res) => this.datasku = res.json()
-        )
-      
+      this.route.params.subscribe(
+      params => this.skuid = params['id'],
+      );
+      this.globaldata.backurl = "Sku";   
+      this.loadSkubyId();
+      this.gettaxes();
+      if(this.actionType == "editsize"){
+        this.getsizes();
+      }
+      if(this.actionType == "editcolour"){
+        this.getcolours();
+        this.getcolourvariations();
+      }
+  }
+
+  loadSkubyId(){
+    this.body.skucode = this.skuid;
+    this.service.getSku(this.body).subscribe(
+      (res) => this.datasku = res.json()
+      );
   }
 
   back(){
@@ -101,7 +116,7 @@ export class ActionComponent implements OnInit {
     this.manageservice.getDropDown(this.dropDown).subscribe(
       (res) => this.colourvariations = res.json()
       );
-      this.generateId();
+      //this.generateId();
   }
 
   getsizes(){
@@ -119,10 +134,18 @@ export class ActionComponent implements OnInit {
   }
 
   formatdata(){
+    if(this.colour._id != null){
     this.datasku.colour = this.colour.name;
+  }
+  if(this.colourvariation._id != null){
     this.datasku.colourVariation = this.colourvariation.subname;
+  }
+  if(this.size._id != null){
     this.datasku.size = this.size.name;
+  }
+  if(this.tax._id != null){
     this.datasku.tax = this.tax.name;
+  }
   }
 
   
@@ -146,11 +169,13 @@ export class ActionComponent implements OnInit {
 
  
   generateId(){
-    
+    if(this.actionType ="editcolour"){
     if(this.datasku.groupId != null && this.colour._id != null && this.colourvariation.subnameCode != null){
       this.datasku.styleCode = this.datasku.groupId + this.colour._id + this.colourvariation.subnameCode;
     }
+    }
   
+    if(this.actionType ="editsize"){
     if(this.datasku.styleCode != null && this.size._id){
       this.datasku.sizeCode =  this.datasku.styleCode + this.size._id;
     } 
@@ -158,6 +183,7 @@ export class ActionComponent implements OnInit {
     if(this.datasku.sizeCode != null && this.datasku.subBrand != null){
       this.datasku.skuCode = this.datasku.sizeCode + this.datasku.subBrand;
     }
+  }
   }
 
 
