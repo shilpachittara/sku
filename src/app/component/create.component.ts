@@ -8,6 +8,8 @@ import { AppGlobalDataService } from '../service/app-global-data.service';
 import { Code } from '../model/code';
 import { Subcode } from '../model/subcode';
 import { ManagementService } from '../service/management.service';
+import { HostListener } from '@angular/core';
+import { ElementRef } from '@angular/core';
 
 @Component({
     styleUrls   : ['./create.component.css'],
@@ -55,7 +57,7 @@ export class CreateComponent implements OnInit {
   constructor (
     private router  : Router, private service: SkuService,
     private manageservice: ManagementService,
-    private globaldata: AppGlobalDataService
+    private globaldata: AppGlobalDataService, private elementRef: ElementRef
   ) {
     this.datasku = new Sku();
     this.model = "03";
@@ -229,28 +231,6 @@ export class CreateComponent implements OnInit {
 
   }
 
-  /*statusCalculation(){
-    // logic to calculate value
-    if(this.datasku.packageWeight == null){
-      this.datasku.status = "57%";
-    }
-    else if(this.datasku.basicCost == null){
-      this.datasku.status = "70%";
-    }
-    else if(this.datasku.fulfillmentCost == null){
-      this.datasku.status = "80%";
-    }
-    else if(this.datasku.b2bmargin == null){
-      this.datasku.status ="85%";
-    }
-    else if(this.datasku.b2bSellingPrice == null){
-      this.datasku.status = "92%";
-    }
-    else if(this.datasku.sellingPrice != null){
-      this.datasku.status = "100%";
-    }
-  }*/
-
   generateId(){
     // TO DO
     if(this.category._id != null && this.brand._id != null && this.gender._id != null 
@@ -275,21 +255,6 @@ export class CreateComponent implements OnInit {
       this.skuCodeValue = this.datasku.skuCode;
     }
   }
-
-  /*styleCode(){
-    this.datasku.styleCode = this.datasku.groupId + this.datasku.color + this.datasku.colorVariation;
-    this.styleCodeValue = this.datasku.styleCode;
-  }
-
-  sizeCode(){
-    this.datasku.sizeCode =  this.datasku.styleCode + this.datasku.sizeCode;
-    this.sizeCodeValue = this.datasku.sizeCode;
-  }
-
-  skuCode(){
-    this.datasku.skuCode = this.datasku.sizeCode + this.datasku.subBrand;
-    this.skuCodeValue = this.datasku.skuCode;
-  }*/
 
   costCalculation(){
     if(this.datasku.brandingCost != null && this.datasku.brandingQuantity != null){

@@ -3,7 +3,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppComponent } from './app.component';
 import { RouterModule,Routes } from '@angular/router';
-import { JsonpModule } from '@angular/http';
+import { JsonpModule, HttpModule } from '@angular/http';
+import { KeycloakHttp, KEYCLOAK_HTTP_PROVIDER } from './service/keycloak.http';
+import { KeycloakService } from './service/keycloak.service';
+import { SkuService } from './service/sku.service';
+import { ManagementService } from './service/management.service';
 
 const APP_ROUTES : Routes =
     [
@@ -22,9 +26,10 @@ const APP_ROUTES : Routes =
     NgbModule.forRoot(),
     RouterModule.forRoot(APP_ROUTES),
     BrowserModule,
-    JsonpModule
+    JsonpModule,
+    HttpModule
   ],
-  providers: [],
+  providers: [KEYCLOAK_HTTP_PROVIDER,KeycloakService,SkuService,ManagementService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

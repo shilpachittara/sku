@@ -15,20 +15,19 @@
 </div>
 
 
-<div class="control-group ">
-        <label class="control-label" for="title"> SKU <span class="red">*</span></label>
-        <div class="controls">
-                <select id="selectcategory" class="form-control" name="selectcategory" [(ngModel)]="model" required="" onkeydown="if(event.keyCode==13) event.keyCode=9;">
-                      <option selected disabled [value]="model">Choose Option</option>
-                      <option id="category01" value="01" >Create SKU</option>
-                      <option id="category02" value="02" >Get SKU</option>
-                </select>	          
-        </div>
-    </div>
-
 <div class="box-content " style="border:none; ">
 				
         <form #skuForm="ngForm" action="" method="post" id="filterform" class="form-horizontal" name="add_pattern" style="margin: 0px auto;">
+                <div class="control-group ">
+                        <label class="control-label" for="title"> SKU <span class="red">*</span></label>
+                        <div class="controls">
+                                <select id="selectcategory" class="form-control" name="selectcategory" [(ngModel)]="model" required="" >
+                                      <option selected disabled [value]="model">Choose Option</option>
+                                      <option id="category01" value="01" >Create SKU</option>
+                                      <option id="category02" value="02" >Get SKU</option>
+                                </select>	          
+                        </div>
+                    </div>
                 <div id = "createsku" *ngIf="model == 01">
                     <div class="control-group ">
                         <label class="control-label" for="title"> Category <span class="red">*</span></label>

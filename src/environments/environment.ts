@@ -5,5 +5,8 @@
 
 export const environment = {
   production: false,
-  api_url: 'https://conduit.productionready.io/api'
+  KEYCLOAK_URL: 'http://localhost:8080/auth',
+  KEYCLOAK_REALM: 'Demo-Realm',
+  KEYCLOAK_CLIENTID: 'tutorial-frontend',
+  BACKEND_URL: 'http://localhost:8000/'
 };
