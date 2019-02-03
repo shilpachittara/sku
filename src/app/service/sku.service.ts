@@ -13,43 +13,44 @@ import { Skucode } from '../model/skucode';
 @Injectable()
 export class SkuService {
     private URI = "http://localhost:8000";
-
+    private headers : Headers;
+    private options : RequestOptions;
 
    constructor(private http : Http, private jsonp: Jsonp) { 
+    this.headers = new Headers();
+    this.headers.append("Content-Type", "application/json");
+    this.headers.append("Authorization", "Bearer " + ""); // add token detail here
+    this.options = new RequestOptions({headers : this.headers});
+    
    }
 
    public getProducts(): Observable<any>{
     const skuUrl = this.URI + "/showsku";
-       return this.http.get(skuUrl).pipe((catchError(this.formatErrors)));
+    
+       return this.http.get(skuUrl, this.options).pipe((catchError(this.formatErrors)));
    }
 
    public postProducts(skudata: Sku): Observable<any> {
 
     const skuUrl = this.URI + "/addsku";
-    const headers = new Headers({ 'Content-Type': 'application/json' });
-    const options = new RequestOptions({headers : headers});
     return this.http.post(skuUrl, 
-        JSON.stringify(skudata),options).pipe(catchError(this.formatErrors));;
+        JSON.stringify(skudata), this.options).pipe(catchError(this.formatErrors));;
 
    }
 
    public getSku(skudata: Skucode): Observable<any> {
 
     const skuUrl = this.URI + "/getsku";
-    const headers = new Headers({ 'Content-Type': 'application/json' });
-    const options = new RequestOptions({headers : headers});
     return this.http.post(skuUrl, 
-        JSON.stringify(skudata),options).pipe(catchError(this.formatErrors));;
+        JSON.stringify(skudata),this.options).pipe(catchError(this.formatErrors));;
 
    }
 
    public putProducts(skudata: Sku): Observable<any> {
 
     const skuUrl = this.URI + "/updatesku";
-    const headers = new Headers({ 'Content-Type': 'application/json' });
-    const options = new RequestOptions({headers : headers});
     return this.http.post(skuUrl, 
-        JSON.stringify(skudata),options).pipe(catchError(this.formatErrors));;
+        JSON.stringify(skudata),this.options).pipe(catchError(this.formatErrors));;
 
    }
 
