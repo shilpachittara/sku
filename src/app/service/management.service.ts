@@ -14,6 +14,7 @@ import { AddCode } from '../model/addcode';
 import { AddSubcode } from '../model/addsubcode';
 import { User } from '../model/user';
 import { Subcode } from '../model/subcode';
+import { KeycloakHttp } from './keycloak.http';
 
 @Injectable()
 export class ManagementService {
@@ -22,10 +23,9 @@ export class ManagementService {
     private options : RequestOptions;
     private URI = "http://localhost:8000"
 
-   constructor(private http : Http, private jsonp: Jsonp) { 
+   constructor(private http : KeycloakHttp, private jsonp: Jsonp) { 
     this.headers = new Headers();
     this.headers.append("Content-Type", "application/json");
-    this.headers.append("Authorization", "Bearer " + ""); // add token detail here
     this.options = new RequestOptions({headers : this.headers});
    }
 

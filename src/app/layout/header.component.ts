@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AppGlobalDataService } from '../service/app-global-data.service';
 import { Router } from '@angular/router';
+import { KeycloakService } from '../service/keycloak.service';
 
 
 @Component({
@@ -11,7 +12,7 @@ import { Router } from '@angular/router';
 
 export class HeaderComponent implements OnInit {
    backvalue: string;
-   constructor(private router  : Router,private globaldata: AppGlobalDataService) { }
+   constructor(private router  : Router,private globaldata: AppGlobalDataService, private keyCloak: KeycloakService) { }
    ngOnInit() {
     if(this.globaldata.backurl == "Sku"){
         this.backvalue = "SKU Manager";
@@ -27,5 +28,8 @@ export class HeaderComponent implements OnInit {
        if(this.globaldata.backurl == "management"){
         this.router.navigateByUrl("/sku/management");
        }
+   }
+   logout(){
+       this.keyCloak.logout();
    }
 }

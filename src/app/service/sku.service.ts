@@ -9,19 +9,20 @@ import { Response } from '@angular/http/src/static_response';
 import { throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Skucode } from '../model/skucode';
+import { KeycloakService } from './keycloak.service';
+import { KeycloakHttp } from './keycloak.http';
 
 @Injectable()
 export class SkuService {
     private URI = "http://localhost:8000";
     private headers : Headers;
     private options : RequestOptions;
+    private token : string;
 
-   constructor(private http : Http, private jsonp: Jsonp) { 
+   constructor(private http : KeycloakHttp, private jsonp: Jsonp) { 
     this.headers = new Headers();
     this.headers.append("Content-Type", "application/json");
-    this.headers.append("Authorization", "Bearer " + ""); // add token detail here
     this.options = new RequestOptions({headers : this.headers});
-    
    }
 
    public getProducts(): Observable<any>{
