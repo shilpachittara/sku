@@ -10,6 +10,7 @@ import { Subcode } from '../model/subcode';
 import { ManagementService } from '../service/management.service';
 import { HostListener } from '@angular/core';
 import { ElementRef } from '@angular/core';
+import { KeycloakService } from '../service/keycloak.service';
 
 @Component({
     styleUrls   : ['./create.component.css'],
@@ -56,8 +57,9 @@ export class CreateComponent implements OnInit {
 
   constructor (
     private router  : Router, private service: SkuService,
-    private manageservice: ManagementService,
-    private globaldata: AppGlobalDataService, private elementRef: ElementRef
+    private manageservice : ManagementService,
+    private keycloakservice : KeycloakService,
+    private globaldata : AppGlobalDataService, private elementRef : ElementRef
   ) {
     this.datasku = new Sku();
     this.model = "03";
@@ -286,6 +288,50 @@ export class CreateComponent implements OnInit {
          this.volume = this.datasku.volumetricWeight;                              
        }
   }
+
+  disableRoleForCreate(){
+    if(!this.keycloakservice.hasRole('Catalog')){
+    document.getElementById("category").setAttribute("disabled","true");
+    document.getElementById("subcategory").setAttribute("disabled","true");
+    document.getElementById("brand").setAttribute("disabled","true");
+    document.getElementById("gender").setAttribute("disabled","true");
+    document.getElementById("collection_name").setAttribute("disabled","true");
+    document.getElementById("colour").setAttribute("disabled","true");
+    document.getElementById("colour_variation").setAttribute("disabled","true");
+    document.getElementById("size").setAttribute("disabled","true");
+    document.getElementById("manufacturing_year").setAttribute("disabled","true");
+    document.getElementById("sub_brand").setAttribute("disabled","true");
+    }
+    }
+
+    disableRoleForGet(){
+    if(!this.keycloakservice.hasRole('Catalog')){
+      document.getElementById("sku_name").setAttribute("disabled","true");
+      document.getElementById("sku_description").setAttribute("disabled","true");
+      document.getElementById("actual_colour").setAttribute("disabled","true");
+      document.getElementById("item_weight").setAttribute("disabled","true");
+      document.getElementById("item_length").setAttribute("disabled","true");
+      document.getElementById("item_height").setAttribute("disabled","true");
+      document.getElementById("item_width").setAttribute("disabled","true");
+      document.getElementById("item_volume").setAttribute("disabled","true");
+      document.getElementById("input_price").setAttribute("disabled","true");
+      document.getElementById("branding").setAttribute("disabled","true");
+      document.getElementById("fulfillment_price").setAttribute("disabled","true");
+      document.getElementById("branding_quantity").setAttribute("disabled","true");
+    }
+    if(!this.keycloakservice.hasRole('Fulfillment')){
+      document.getElementById("package_weight").setAttribute("disabled","true");
+      document.getElementById("package_length").setAttribute("disabled","true");
+      document.getElementById("package_height").setAttribute("disabled","true");
+      document.getElementById("package_width").setAttribute("disabled","true");
+      document.getElementById("fulfillment_cost").setAttribute("disabled","true");
+    }
+    if(!this.keycloakservice.hasRole('Sales')){
+      document.getElementById("b2bmargin").setAttribute("disabled","true");
+      document.getElementById("b2cmargin").setAttribute("disabled","true");
+      document.getElementById("tax").setAttribute("disabled","true");
+    }
+    }
 
   setData(data: Sku): void{
     this.datasku = data;

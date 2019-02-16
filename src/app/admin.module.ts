@@ -39,6 +39,7 @@ import { UserComponent } from './component/user/user.component';
 import { CreateUserComponent } from './component/user/create-user.component';
 import { FilterPipe } from './pipes/filter.pipe';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { KeycloakService } from './service/keycloak.service';
 
 const routes: Routes = [
     {path: '', component: AdminComponent},
@@ -100,6 +101,6 @@ const routes: Routes = [
       ActionComponent,
       FilterPipe
   ],
-  providers: [SkuService, AppGlobalDataService, ManagementService]
+  providers: [SkuService, AppGlobalDataService, ManagementService, KeycloakService]
 })
 export class AdminModule {}

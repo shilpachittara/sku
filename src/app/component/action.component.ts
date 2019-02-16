@@ -9,6 +9,7 @@ import { ManagementService } from '../service/management.service';
 import { Subcode } from '../model/subcode';
 import { Code } from '../model/code';
 import { Skucode } from '../model/skucode';
+import { KeycloakService } from '../service/keycloak.service';
 
 @Component({
     styleUrls   : ['./action.component.css'],
@@ -47,6 +48,7 @@ export class ActionComponent implements OnInit {
   constructor (
     private router  : Router, private service: SkuService, private globaldata: AppGlobalDataService,
     private route: ActivatedRoute,
+    private keycloakservice: KeycloakService,
     private manageservice: ManagementService,
   ) {
     this.datasku = new Sku();
@@ -60,6 +62,7 @@ export class ActionComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.disableForRoles();
       this.route.params.subscribe(
         params => this.actionType = params['type']
       );
@@ -214,6 +217,39 @@ export class ActionComponent implements OnInit {
          this.datasku.volumetricWeight = (this.datasku.packageWidth* this.datasku.packageLength
                                          *this.datasku.packageHeight)/306;                             
        }
+  }
+
+  disableForRoles(){
+    if(!this.keycloakservice.hasRole('Catalog')){
+      document.getElementById("colour").setAttribute("disabled","true");
+      document.getElementById("colour_variation").setAttribute("disabled","true");
+      document.getElementById("size").setAttribute("disabled","true");
+      document.getElementById("sku_description").setAttribute("disabled","true");
+      document.getElementById("actual_colour").setAttribute("disabled","true");
+      document.getElementById("item_weight").setAttribute("disabled","true");
+      document.getElementById("item_length").setAttribute("disabled","true");
+      document.getElementById("item_height").setAttribute("disabled","true");
+      document.getElementById("item_width").setAttribute("disabled","true");
+      document.getElementById("item_volume").setAttribute("disabled","true");
+      document.getElementById("input_price").setAttribute("disabled","true");
+      document.getElementById("branding").setAttribute("disabled","true");
+      document.getElementById("fulfillment_price").setAttribute("disabled","true");
+      document.getElementById("branding_quantity").setAttribute("disabled","true");
+    }
+
+    if(!this.keycloakservice.hasRole('Fulfillment')){
+      document.getElementById("package_weight").setAttribute("disabled","true");
+      document.getElementById("package_length").setAttribute("disabled","true");
+      document.getElementById("package_height").setAttribute("disabled","true");
+      document.getElementById("package_width").setAttribute("disabled","true");
+      document.getElementById("fulfillment_cost").setAttribute("disabled","true");
+    }
+
+    if(!this.keycloakservice.hasRole('Sales')){
+      document.getElementById("b2bmargin").setAttribute("disabled","true");
+      document.getElementById("b2cmargin").setAttribute("disabled","true");
+      document.getElementById("tax").setAttribute("disabled","true");
+    }
   }
 
   setData(data: Sku): void{

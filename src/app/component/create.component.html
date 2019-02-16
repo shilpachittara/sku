@@ -18,7 +18,7 @@
 <div class="box-content " style="border:none; ">
 				
         <form #skuForm="ngForm" action="" method="post" id="filterform" class="form-horizontal" name="add_pattern" style="margin: 0px auto;">
-                <div class="control-group ">
+                <div class="control-group "> {{disableRoleForGet()}} 
                         <label class="control-label" for="title"> SKU <span class="red">*</span></label>
                         <div class="controls">
                                 <select id="selectcategory" class="form-control" name="selectcategory" [(ngModel)]="model" required="" >
@@ -28,7 +28,7 @@
                                 </select>	          
                         </div>
                     </div>
-                <div id = "createsku" *ngIf="model == 01">
+                <div id = "createsku" *ngIf="model == 01"> {{disableRoleForCreate()}} 
                     <div class="control-group ">
                         <label class="control-label" for="title"> Category <span class="red">*</span></label>
                         <div class="controls">
@@ -36,7 +36,6 @@
                                         <option selected disabled [value]="category">Choose Category</option>    
                                         <option *ngFor="let category of categories" [ngValue]="category">{{category.name}}</option>
                                     </select>	  
-                                
                         </div>
                     </div>
                 
@@ -294,7 +293,7 @@
                     <div class="control-group ">
                         <label class="control-label" for="title"> Branding <span class="red">*</span></label>
                         <div class="controls">
-                                  <select id="category" class="chzn-drop form-control" name="category" [(ngModel)]="datasku.branding"   required=""  onchange="onchangegroup(this)">
+                                  <select id="branding" class="chzn-drop form-control" name="category" [(ngModel)]="datasku.branding"   required=""  onchange="onchangegroup(this)">
                                       <option selected disabled [value]="datasku.branding">Choose Branding </option>
                                             <option id="digital" value="Digital Print">Digital print</option>
                                             <option id="digital" value="Embroidery">Embroidery</option>
@@ -320,7 +319,7 @@
                     <div class="control-group ">
                         <label class="control-label" for="title"> Fulfillment Cost <span class="red">*</span></label>
                         <div class="controls">
-                                <input class="form-control" type="number" step="1" min="0.00" id="fulfillment_price" name="fulfillment_price" [(ngModel)]="datasku.fulfillmentCost" placeholder="Fulfillment Cost" required="" (input)="costCalculation()">
+                                <input class="form-control" type="number" step="1" min="0.00" id="fulfillment_cost" name="fulfillment_cost" [(ngModel)]="datasku.fulfillmentCost" placeholder="Fulfillment Cost" required="" (input)="costCalculation()">
                         </div>
                     </div>
 
