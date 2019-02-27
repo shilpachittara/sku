@@ -281,10 +281,10 @@ export class CreateComponent implements OnInit {
 }
 
   volumetricWeightCalculaion(){
-    if(this.datasku.packageHeight != null && this.datasku.packageLength != null &&
-       this.datasku.packageWeight != null && this.datasku.packageWidth != null){
+    if(this.datasku.packageHeight != null && this.datasku.packageLength != null 
+       && this.datasku.packageWidth != null){
          this.datasku.volumetricWeight = (this.datasku.packageWidth* this.datasku.packageLength
-                                         *this.datasku.packageHeight)/306;
+                                         *this.datasku.packageHeight)*(0.0163871);
          this.volume = this.datasku.volumetricWeight;                              
        }
   }
